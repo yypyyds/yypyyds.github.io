@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
 <meta property="article:published_time" content="2023-03-13T07:51:04.000Z">
-<meta property="article:modified_time" content="2023-03-14T08:58:18.321Z">
+<meta property="article:modified_time" content="2023-03-14T12:11:12.601Z">
 <meta property="article:author" content="脚踏车没有脚">
 <meta property="article:tag" content="公钥密码">
 <meta property="article:tag" content="对称密码">
@@ -62,7 +62,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-03-14 16:58:18'
+  postUpdate: '2023-03-14 20:11:12'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,7 +162,7 @@
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">公钥密码算法和对称密码算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-13T07:51:04.000Z" title="发表于 2023-03-13 15:51:04">2023-03-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-14T08:58:18.321Z" title="更新于 2023-03-14 16:58:18">2023-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="公钥密码算法和对称密码算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="公钥密码算法和对称密码算法"><a href="#公钥密码算法和对称密码算法" class="headerlink" title="公钥密码算法和对称密码算法"></a>公钥密码算法和对称密码算法</h1><h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>密钥生成步骤：</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">公钥密码算法和对称密码算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-13T07:51:04.000Z" title="发表于 2023-03-13 15:51:04">2023-03-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-14T12:11:12.601Z" title="更新于 2023-03-14 20:11:12">2023-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="公钥密码算法和对称密码算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="公钥密码算法和对称密码算法"><a href="#公钥密码算法和对称密码算法" class="headerlink" title="公钥密码算法和对称密码算法"></a>公钥密码算法和对称密码算法</h1><h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>密钥生成步骤：</p>
 <ol>
 <li>选取两个安全的大素数 $p,q$ (大于1024比特)</li>
 <li>计算 $n=p\times q,\varphi(n)=(p-1)\times (q-1)$ ，其中 $\varphi(n)$ 为 $n$ 的欧拉函数（小于n的素数个数）</li>
@@ -171,7 +171,7 @@
 </ol>
 <p>重要公式：</p>
 <script type="math/tex; mode=display">
-Encrypt:\qquad Cipher=Plain^{E}\enspace mod \;N\\
+Encrypt:\qquad Cipher=Plain^{E}\enspace mod \;N\\\\
 Decrypt:\qquad Plain=Cipher^{D}\enspace mod \;N</script><h2 id="ElGamal"><a href="#ElGamal" class="headerlink" title="ElGamal"></a>ElGamal</h2><p>ElGamal是基于有限域上离散对数的公钥加密体制，该体制既可以用来加密也可以用做数字签名</p>
 <p>先复习一下前置知识</p>
 <h3 id="群"><a href="#群" class="headerlink" title="群"></a>群</h3><p><strong>群是一个集合G，连同一个运算 “·”</strong>，它结合任何两个元素 a 和 b 而形成另一个元素，记为 a · b。符号 “·” 是对具体给出的运算，比如加法的一般的占位符。要具备成为群的资格，<strong>这个集合和运算 (G, ·) 必须满足叫做群公理的四个要求</strong>：</p>
