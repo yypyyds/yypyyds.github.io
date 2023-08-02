@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>机器学习笔记 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="机器学习随笔类型，想到什么写什么 Loss function交叉熵在cnn中，输出层计算Loss用的Cross-Entropy，叫交叉熵，见这个，之后再详细研究 上面那个图的水印很傻逼，之后看的这个损失函数：交叉熵详解 为了获取事件的最短平均编码，根据事件的普遍程度来分配付出的码字空间cost，假设整个码字空间的大小为1，那么这个cost就等于事件的发生概率  根据上面的公式，可以得到编码 $x$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记">
+<meta property="og:url" content="http://yypyyds.github.io/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="机器学习随笔类型，想到什么写什么 Loss function交叉熵在cnn中，输出层计算Loss用的Cross-Entropy，叫交叉熵，见这个，之后再详细研究 上面那个图的水印很傻逼，之后看的这个损失函数：交叉熵详解 为了获取事件的最短平均编码，根据事件的普遍程度来分配付出的码字空间cost，假设整个码字空间的大小为1，那么这个cost就等于事件的发生概率  根据上面的公式，可以得到编码 $x$">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-07-08T11:52:18.000Z">
+<meta property="article:modified_time" content="2023-07-27T07:13:07.529Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-27 15:13:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-08T11:52:18.000Z" title="发表于 2023-07-08 19:52:18">2023-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-27T07:13:07.529Z" title="更新于 2023-07-27 15:13:07">2023-07-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><p>随笔类型，想到什么写什么</p>
+<h2 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h2><h3 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h3><p>在cnn中，输出层计算Loss用的Cross-Entropy，叫交叉熵，见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149186719">这个</a>，之后再详细研究</p>
+<p>上面那个图的水印很傻逼，之后看的这个<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115277553">损失函数：交叉熵详解</a></p>
+<p>为了获取事件的最短平均编码，根据事件的普遍程度来分配付出的码字空间<code>cost</code>，假设整个码字空间的大小为1，那么这个<code>cost</code>就等于事件的发生概率</p>
+<p><img src="/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/code\blog\source\_posts\机器学习笔记\image-20230712143227869.png" alt="image-20230712143227869"></p>
+<p>根据上面的公式，可以得到编码 $x$ 的平均长度是：</p>
+<script type="math/tex; mode=display">
+L(x)=log_2 \frac{1}{p(x)}</script><p>当每个码字 $x$ 出现的概率都是 $p(x)$ 时，最短的平均码字的长度是：</p>
+<script type="math/tex; mode=display">
+H(p)&=&\sum_x^{x\in X}p(x)\times L(x)\\
+&=&\sum_x^{x\in X}p(x)\times log_2(\frac{1}{p(x)})\\
+&=&-\sum_x^{x\in X}p(x)\times log_2\, p(x)</script><p>这里的 $H(p)$ 就是熵（<em>Entropy</em>）</p>
+<p>交叉熵的概念在上面那篇文章中讲的很好，对于同一个事件集合的不同概率分布，交叉熵可以用来描述两个概率分布之间的距离（差异程度）</p>
+<blockquote>
+<p>该长度（把来自一个分布q的消息使用另一个分布p的最佳代码传达的平均消息长度）称为交叉熵。 形式上，我们可以将交叉熵定义为：</p>
+</blockquote>
+<script type="math/tex; mode=display">
+H_p(q)=\sum_x^{ x\in X}q(x)log_2(\frac{1}{p(x)})=-\sum_x^{ x\in X}q(x)log_2p(x)</script><p>注意，交叉熵<strong>不是对称的</strong>。</p>
+<hr>
+<p>7.25</p>
+<p>今天开始看西瓜书，之前那个感觉全是公式，一点也不通俗易懂</p>
+<p><strong>常用的度量模型好坏的方法：F1度量</strong></p>
+<script type="math/tex; mode=display">
+F1=\frac{2\times P \times R}{P+R}=\frac{2\times TP}{样例总数+TP-TN}</script><p>其中，P为查准率，R为查全率，TP（True Positive）为真正例，TN（True Negtive）为真反例。</p>
+<p>F1度量是基于查准率与查全率的调和平均定义的：</p>
+<script type="math/tex; mode=display">
+\frac1{F1}=\frac{1}{2}\cdot (\frac{1}{P}+\frac{1}{R})</script><p>根据对查全率与查准率的偏好要求，引申出F1度量的一般形式 $F_\beta$ ，定义为：</p>
+<script type="math/tex; mode=display">
+F_\beta=\frac{(1+\beta^2)\times P \times R}{(\beta^2\times P+R)}</script><p>是根据P和R的加权调和平均得到的，β&gt;1时，查全率有更大影响；β&lt;1时，查准率有更大影响。</p>
+<p><strong>ROC与AUC</strong></p>
+<p>ROC曲线是从按阈值分类的角度研究学习器泛化性能的有力工具</p>
+<p>很多学习器对于分类任务，是为测试样本产生一个概率或实值，然后将这个预测值与一个分类阈值进行比较，若大于则为正类，小于则为反类，我们可以根据自己对查全率与查准率的需求，设定这个阈值，若要求查准率，则可以提高阈值，若要求查全率，则可降低阈值</p>
+<p>ROC曲线的横纵坐标分别为假正例率（False Positive Rate）与真正例率（True Positive Rate），如下：</p>
+<script type="math/tex; mode=display">
+TPR=\frac{TP}{TP+FN}\\
+FPR=\frac{FP}{TN+FP}</script><p><strong>代价敏感错误率与代价曲线</strong></p>
+<p>在分类与回归任务中，不同的错误类型所导致的后果不同，耗费的代价也不一样，为了在模型评估中引入对不同错误类型代价的度量，可为错误赋予“非均等代价”</p>
+<p>对于分类任务，可以将把第i类样本分类为第j类样本的代价记作 $cost_{ij}$ ，如此可得一个代价矩阵：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>真实类别</th>
+<th>预测类别</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>第0类</td>
+<td>第1类</td>
+</tr>
+<tr>
+<td>第0类</td>
+<td>0</td>
+<td>$cost_{01}$</td>
+</tr>
+<tr>
+<td>第1类</td>
+<td>$cost_{10}$</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>然后可以根据这个表算代价敏感错误率，对于m个样例，D为样例集合，D^+^为正例子集，D^-^为反例子集，</p>
+<script type="math/tex; mode=display">
+E(f;D;cost)=\frac1m \left(\sum_{x_i\in D^+} \mathbb{I}(f(x_i)\neq y_i)\times cost_{01} + \sum_{x_i\in D^-}\mathbb{I}(f(x_i)\neq y_i)\times cost_{10}\right)</script><p><strong>比较检验</strong></p>
+<h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>先补充一点概率论的基础知识</p>
+<p>书柜里找了本概率论的书看，看了一遍大数定律和中心极限定律</p>
+<p>大数定律大概就是对<strong>独立同分布随机变量序列Xn</strong>，均值会收敛到数学期望</p>
+<p>中心极限定律就是对<strong>独立同分布随机变量序列Xn</strong>，对序列的和做一些运算，得到的式子会近似的服从正态分布，以下为列维-宁德伯格中心极限定律：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\left( P\left( \frac{1}{\sqrt{n}\sigma}\left(\sum^n_{k=1}X_k-n\mu\right)\right)\leq x\right)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{t^2}{2}}\,dt</script><p>其中，<script type="math/tex">\mu, \sigma</script>分别为期望和标准差</p>
+<p><strong>最大似然原理：</strong></p>
+<p>就是对一件已经发生的事情，或者说一个已知的独立随机变量采样序列，求出最有可能得到这个序列的概率模型的参数</p>
+<p><strong>似然函数：</strong></p>
+<p>设 <script type="math/tex">x_1,x_2,\cdots,x_n</script>是样本观察值，令</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(\theta,x_1,\cdots,x_n)=
+\begin{cases}
+\prod^n_{i=1}\,p(x_i;\theta),离散型\\
+\prod^n_{i=1}\,f(x_i;\theta),连续型
+\end{cases}</script><p>这个公式的直观意义就是对独立同分布随机变量序列 <script type="math/tex">X_1,\cdots,X_n</script>，取值为 <script type="math/tex">x_1,\cdots,x_n</script>的概率</p>
+<p>这个公式的变量是<script type="math/tex">\theta</script>，要得到使随机变量序列取上述值的概率最大的概率模型的参数，就是求上面似然函数的最大值点<script type="math/tex">\hat{\theta}</script>，因为似然函数是连乘的形式，且<script type="math/tex">L(\theta),\ln\,L(\theta)</script>的最值点是相同的，所以可以取对数，得到蛮族最大似然估计<script type="math/tex">\hat{\theta}</script>的方程，也叫似然方程(<script type="math/tex">\theta</script>可以是多个参数组成的向量)：</p>
+<script type="math/tex; mode=display">
+\frac{\partial\,\ln L(\theta)}{\partial\,\theta_i}=0</script></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://yypyyds.github.io/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">TF-grident说话人分离</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/02/%E7%A0%940%E7%AC%94%E8%AE%B0/" title="研0笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">研0笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/06/02/%E7%A0%940%E7%AC%94%E8%AE%B0/" title="研0笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-02</div><div class="title">研0笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Loss-function"><span class="toc-text">Loss function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="toc-text">交叉熵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="toc-text">最大似然估计</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="数学知识">数学知识</a><time datetime="2023-08-02T06:40:02.000Z" title="发表于 2023-08-02 14:40:02">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离">TF-grident说话人分离</a><time datetime="2023-07-30T06:34:37.000Z" title="发表于 2023-07-30 14:34:37">2023-07-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-07-08T11:52:18.000Z" title="发表于 2023-07-08 19:52:18">2023-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/02/%E7%A0%940%E7%AC%94%E8%AE%B0/" title="研0笔记">研0笔记</a><time datetime="2023-06-02T08:05:30.000Z" title="发表于 2023-06-02 16:05:30">2023-06-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/18/%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/" title="旅游攻略">旅游攻略</a><time datetime="2023-05-18T15:22:32.000Z" title="发表于 2023-05-18 23:22:32">2023-05-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

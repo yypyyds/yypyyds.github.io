@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>数学知识 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习过程中遇到的数学知识傅里叶变换网上已经有很多关于傅里叶变换在信号处理中的应用了，大概就是用一堆正弦余弦函数的叠加去模拟任何周期函数（必须满足狄利克雷条件）  狄利克雷条件  在一个周期内，连续或只有有限个第一类间断点 在一个周期内，极大值和极小值的数目应是有限个 在一个周期内，函数是绝对可积的   先搞懂傅里叶级数是干嘛的： 对于一个振荡系统，可以表述为：  f(t)&#x3D;A\sin(\omega">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学知识">
+<meta property="og:url" content="http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="学习过程中遇到的数学知识傅里叶变换网上已经有很多关于傅里叶变换在信号处理中的应用了，大概就是用一堆正弦余弦函数的叠加去模拟任何周期函数（必须满足狄利克雷条件）  狄利克雷条件  在一个周期内，连续或只有有限个第一类间断点 在一个周期内，极大值和极小值的数目应是有限个 在一个周期内，函数是绝对可积的   先搞懂傅里叶级数是干嘛的： 对于一个振荡系统，可以表述为：  f(t)&#x3D;A\sin(\omega">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-08-02T06:40:02.000Z">
+<meta property="article:modified_time" content="2023-08-02T11:43:51.106Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="傅里叶变换">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数学知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-02 19:43:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数学知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-02T06:40:02.000Z" title="发表于 2023-08-02 14:40:02">2023-08-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-02T11:43:51.106Z" title="更新于 2023-08-02 19:43:51">2023-08-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数学知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="学习过程中遇到的数学知识"><a href="#学习过程中遇到的数学知识" class="headerlink" title="学习过程中遇到的数学知识"></a>学习过程中遇到的数学知识</h1><h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><p>网上已经有很多关于傅里叶变换在信号处理中的应用了，大概就是用一堆正弦余弦函数的叠加去模拟任何<strong>周期函数</strong>（必须满足狄利克雷条件）</p>
+<blockquote>
+<p>狄利克雷条件</p>
+<ol>
+<li>在一个周期内，连续或只有有限个第一类间断点</li>
+<li>在一个周期内，极大值和极小值的数目应是有限个</li>
+<li>在一个周期内，函数是绝对可积的</li>
+</ol>
+</blockquote>
+<p>先搞懂傅里叶级数是干嘛的：</p>
+<p>对于一个振荡系统，可以表述为：</p>
+<script type="math/tex; mode=display">
+f(t)=A\sin(\omega t+\psi)</script><p>其中$t,A,\omega,\psi$分别为时间，振幅，角速度，初相，其中的角速度也可以用周期表示：$\omega=\frac{2\pi}{T}$</p>
+<p>类比线性代数中的n维向量空间的正交基，对n维向量空间中的任意一个向量$\boldsymbol\eta$，总可以用标准正交基的线性组合表示</p>
+<p><img src="/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/code\blog\source\_posts\数学知识\image-20230802145529990.png" alt="image-20230802145529990"></p>
+<blockquote>
+<p>函数正交的定义：如果两个函数在[a,b]正交，就是两个函数在[a,b]区间的每一个点的函数值相乘的和为零。</p>
+</blockquote>
+<p>将傅里叶级数写为一般公式：</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{a_0}{2}+\sum^{\infty}_{n=1}\left(a_n\,\cos\frac{2\pi nx}{T}+b_n\,\sin\frac{2\pi nx}{T}\right)\qquad(1)\\
+a_n=\frac{2}{T}\int^{x_0+T}_{x_0}f(x)\cos\frac{2\pi nx}{T}dx\\
+b_n=\frac{2}{T}\int^{x_0+T}_{x_0}f(x)\sin\frac{2\pi nx}{T}dx</script><p>$a_n$推导如下，$b_n$类似，对公式(1)两边同乘$\sin\frac{2\pi kx}{T}$，再做(0,T)的积分：</p>
+<script type="math/tex; mode=display">
+\int_0^T f(x)\sin\frac{2\pi kx}{T}dx = \int_0^T\frac{a_0}{2}\sin\frac{2\pi kx}{T}dx+
+\sum^\infty_{n=1}\left(\int_0^Ta_n\cos\frac{2\pi nx}{T}\sin\frac{2\pi kx}{T}dx+\int_0^Tb_n\sin\frac{2\pi n x}{T}\sin\frac{2\pi kx}{T}dx\right)</script><p>由上面那个正交积分为0的结论：</p>
+<script type="math/tex; mode=display">
+\int_0^T\frac{a_0}{2}\sin\frac{2\pi kx}{T}dx=0\\
+\int_0^Ta_n\cos\frac{2\pi nx}{T}\sin\frac{2\pi kx}{T}dx=0\\
+\int_0^Tb_n\sin\frac{2\pi n x}{T}\sin\frac{2\pi kx}{T}dx=0\qquad n\neq k</script><p>化简得到：</p>
+<script type="math/tex; mode=display">
+\int_0^T f(x)\sin\frac{2\pi kx}{T}dx = \int_0^Tb_n\left(\sin\frac{2\pi nx}{T}\right)^2 dx\\
+=\int_0^Tb_n\frac{1-\cos\frac{4\pi nx}{T}}{2}dx\\
+=\frac{T}{2}b_n</script><p><strong>傅里叶级数与幅度相位之间的关系</strong></p>
+<script type="math/tex; mode=display">
+c_n=\sqrt{a_n^2+b_n^2}\\
+\varphi=\arctan\left(-\frac{b_n}{a_n}\right)</script><p>接下来推到傅里叶变换：</p>
+<p>又有欧拉公式，连接复数域与三角的桥梁：</p>
+<script type="math/tex; mode=display">
+e^{i\varphi}=\cos\varphi + i\,\sin\varphi</script><p>关于这个复数 i 的理解，可以见下面这篇文章的说法，在实数轴中旋转90°，将实数轴变成复平面</p>
+<p>概念理解：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/317237264">通俗易懂的理解傅里叶变换</a></p>
+<p>将上面公式的相位 $\varphi$ 用 $\omega t$ 替换</p>
+<script type="math/tex; mode=display">
+e^{i\omega t} = \cos \omega t+ i\,\sin\omega t</script><p>设一组三角函数，频率为 $\cos \omega t$的n被，那么可以定义这一组三角函数为：</p>
+<script type="math/tex; mode=display">
+\cos\,n\omega t=\frac{e^{in\omega t}+e^{-in\omega t}}{2}\\
+\sin\,n\omega t=\frac{e^{in\omega t}-e^{-in\omega t}}{2i}</script><p>代回式(1)中，得到（这里把自变量换成t了）：</p>
+<script type="math/tex; mode=display">
+f(t)=\frac{a_0}{2}+\sum^\infty_{n=1}\left(a_n\frac{e^{in\omega t}+e^{-in\omega t}}{2}+b_n\frac{e^{in\omega t}-e^{-in\omega t}}{2i}\right)</script><p>合并同类项得：</p>
+<script type="math/tex; mode=display">
+f(t)=\frac{a_0}{2}+\sum^{\infty}_{n=1}\left[\left(\frac{a_n}{2}+\frac{b_n}{2i}\right)\,e^{in\omega t}+\left(\frac{a_n}{2}-\frac{b_n}{2i}\right)\,e^{-in\omega t}\right]\quad(2)</script><p>又有：</p>
+<script type="math/tex; mode=display">
+a_{-n}=\frac{2}{T}\,\int_0^Tf(x)\,\cos -n\omega x\,dx=a_n\\
+b_{-n}=\frac{2}{T}\,\int_0^Tf(x)\,\sin -n\omega x\,dx=-b_n</script><p>所以式（2）可以变换为：</p>
+<script type="math/tex; mode=display">
+f(t)=\frac{a_0}{2}+\sum^\infty_{n=1}\left(\frac{a_n}{2}+\frac{b_n}{2i}\right)e^{in\omega t}+\sum^\infty_{n=1}\left(\frac{a_{-n}}{2}+\frac{b_{-n}}{2i}\right)e^{-in\omega t}\\
+=\frac{a_0}{2}+\sum^\infty_{n=1}\left(\frac{a_n}{2}+\frac{b_n}{2i}\right)e^{in\omega t}+\sum_{-\infty}^{n=-1}\left(\frac{a_{n}}{2}+\frac{b_{n}}{2i}\right)e^{in\omega t}\\</script><p>这里直流分量 $\frac{a_0}{2}$ 对应的是n=0的情况，所以上式可化简为：</p>
+<script type="math/tex; mode=display">
+f(t) =\sum^\infty_{-\infty}\left(\frac{a_n}{2}+\frac{b_n}{2i}\right)e^{in\omega t}</script><p>高中就学过 $i^2=-1$ ，所以 $\frac{b_n}{2i}=-\frac{ib_n}{2}$ ，最终得到：</p>
+<script type="math/tex; mode=display">
+f(t) =\sum^\infty_{-\infty}\frac{\left(a_n-ib_n\right)}{2}e^{in\omega t}</script><p>令 <script type="math/tex">A_n=\frac{(a_n-ib_n)}{2}</script> ，最终得到：</p>
+<script type="math/tex; mode=display">
+f(t)=\sum^\infty_{-\infty}A_n\,e^{in\omega t} \qquad (3)</script><p>可同样由正交性推导到$A_n$的公式：</p>
+<script type="math/tex; mode=display">
+A_n=\frac1T\int^T_0f(t)e^{-in\omega t}dt</script><p>这个公式表达的意思，按照我的理解，就是一个信号频率和幅度的分布</p>
+<p>首先这是一堆值的连加，频率由第二项中的$\omega$反映，$f=\frac{\omega}{2\pi}$ ，幅度由 $A_n$ 反映</p>
+<script type="math/tex; mode=display">
+\left|A_n\right|=\frac12\sqrt{a_n^2+b_n^2}=\frac12c_n</script><p>而通过对其虚部与实部反正切,就可以求得该频率波的相位</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">傅里叶变换</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">TF-grident说话人分离</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86"><span class="toc-text">学习过程中遇到的数学知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-text">傅里叶变换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="数学知识">数学知识</a><time datetime="2023-08-02T06:40:02.000Z" title="发表于 2023-08-02 14:40:02">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离">TF-grident说话人分离</a><time datetime="2023-07-30T06:34:37.000Z" title="发表于 2023-07-30 14:34:37">2023-07-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-07-08T11:52:18.000Z" title="发表于 2023-07-08 19:52:18">2023-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/02/%E7%A0%940%E7%AC%94%E8%AE%B0/" title="研0笔记">研0笔记</a><time datetime="2023-06-02T08:05:30.000Z" title="发表于 2023-06-02 16:05:30">2023-06-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/18/%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/" title="旅游攻略">旅游攻略</a><time datetime="2023-05-18T15:22:32.000Z" title="发表于 2023-05-18 23:22:32">2023-05-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
