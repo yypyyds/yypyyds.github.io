@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>动手学深度学习笔记 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="动手学深度学习笔记预备知识基本运算主要记一些常用的函数的使用方法 12345678910111213x &#x3D; torch.arange(12)	# 得到一个大小为12的tensor，初始化为0~11x.shape					# 得到一个tensor的形状x.numel()				# 得到tensor中所有元素的个数x &#x3D; x.reshape(3, 4)		# 修改张量的形状torch.zeros((2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手学深度学习笔记">
+<meta property="og:url" content="http://yypyyds.github.io/posts/10d939ab.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="动手学深度学习笔记预备知识基本运算主要记一些常用的函数的使用方法 12345678910111213x &#x3D; torch.arange(12)	# 得到一个大小为12的tensor，初始化为0~11x.shape					# 得到一个tensor的形状x.numel()				# 得到tensor中所有元素的个数x &#x3D; x.reshape(3, 4)		# 修改张量的形状torch.zeros((2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-09-14T11:32:19.000Z">
+<meta property="article:modified_time" content="2023-09-26T11:43:39.365Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/posts/10d939ab.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '动手学深度学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-26 19:43:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">动手学深度学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-14T11:32:19.000Z" title="发表于 2023-09-14 19:32:19">2023-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-26T11:43:39.365Z" title="更新于 2023-09-26 19:43:39">2023-09-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="动手学深度学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="动手学深度学习笔记"><a href="#动手学深度学习笔记" class="headerlink" title="动手学深度学习笔记"></a>动手学深度学习笔记</h1><h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><h3 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h3><p>主要记一些常用的函数的使用方法</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>)	<span class="comment"># 得到一个大小为12的tensor，初始化为0~11</span></span><br><span class="line">x.shape					<span class="comment"># 得到一个tensor的形状</span></span><br><span class="line">x.numel()				<span class="comment"># 得到tensor中所有元素的个数</span></span><br><span class="line">x = x.reshape(<span class="number">3</span>, <span class="number">4</span>)		<span class="comment"># 修改张量的形状</span></span><br><span class="line">torch.zeros((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))	<span class="comment"># 生成指定形状的tensor并将所有元素初始化为0</span></span><br><span class="line">torch.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))		<span class="comment"># 初始化为1</span></span><br><span class="line">torch.randn(<span class="number">3</span>,<span class="number">4</span>)		<span class="comment"># 创建一个指定形状的张量，每个元素为标准高斯分布的随机采样</span></span><br><span class="line">torch.tensor(<span class="built_in">list</span>)		<span class="comment"># 将list转化为tensor类型</span></span><br><span class="line"><span class="comment"># 按元素运算</span></span><br><span class="line">x + y, x - y, x * y, x / y, x ** y, torch.exp(x)</span><br><span class="line"></span><br><span class="line">torch.cat((X,Y), dim = <span class="number">0</span>)	<span class="comment">#将X，Y在第0维连接</span></span><br><span class="line">X.<span class="built_in">sum</span>()					<span class="comment"># 返回值为所有元素的和的单元素张量</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = torch.arange(<span class="number">20</span>).reshape(<span class="number">5</span>, <span class="number">4</span>)		<span class="comment"># 定义一个5行4列的矩阵</span></span><br><span class="line">A.T						<span class="comment"># 获得矩阵的转置</span></span><br><span class="line">X+a, X*a, X-a, X/a		<span class="comment"># 标量与张量的计算，标量会与矩阵的每个元素进行运算</span></span><br><span class="line">A_sum_axis0 = A.<span class="built_in">sum</span>(axis = <span class="number">0</span>)	<span class="comment"># 沿轴0通过求和降低维度</span></span><br><span class="line"><span class="comment"># x,y 是两个d维向量，x,y的点积</span></span><br><span class="line">torch.dot(x,y)</span><br></pre></td></tr></tbody></table></figure>
+<p>计算 $\boldsymbol{Ax=b}$</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.mv(A,x)</span><br></pre></td></tr></tbody></table></figure>
+<p>计算矩阵相乘 $\boldsymbol{AB=C}$ </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.mm(A, B)</span><br></pre></td></tr></tbody></table></figure>
+<p>计算范数</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.norm(u)			<span class="comment"># L2范数</span></span><br><span class="line">torch.<span class="built_in">abs</span>(u).<span class="built_in">sum</span>		<span class="comment"># L1范数</span></span><br><span class="line">torch.norm(X)			<span class="comment"># 矩阵的Frobenius范数</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h3><p>没什么好记的</p>
+<h3 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h3><p>对于一个tensor，计算其在某个函数上的导数，得到的是向量每个分量的偏导数，存储在该tensor的grad属性中</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x.requires_grad_(<span class="literal">True</span>)		<span class="comment"># 通过设置这个属性，x的偏导数值会一直储存在grad属性中</span></span><br><span class="line">x.grad						<span class="comment"># 默认值是None，通过调用指定函数的backward为该属性赋值</span></span><br><span class="line">y.backward()</span><br><span class="line">x.grad</span><br></pre></td></tr></tbody></table></figure>
+<p>在默认情况下，PyTorch会<strong>累积</strong>梯度，我们需要清除之前的值</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y = torch.exp(x).<span class="built_in">sum</span>()</span><br><span class="line">y.backward()</span><br><span class="line">x.grad</span><br></pre></td></tr></tbody></table></figure>
+<p>对于非标量变量，如上面的<code>y=torch.exp(x)</code>返回的就是一个形状和x相同的向量，对于高阶和高维的y和x，求导的结果可以是一个高阶张量，但是在机器学习中，更为通常的做法是计算一批训练样本中每个组成部分的损失函数的导数（算是每个分量？）这里，我们的目的不是计算微分矩阵， 而是单独计算批量中每个样本的偏导数之和。</p>
+<p><strong>分离计算</strong></p>
+<p>大概理解了一下，就是对于链式求导，应该是这样的：</p>
+<script type="math/tex; mode=display">
+y = f(x)\\\\
+z = g(y,x)\\\\
+\frac{\partial z}{\partial x}=g'_y(y,x)\cdot y'+g'_x(y,x)</script><p>但由于某种原因，希望将y视为一个常数，并只考虑到x在y被计算出来后发挥的作用（就是要用x计算y，但是不让x参与微分），这里可以分离y来返回一个新变量u，该变量与y具有相同的值，但丢弃计算图中如何计算y的任何信息。例子如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y = x * x</span><br><span class="line">u = y.detach()		<span class="comment"># 分离变量，转化为常量</span></span><br><span class="line">z = u * x</span><br><span class="line">z.<span class="built_in">sum</span>().backward()</span><br><span class="line">x.grad == u</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="线性神经网络"><a href="#线性神经网络" class="headerlink" title="线性神经网络"></a>线性神经网络</h2><h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>和以前学的所有线性回归一样，对预测值 $\hat y$ ，使用以下形式来表达模型：</p>
+<script type="math/tex; mode=display">
+\hat y=\boldsymbol w ^T\boldsymbol x + b</script><p>训练模型，需要两个东西</p>
+<ul>
+<li>模型质量的度量方式（Loss function）</li>
+<li>更新模型提高模型预测质量的方法（梯度下降）</li>
+</ul>
+<p><strong>损失函数</strong></p>
+<p>回归问题中最常用的损失函数是平方误差函数，如下，其中$\hat y ^{(i)}$是样本$i$的预测值</p>
+<script type="math/tex; mode=display">
+l^{(i)}(\boldsymbol{w},b)=\frac12\left(\hat y ^{(i)}-y ^{(i)}\right)^2</script><p>这个$\frac12$加不加不会带来本质的区别，但是在求导之后系数为1更方便</p>
+<p>为了度量模型在整个数据集上的质量，使用的是n个样本上的损失均值</p>
+<script type="math/tex; mode=display">
+L(\boldsymbol w, b)=\frac1n\sum^n_{i=1}l^{(i)}(\boldsymbol{w},b)</script><p>在训练模型时，要找满足如下条件的参数，能最小化总损失</p>
+<script type="math/tex; mode=display">
+\boldsymbol w^*,b^* = \mathop{\arg\min}\limits_{\boldsymbol w,b} \,L(\boldsymbol w, b)</script><p><strong>随机梯度下降</strong></p>
+<p>梯度下降最简单的用法是计算损失函数（数据集中所有样本的损失均值）关于模型参数的导数（在这里也可以称为梯度）。但是样本太多了，每算一次就要遍历一次数据集，所以通常会随机抽取一小批样本，这种变体叫做小批量随机梯度下降</p>
+<p>一个问题，为什么是减梯度，复习了一下梯度，见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/613651124">通俗理解方向导数、梯度|学习笔记 - 知乎 </a></p>
+<blockquote>
+<p>因此我们可以知道，<strong>梯度是指函数值增长最快的方向。</strong> ——来自上面的链接</p>
+</blockquote>
+<p>所以要减梯度，得到最小的loss</p>
+<script type="math/tex; mode=display">
+(\boldsymbol w, b)\leftarrow(\boldsymbol w,b)-\frac{\eta}{|\mathcal{B}|}\sum_{i\in\mathcal{B}}\partial_{ (\boldsymbol w,b)}l^{(i)}(\boldsymbol w,b)</script><p>迭代公式如上，$|\mathcal{B}|$为每个小批量的样本数，$\eta$称为学习率(learning rate)</p>
+<p>批量大小和学习率的值通常都是手动预先设定，而不是通过模型训练得到的，这些可以调整但不在训练过程中更新的参数称为超参数（hyperparameter）。</p>
+<p><strong>正态分布与平方损失</strong></p>
+<p>均方误差损失函数可以用于线性回归的一个原因是：我们假设了观测中包含噪声，其中噪声服从正态分布</p>
+<script type="math/tex; mode=display">
+y=\boldsymbol w^T \boldsymbol x + b +\epsilon \qquad \qquad \epsilon \sim \mathcal{N}(0,\sigma^2)</script><p>移个项，则 $y-\boldsymbol w^T \boldsymbol x - b$服从正态分布，对于观测值 $\boldsymbol x$ 的似然函数：</p>
+<script type="math/tex; mode=display">
+L(\boldsymbol w) =\prod^n_{i=1}p(y^{(i)}|\boldsymbol x ^{(i)})</script><p>求负对数似然的最小值，最后得到的公式如下（太长不想打了）</p>
+<p><img src="/posts/10d939ab.htm/image-20230918203855410.png" alt="image-20230918203855410"></p>
+<p>然后后面那项和平方损失一样</p>
+<h3 id="从0开始实现一个线性回归"><a href="#从0开始实现一个线性回归" class="headerlink" title="从0开始实现一个线性回归"></a>从0开始实现一个线性回归</h3><p>这里用到了一个Tensor乘法库，我想起来书里之前用的好像不是这个</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.matmul()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.mm()</span><br></pre></td></tr></tbody></table></figure>
+<p>mm一般用来处理矩阵（2维Tensor），然后matmul可以算高维的而且有那个广播机制</p>
+<h2 id="softmax回归"><a href="#softmax回归" class="headerlink" title="softmax回归"></a>softmax回归</h2><p>对于分类问题，用一个全连接层的输出做一个softmax计算：</p>
+<script type="math/tex; mode=display">
+\boldsymbol o = \boldsymbol{Wx} + \boldsymbol b\\\\
+\boldsymbol {\hat y} = softmax(\boldsymbol o)\;\;其中\;\;\hat y_j=\frac{\exp(o_j)}{\sum_k \exp(o_k)}</script><p>其中，样本$\boldsymbol x$的特征维度为d，输出类别为q，即向量$\boldsymbol o$为q维，$\boldsymbol W$为全连接层，$\boldsymbol b$为偏置</p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p><strong>负对数似然</strong></p>
+<p>就是交叉熵</p>
+<script type="math/tex; mode=display">
+l(\boldsymbol y,\boldsymbol{\hat y})=-\sum^q_{j=1}y_j\,log\hat y_j=\log\sum^q_{k=1}\exp(o_k)-\sum^q_{j=1}y_jo_j</script><p>对 $o_j$ 求导：</p>
+<script type="math/tex; mode=display">
+\partial_{o_j}l(\boldsymbol y,\boldsymbol{\hat y})=softmax(\boldsymbol o)_j-y_i</script><h2 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h2><p><img src="/posts/10d939ab.htm/image-20230922114455720.png" alt="image-20230922114455720"></p>
+<p>这个东西，就是把几层全连接层堆起来，但是<strong>这样没什么用</strong></p>
+<script type="math/tex; mode=display">
+H = XW^1+b^1\\\\
+O=HW^2+b^2\\\\
+O = (XW^1+b^1)W^2+b^2=XW^1W^2+b^1W^2+b^2=XW+b</script><p>为了发挥多层架构的潜力，我们还需要一个额外的关键要素，在仿射变换之后对每个隐藏单元应用非线性的激活函数$\sigma$。</p>
+<script type="math/tex; mode=display">
+H=\sigma(XW^1+b^1)\\
+O=HW^2+b^2</script><p>激活函数通常不仅按行操作，也按元素操作，即对每个线性计算之后的都计算一个活性值</p>
+<h3 id="那什么是激活函数呢"><a href="#那什么是激活函数呢" class="headerlink" title="那什么是激活函数呢"></a>那什么是激活函数呢</h3><p>激活函数（activation function）通过计算加权和并加上偏置来确定神经元是否应该被激活，它们将输入信号转换为输出的可微运算。</p>
+<blockquote>
+<p> <strong>激活函数决定了某个神经元是否被激活，这个神经元接受到的信息是否是有用的，是否该留下或者是该抛弃</strong></p>
+</blockquote>
+<h4 id="RELU函数"><a href="#RELU函数" class="headerlink" title="RELU函数"></a>RELU函数</h4><script type="math/tex; mode=display">
+ReLU(x) = \max(x,0)</script><p>通俗地说，ReLU函数通过将相应的活性值设为0，仅保留正元素并丢弃所有负元素。</p>
+<p><img src="/posts/10d939ab.htm/image-20230923145934950.png" alt="image-20230923145934950"></p>
+<p>其求导小于0的部分为0，大于0的部分为1，所以要么让参数消失，要么让参数通过</p>
+<p>也有许多变体，比如参数化ReLU</p>
+<script type="math/tex; mode=display">
+pReLU(x)=\max(0,x)+\alpha\min(0,x)</script><h4 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h4><p>是一个将实数集映射到区间$(0,1)$的函数</p>
+<script type="math/tex; mode=display">
+sigmoid(x)=\frac{1}{1+exp(-x)}</script><p>导数为：</p>
+<script type="math/tex; mode=display">
+\frac{d}{dx}sigmoid(x)=\frac{exp(-x)}{(1+exp(-x))^2}=sigmoid(x)(1-sigmoid(x))</script><h4 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h4><p>双曲正切函数，将实数域映射到 $(-1,1)$ 上</p>
+<script type="math/tex; mode=display">
+tanh(x)=\frac{1-exp(-2x)}{1+exp(-2x)}</script><p>导数是</p>
+<script type="math/tex; mode=display">
+\frac{d}{dx}tanh(x)=1-tanh^2(x)</script><h4 id="k折交叉验证"><a href="#k折交叉验证" class="headerlink" title="k折交叉验证"></a>k折交叉验证</h4><p>训练数据稀缺时，可能无法提供足够的数据来构成一个合适的验证集。就会用这个验证方法来评估误差</p>
+<blockquote>
+<p>原始训练数据被分成K个不重叠的子集。然后执行K次模型训练和验证，每次在K − 1个子集上进行训练，并在剩余的⼀个子集（在该轮中没有用于训练的子集）上进行验证。最后，通过对K次实验的结果取平均来估计训练和验证误差。</p>
+</blockquote>
+<p><strong>数据集大小</strong></p>
+<p>对于许多任务，深度学习只有在有数千个训练样本时才优于线性模型。</p>
+<h4 id="权重衰减"><a href="#权重衰减" class="headerlink" title="权重衰减"></a>权重衰减</h4><p>在训练参数化机器学习模型时，权重衰减（weight decay）是最广泛使用的正则化的技术之一，它通常也被称为$L_2$正则化。</p>
+<p>在线性模型中，$L_2$正则化线性模型构成经典的岭回归（ridge regression）算法，使用$L_2$范数的一个原因是它对权重向量的大分量施加了巨大的惩罚，这使得我们的学习算法偏向于在大量特征上均匀分布权重的模型，而$L_1$惩罚回导致模型将权重集中在以下部分特征上，而将其他权重清除为0，这称为特征选择(feature selection)</p>
+<h4 id="暂退法"><a href="#暂退法" class="headerlink" title="暂退法"></a>暂退法</h4><p>也是为了解决过拟合的问题，经典泛化理论认为，为了缩小训练和测试性能之间的差距，应该以简单的模型为目标。简单性的另一个角度是平滑性。函数不应该对其输入的微小变化敏感。</p>
+<blockquote>
+<p>在训练过程中，他们建议在计算后续层之前向网络的每一层注入噪声</p>
+</blockquote>
+<p>通常在测试时不用暂退法</p>
+<p>在从零实现里看代码，就是随机去除一些隐藏层的节点，让下一层不会过度依赖本层的任何一个节点</p>
+<h3 id="前向传播、反向传播和计算图"><a href="#前向传播、反向传播和计算图" class="headerlink" title="前向传播、反向传播和计算图"></a>前向传播、反向传播和计算图</h3><h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>指按顺序（从输入层到输出层）计算和存储神经网络中每层的结果</p>
+<p>将这个计算过程的输入、输出、中间变量和操作符符号化，可以绘制一张计算图</p>
+<p><img src="/posts/10d939ab.htm/image-20230926153538186.png" alt="image-20230926153538186"></p>
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><p>指的是计算神经网络参数梯度的方法</p>
+<p>书上是对含两个隐藏层的网络进行推导演示的，太复杂了不写了，就是链式求导法则</p>
+<h4 id="训练神经网络"><a href="#训练神经网络" class="headerlink" title="训练神经网络"></a>训练神经网络</h4><p>前向传播和反向传播交替进行，互相使用各自过程产生的中间值，避免重复计算，这导致我们需要存储中间值，直到训练完成，所以训练比预测所需要的内存更大。</p>
+<h3 id="数值稳定性和模型初始化"><a href="#数值稳定性和模型初始化" class="headerlink" title="数值稳定性和模型初始化"></a>数值稳定性和模型初始化</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/posts/10d939ab.html">http://yypyyds.github.io/posts/10d939ab.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/d02d657c.html" title="latex语法笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">latex语法笔记</div></div></a></div><div class="next-post pull-right"><a href="/posts/3e56d1b2.html" title="Lombard相关工作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Lombard相关工作</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-text">动手学深度学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="toc-text">预备知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="toc-text">基本运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0"><span class="toc-text">线性代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="toc-text">微积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%BE%AE%E5%88%86"><span class="toc-text">自动微分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">线性神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">从0开始实现一个线性回归</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#softmax%E5%9B%9E%E5%BD%92"><span class="toc-text">softmax回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">损失函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA"><span class="toc-text">多层感知机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E4%BB%80%E4%B9%88%E6%98%AF%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%91%A2"><span class="toc-text">那什么是激活函数呢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RELU%E5%87%BD%E6%95%B0"><span class="toc-text">RELU函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sigmoid%E5%87%BD%E6%95%B0"><span class="toc-text">sigmoid函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tanh%E5%87%BD%E6%95%B0"><span class="toc-text">tanh函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">k折交叉验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F"><span class="toc-text">权重衰减</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9A%82%E9%80%80%E6%B3%95"><span class="toc-text">暂退法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E3%80%81%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E8%AE%A1%E7%AE%97%E5%9B%BE"><span class="toc-text">前向传播、反向传播和计算图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">前向传播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">反向传播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">训练神经网络</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">数值稳定性和模型初始化</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/f9873366.html" title="声纹识别相关调研">声纹识别相关调研</a><time datetime="2023-09-23T03:29:14.000Z" title="发表于 2023-09-23 11:29:14">2023-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/d02d657c.html" title="latex语法笔记">latex语法笔记</a><time datetime="2023-09-18T11:58:07.000Z" title="发表于 2023-09-18 19:58:07">2023-09-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/10d939ab.html" title="动手学深度学习笔记">动手学深度学习笔记</a><time datetime="2023-09-14T11:32:19.000Z" title="发表于 2023-09-14 19:32:19">2023-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3e56d1b2.html" title="Lombard相关工作">Lombard相关工作</a><time datetime="2023-09-06T03:09:48.000Z" title="发表于 2023-09-06 11:09:48">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/f14392ec.html" title="Securing liveness Detection for Voice Authentication via Pop Noises">Securing liveness Detection for Voice Authentication via Pop Noises</a><time datetime="2023-09-05T07:02:53.000Z" title="发表于 2023-09-05 15:02:53">2023-09-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
