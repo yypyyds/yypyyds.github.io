@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>声音事件检测综述 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="声音事件检测综述cocktail part effect: 我们的日常环境由许多声源组成，这些声源产生了复杂的混合音频信号。人类的听觉感知在分离声源和引导注意力到感兴趣的声源方面是高度专业化的。 Challenges in SED声音的采集很困难，某些声音很短促，而且一般会和其他事件同时发生。目标事件的发生离麦克风很远，采集到的声压级很小，声传递函数对目标声事件的影响较大，可能会有其他更大声的事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="声音事件检测综述">
+<meta property="og:url" content="http://yypyyds.github.io/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="声音事件检测综述cocktail part effect: 我们的日常环境由许多声源组成，这些声源产生了复杂的混合音频信号。人类的听觉感知在分离声源和引导注意力到感兴趣的声源方面是高度专业化的。 Challenges in SED声音的采集很困难，某些声音很短促，而且一般会和其他事件同时发生。目标事件的发生离麦克风很远，采集到的声压级很小，声传递函数对目标声事件的影响较大，可能会有其他更大声的事件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-09-28T01:03:40.000Z">
+<meta property="article:modified_time" content="2023-10-05T06:37:14.883Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="声音事件检测">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '声音事件检测综述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-05 14:37:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">声音事件检测综述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-28T01:03:40.000Z" title="发表于 2023-09-28 09:03:40">2023-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-05T06:37:14.883Z" title="更新于 2023-10-05 14:37:14">2023-10-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="声音事件检测综述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="声音事件检测综述"><a href="#声音事件检测综述" class="headerlink" title="声音事件检测综述"></a>声音事件检测综述</h1><p>cocktail part effect: 我们的日常环境由许多声源组成，这些声源产生了复杂的混合音频信号。人类的听觉感知在分离声源和引导注意力到感兴趣的声源方面是高度专业化的。</p>
+<h2 id="Challenges-in-SED"><a href="#Challenges-in-SED" class="headerlink" title="Challenges in SED"></a>Challenges in SED</h2><p>声音的采集很困难，某些声音很短促，而且一般会和其他事件同时发生。目标事件的发生离麦克风很远，采集到的声压级很小，声传递函数对目标声事件的影响较大，可能会有其他更大声的事件在周围发生</p>
+<p>不同声音同时发生还会产生谐波，改变声音基频</p>
+<p>声音事件的种类是无穷的，对一个事件的描述是模糊的</p>
+<p>SED系统因为这些复杂性，对于每个特定的应用场景，都需要数据收集和系统开发来满足其特定需求</p>
+<h2 id="The-general-machine-learning-approach-for-SED"><a href="#The-general-machine-learning-approach-for-SED" class="headerlink" title="The general machine learning approach for SED"></a>The general machine learning approach for SED</h2><p>主要在用监督学习的方法解决SED任务</p>
+<p>注释以二进制方式包含关于每个目标声音类的时间活动的信息，描述每个时间单位的类是否处于活动状态。这里想表达的应该是以One-hot的形式，叫做event roll</p>
+<p>系统如图所示</p>
+<p><img src="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/image-20230928160220264.png" alt="image-20230928160220264"></p>
+<p>后面讲分帧处理相关的事，比如分帧会导致帧间较短的事件丢失等</p>
+<p>早期的SED方法借用语音辨识和音乐信息提取的方法，比如高斯混合模型（GMMs）隐马尔可夫模型（HMMs），然而，声音事件不像语音和音乐，有那么明确的元素，所以这些方法不是那么适用。</p>
+<p>然后讲DNN很好用</p>
+<h3 id="Neural-Networks-for-Audio-Classification"><a href="#Neural-Networks-for-Audio-Classification" class="headerlink" title="Neural Networks for Audio Classification"></a>Neural Networks for Audio Classification</h3><p>他给我介绍什么是深度神经网络，我哭死 <span class="github-emoji" style="display:inline;vertical-align:middle"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>使用给的激活函数一般都是非线性的，如此才能让模型拟合输入和输出之间复杂的，非线性的关系。</p>
+<p>然后讲sigmoid，softmax，对于单标签分类，用一个softmax处理输出，得到每个label的概率</p>
+<p>对于多类别多标签的分类，对每个输出使用一个分开的sigmoid函数。</p>
+<p>然后讲cnn和rnn</p>
+<p>CNN要注意的是，对于两个不同任务SED和音频分类，由于SED需要估计声音的时间活动，用于SED的CNN通常只用频域池化，也不对时域进行重采样。而音频分类需要队每个音频片段进行单个决策，没有必要保留时间轴。</p>
+<p>RNN，这个之前没有了解过，这里详细看看</p>
+<p>循环神经网络，按时间线展开，t时刻的输入得到的输出会与t-1时刻的输入相关见 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30844905">链接</a></p>
+<p><img src="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/v2-b0175ebd3419f9a11a3d0d8b00e28675_1440w.webp" alt="img"></p>
+<p>like this</p>
+<p>然后又讲到LSTM，这个出现过好多次了，但是没有具体看</p>
+<p><strong>LSTM</strong></p>
+<p>简单RNN会遇到长期以来问题，即只能处理我们需要较接近的上下文的情况，对于上下文离得很远的情况就束手无策，而且简单RNN还经常出现梯度消失和梯度爆炸问题</p>
+<p>Long short term memory: 只有一部分的信息需要长期的记忆，而有的信息可以不记下来</p>
+<p>还是看上面的链接吧，图太多懒得写笔记了</p>
+<p>把cnn和rnn组合起来，适用于时间序列建模有利的任务，例如SED。卷积层充当特征提取器，循环层用于学习信号的时间演化</p>
+<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>对监督学习需要很多带标签数据，然后对SED问题，数据的特异性很大，因此，没有普遍适用的声学模型或SED数据集，而是针对手头的问题收集了许多数据集。</p>
+<p>然后对数据的采集要尽可能覆盖该声音类别的所有特征变异性</p>
+<p>strong labels：对短时间段的音频事件的注释，即标明事件是从哪个时间发生哪个时间结束</p>
+<p>weak label：只指出事件发生，不说明发生时间，对应音频也相对较长</p>
+<p>一个朴素的打标方法是给每一个有声音活动的片段详细的标签来注释所有可听到的声音，这种方法会导致产生很多标签，而样本数量不足，无法训练某些类别的声学模型。一个好的策略是提前选出目标类别，并且给这些类别的标签形式做出规定</p>
+<p>打标签可以由专业注释者或者找牛马（crowdsourcing），从嘈杂或缺失的标签中学习需要特定的机器学习技术或成本函数，这些技术或成本函数能够补偿标签的不可靠性。</p>
+<p>创建强标签最可靠的方法是合成，但是也会有种种问题，比如目前的合成方法没有选择声音时间组合的规则，生成的数据可能导致不自然的组合，或者可能无法捕捉现实环境的复杂性</p>
+<p>然后介绍了一下各类数据集</p>
+<h2 id="Signal-processing-methods-for-SED"><a href="#Signal-processing-methods-for-SED" class="headerlink" title="Signal processing methods for SED"></a>Signal processing methods for SED</h2><p>SED任务包括两个主要阶段，特征表示和分类，此外，该系统可能涉及一些预处理，例如，从声音中去除噪声。在训练阶段，通常使用一种称为数据增强的过程来产生更多的训练数据并增加其多样性。</p>
+<h4 id="Data-augmentation"><a href="#Data-augmentation" class="headerlink" title="Data augmentation"></a>Data augmentation</h4><p>这里用的是augmentation，而不是enhencement，指的是通过合成等方法增加数据的数量。在SED中，操作和组合可用的音频允许创建重叠事件的新组合。此外，可以利用多种噪声和脉冲响应条件，通过与原始数据的混合和卷积来补充数据。所有这些技术都通过将声学变异性添加到训练数据中来提高声学建模过程的鲁棒性。</p>
+<p>SED中用于数据增强的方法包括从基本的信号操作，如时间拉伸、基音移动和动态范围压缩，到更复杂的操作，如各种脉冲响应的卷积(模拟各种麦克风和声学环境)、子帧时移、块混频、混频，以及通过在改变信噪比的同时添加背景噪声来模拟一组噪声条件</p>
+<p>在对强标签数据进行data augmentation时，要注意在做信号处理之后对标签也进行相应处理。</p>
+<h4 id="Feature-representation"><a href="#Feature-representation" class="headerlink" title="Feature representation"></a>Feature representation</h4><p>目前，SED中最常用的特征是对数梅尔能量谱，在处理和表示自动语音识别，音乐信息检索，SED和声学场景分类方面被证明是有用的</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/">http://yypyyds.github.io/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B/">声音事件检测</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/09/23/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E8%B0%83%E7%A0%94/" title="声纹识别相关调研"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">声纹识别相关调研</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0"><span class="toc-text">声音事件检测综述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges-in-SED"><span class="toc-text">Challenges in SED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-general-machine-learning-approach-for-SED"><span class="toc-text">The general machine learning approach for SED</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Networks-for-Audio-Classification"><span class="toc-text">Neural Networks for Audio Classification</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signal-processing-methods-for-SED"><span class="toc-text">Signal processing methods for SED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-augmentation"><span class="toc-text">Data augmentation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Feature-representation"><span class="toc-text">Feature representation</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/" title="声音事件检测综述">声音事件检测综述</a><time datetime="2023-09-28T01:03:40.000Z" title="发表于 2023-09-28 09:03:40">2023-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/23/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E8%B0%83%E7%A0%94/" title="声纹识别相关调研">声纹识别相关调研</a><time datetime="2023-09-23T03:29:14.000Z" title="发表于 2023-09-23 11:29:14">2023-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/18/latex%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/" title="latex语法笔记">latex语法笔记</a><time datetime="2023-09-18T11:58:07.000Z" title="发表于 2023-09-18 19:58:07">2023-09-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记">动手学深度学习笔记</a><time datetime="2023-09-14T11:32:19.000Z" title="发表于 2023-09-14 19:32:19">2023-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/Lombard%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C/" title="Lombard相关工作">Lombard相关工作</a><time datetime="2023-09-06T03:09:48.000Z" title="发表于 2023-09-06 11:09:48">2023-09-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

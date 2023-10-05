@@ -1,0 +1,1480 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>信息系统安全笔记 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="信息系统安全笔记第一章 信息安全概述1. 信息安全基本概念及方法信息安全：为数据处理系统建立和采用的技术和管理的安全保护，保护计算机硬件、软件和数据不因偶然和恶意的原因遭到破坏、更改和泄露。 信息安全的特征：  机密性：确保信息不被非授权者获得与使用。  完整性：信息是真实可信的，其发布者不被冒充，来源不被伪造，内容不被篡改。  可用性：保证信息可被授权人在需要时立即获得并正常使用   信息安全主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息系统安全笔记">
+<meta property="og:url" content="http://yypyyds.github.io/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="信息系统安全笔记第一章 信息安全概述1. 信息安全基本概念及方法信息安全：为数据处理系统建立和采用的技术和管理的安全保护，保护计算机硬件、软件和数据不因偶然和恶意的原因遭到破坏、更改和泄露。 信息安全的特征：  机密性：确保信息不被非授权者获得与使用。  完整性：信息是真实可信的，其发布者不被冒充，来源不被伪造，内容不被篡改。  可用性：保证信息可被授权人在需要时立即获得并正常使用   信息安全主">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-03-02T06:04:04.000Z">
+<meta property="article:modified_time" content="2023-09-26T11:43:39.364Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="信息系统安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '信息系统安全笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-26 19:43:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">信息系统安全笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-02T06:04:04.000Z" title="发表于 2023-03-02 14:04:04">2023-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-26T11:43:39.364Z" title="更新于 2023-09-26 19:43:39">2023-09-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="信息系统安全笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="信息系统安全笔记"><a href="#信息系统安全笔记" class="headerlink" title="信息系统安全笔记"></a>信息系统安全笔记</h1><h2 id="第一章-信息安全概述"><a href="#第一章-信息安全概述" class="headerlink" title="第一章 信息安全概述"></a>第一章 信息安全概述</h2><h3 id="1-信息安全基本概念及方法"><a href="#1-信息安全基本概念及方法" class="headerlink" title="1. 信息安全基本概念及方法"></a>1. 信息安全基本概念及方法</h3><p>信息安全：为数据处理系统建立和采用的技术和管理的安全保护，保护计算机硬件、软件和数据不因偶然和恶意的原因遭到破坏、更改和泄露。</p>
+<p>信息安全的特征：</p>
+<ul>
+<li><p>机密性：确保信息不被非授权者获得与使用。</p>
+</li>
+<li><p>完整性：信息是真实可信的，其发布者不被冒充，来源不被伪造，内容不被篡改。</p>
+</li>
+<li><p>可用性：保证信息可被授权人在需要时立即获得并正常使用</p>
+</li>
+</ul>
+<p><strong>信息安全主要防御技术及手段</strong></p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302141237916.png" alt="image-20230302141237916"></p>
+<p>hash加盐：给口令添加一段随机字符串，然后再进行hash，一般得到的hash会带加的盐？</p>
+<p>这是shadow文件里格式，为<code>$id&amp;salt&amp;encrypted</code></p>
+<p><code>$6$qRMGpW616Ex..tyy$EMfz0BaH2.EhFv9o5sEp1OmLjgoRAwFWUaXqfvqFywSS9.yb.WIzUGWjv1Xq2w46ewK5Z4JVWAIWimNGZGAVC.</code></p>
+<p>id为1时，采用md5算法加密<br>id为5时，采用SHA256算法加密<br>id为6时，采用SHA512算法加密</p>
+<p>模糊测试：其核心思想是自动或半自动的生成随机数据输入到一个程序中，并监视程序异常，如崩溃，断言(assertion)失败，以发现可能的程序错误，比如内存泄漏。</p>
+<p>IDS（入侵检测）：专业上讲IDS是依照一定的安全策略，对网络、系统的运行状况进行监视，尽可能发现各种攻击企图、攻击行为或者攻击结果，以保证网络系统资源的机密性、完整性和可用性。</p>
+<p>IPS（入侵防御）：IPS系统是一部能够监视网络或网络设备的网络资料传输行为的计算机网络安全设备，能够即时的中断、调整或隔离一些不正常或是具有伤害性的网络资料传输行为。</p>
+<p>IDS一般只监听，然后做出警告，IPS能够自主的做出一些防御手段</p>
+<p>具体见 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/96942352">链接</a></p>
+<p>差分隐私：</p>
+<script type="math/tex; mode=display">
+Pr[K(D_1)\in S]\leq exp(\epsilon) \times Pr[K(D_2)\in S]</script><p>它的核心思想就是说，对于<strong>相差一条记录</strong>的两个数据集（D1,D2），查询它们<strong>获得相同结果的概率</strong>（Pr）是非常接近的，对于非常接近的衡量是由公式中的 <strong>ε</strong> 决定的，称其为<strong>隐私预算</strong>（privacy budget）。</p>
+<p>MPC（安全多方计算）：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302152514715.png" alt="image-20230302152514715"></p>
+<p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363803742">链接</a></p>
+<h3 id="2-安全模型"><a href="#2-安全模型" class="headerlink" title="2. 安全模型"></a>2. 安全模型</h3><p>$P^2DR$ 安全模型：Policy（安全策略），Protection（防护），Detection（检测），Response（响应）</p>
+<p>策略：对于一个策略体系的建立包括：安全策略的制订、安全策略的评估、安全策略的执行等。</p>
+<p>保护：防火墙，加密，认证</p>
+<p>检测：检测是动态响应的依据</p>
+<p>$PDRR$ 安全模型：Protect（防护），Detect（检测），React（响应），Restore（恢复）</p>
+<p>防护：防护是预先阻止攻击可以发生的条件，让攻击者无法顺利地入侵。</p>
+<p>检测：IDS</p>
+<p>恢复：包括恢复系统和恢复数据</p>
+<p>成功的安全模型：</p>
+<ul>
+<li>在安全和系统性能、易用之间建立平衡</li>
+<li>能过对存取进行控制</li>
+<li>保持系统和数据完整</li>
+<li>能对系统进行恢复和数据备份</li>
+</ul>
+<p>安全工作的任务与目的：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>措施</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>访问控制机制</td>
+<td>进不来</td>
+</tr>
+<tr>
+<td>授权机制</td>
+<td>拿不走</td>
+</tr>
+<tr>
+<td>加密机制</td>
+<td>看不懂</td>
+</tr>
+<tr>
+<td>代码和数据完整性鉴别机制</td>
+<td>改不了</td>
+</tr>
+<tr>
+<td>数据隐私保护机制</td>
+<td>不泄露</td>
+</tr>
+<tr>
+<td>审计、监控、防抵赖等安全机制</td>
+<td>走不脱</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="第二章-软件安全与恶意代码"><a href="#第二章-软件安全与恶意代码" class="headerlink" title="第二章 软件安全与恶意代码"></a>第二章 软件安全与恶意代码</h2><h3 id="1-软件安全简介"><a href="#1-软件安全简介" class="headerlink" title="1. 软件安全简介"></a>1. 软件安全简介</h3><p>软件安全的目的是尽可能消除软件漏洞，确保软件在恶意攻击下仍然正常运行。</p>
+<p>软件安全三大威胁：</p>
+<ul>
+<li>软件缺陷与漏洞</li>
+</ul>
+<p>缺陷指可以破坏软件正常运行能力的问题、错误或者隐藏的功能缺陷</p>
+<p>漏洞指指在硬件、软件、协议的具体实现或者系统的安全策略存在缺陷，从而可以使得攻击者能够在未授权的情况下访问或者破坏系统。</p>
+<ul>
+<li>恶意软件</li>
+<li>软件非法破解</li>
+</ul>
+<p>软件漏洞的危害：exp，shellcode，getshell，提权</p>
+<h3 id="2-典型软件漏洞"><a href="#2-典型软件漏洞" class="headerlink" title="2. 典型软件漏洞"></a>2. 典型软件漏洞</h3><p><strong>缓冲区溢出</strong></p>
+<p>首先要了解cdecl函数调用方法，这也是Linux&amp;gcc的缺省方法。</p>
+<p>首先看如下代码：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">orange</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">16</span>];</span><br><span class="line">    <span class="type">int</span> c, d;</span><br><span class="line">    <span class="keyword">if</span>(a &gt; b)</span><br><span class="line">        c = a;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        c = b;</span><br><span class="line">    d = red(c, buf);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>orange</code> 函数调用了 <code>red</code> 函数栈帧变化如下：</p>
+<ol>
+<li>当<code>orange</code>得到控制权后，其返回地址已经被其调用者push到栈上了</li>
+</ol>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302185622628.png" alt="image-20230302185622628"></p>
+<ol>
+<li>获取自身运行所用的栈帧</li>
+</ol>
+<ul>
+<li>push 调用者的 <code>ebp</code></li>
+<li>将当前的 <code>esp</code> 复制到 <code>ebp</code> （就是创建一个新的栈帧，用当前的 <code>esp</code> 作为栈底 <code>ebp</code>）</li>
+<li>第一个参数的位置在 <code>ebp+8</code></li>
+</ul>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302185929638.png" alt="image-20230302185929638"></p>
+<ol>
+<li>保存要使用的寄存器的值（通用寄存器可能保存着调用orange的调用者所要使用的信息）</li>
+</ol>
+<ul>
+<li><code>edi,esi,ebx</code> 通过push 或 mov</li>
+</ul>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302190254878.png" alt="image-20230302190254878"></p>
+<ol>
+<li>分配空间给局部变量</li>
+</ol>
+<ul>
+<li>通过 <code>esp</code> 自减实现</li>
+<li>这里的变量可以溢出到栈空间</li>
+</ul>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302190448798.png" alt="image-20230302190448798"></p>
+<ol>
+<li>当 orange 要调用 red 时</li>
+</ol>
+<p>保存（push）在red返回后要使用的寄存器 <code>eax,edx,ecx</code></p>
+<ol>
+<li>从右至左将 red 的参数压栈</li>
+<li>将返回地址压栈（在red返回后要执行的下一条指令的地址）</li>
+</ol>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230302194045969.png" alt="image-20230302194045969"></p>
+<p>然后red函数也要创建自己的栈帧</p>
+<p>返回的时候，恢复保存的寄存器的值，恢复 <code>ebp</code> 将 <code>eip</code> 指向返回地址</p>
+<p>对于缓冲区溢出攻击，常见的做法就是对局部变量进行溢出，达到覆盖返回地址的目的</p>
+<p><strong>整数溢出</strong></p>
+<p>在一些检查整数大小的逻辑中，可以通过整数溢出，绕过这些检查，例如：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">catvars</span><span class="params">(<span class="type">char</span> *buf1, <span class="type">char</span> *buf2, <span class="type">unsigned</span> <span class="type">int</span> len1, <span class="type">unsigned</span> <span class="type">int</span> len2)</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">char</span> mybuf[<span class="number">256</span>];</span><br><span class="line">    <span class="keyword">if</span>((len1 + len2) &gt; <span class="number">256</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">memcpy</span>(mybuf, buf1, len1);</span><br><span class="line">    <span class="built_in">memcpy</span>(mybuf + len1, buf2, len2);</span><br><span class="line">    do_some_stuff(mybuf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230303105732719.png" alt="image-20230303105732719"></p>
+<p><strong>防御控制流劫持攻击</strong></p>
+<ul>
+<li>修复bug，软件审查，使用安全的语言重写软件</li>
+<li>允许溢出，防止shellcode执行（设置栈不可执行位NX，但需要硬件支持）</li>
+<li>添加运行时检查代码，如在缓冲区和控制信息间插入canary word，canary word会先被覆盖，则说明溢出</li>
+<li>控制与数据分离，地址随机化ASLR，检查程序控制流图CFI</li>
+</ul>
+<p><strong>竞态条件</strong></p>
+<p>发生在以下情况：</p>
+<ul>
+<li>多个进程（多个线程）同时访问和操作相同的数据</li>
+<li>执行的结果取决于特定的顺序</li>
+</ul>
+<p>对于预期的行为，是基于某些假设的，需要这些假设持续一段时间</p>
+<ul>
+<li>问题：但假设可能失效</li>
+<li>可能会让依赖于假设的操作变得不可预测（至少不是预期的，可能是有限种结果中的一种）</li>
+</ul>
+<p>脆弱性窗口：假设可以失效的时间间隔</p>
+<hr>
+<p>典型例子： TOCTTOU    (time of check to time of use)</p>
+<p>观察以下代码：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!access(<span class="string">"/tmp/X"</span>, W_OK)) {</span><br><span class="line">    f = open(<span class="string">"/tmp/X"</span>, O_WRITE);</span><br><span class="line">    write_to_file(f);</span><br><span class="line">}</span><br><span class="line"><span class="keyword">else</span> {</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Permission denied\n"</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>access</code> 检查real user ID，<code>open</code> 检查effective user ID</p>
+<font color="red">啊啊啊啊看了半小时还开虚拟机试了一下，都没成功，原来这个是要setuid(0)的，我没弄</font>
+
+<p>反正access只check了 real user ID，然后open检查的是 effective user ID<br>然后在setuid程序里，real user ID 是 seed，而 effective user ID是root</p>
+<p>在access check之后，将 <code>/tmp/X</code> 的符号链接连接到 <code>/etc/shadow</code> 文件，就能实现对 shadow 文件的修改</p>
+<p><strong>脏牛牛漏洞（dirty-COW）</strong></p>
+<p>COW：写时复制，对于古早函数 <code>mmap()</code> ，可以将文件映射到内存，方便读写</p>
+<p><code>mmap()</code> 有个参数，<code>MAP_PRIVATE</code> 可以创建私有内存映射，对于只读文件来说，创建的内存映射也是只读的，但是如果用这个参数创建，OS会特殊处理，并允许写入映射的内存。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230303155002435.png" alt="image-20230303155002435"></p>
+<p>所有的修改都是在内存的私有副本上进行的，不会影响其他地方（如底层文件不会被修改）</p>
+<p>还有一个攻击要使用的函数 <code>madvise()</code> ：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230303154940388.png" alt="image-20230303154940388"></p>
+<p>加上参数 <code>MADV_DONOTNEED</code> 可以告知内核不再需要声明地址部分的内存，内核将释放声明地址的资源，进程的页表将指向原始物理内存</p>
+<p>对于写时复制，需要执行三个重要的步骤：</p>
+<ul>
+<li>制作映射内存的副本</li>
+<li>更新页表，使得虚拟内存指向新创建的物理内存</li>
+<li>写入内存</li>
+</ul>
+<p>攻击原理如下：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230303154716220.png" alt="image-20230303154716220"></p>
+<hr>
+<h3 id="3-恶意软件分类和原理"><a href="#3-恶意软件分类和原理" class="headerlink" title="3. 恶意软件分类和原理"></a>3. 恶意软件分类和原理</h3><p><strong>计算机病毒</strong></p>
+<p>传染性，非授权性，隐蔽性，潜伏性，破坏性，不可预见性，可触发性</p>
+<p><strong>引导区病毒</strong>：存在于操作系统引导区</p>
+<p>修改磁盘访问中断，在进行磁盘写操作的时候进行传播</p>
+<p>可以控制操作系统启动</p>
+<p><strong>文件型病毒</strong></p>
+<p>执行病毒所寄生的文件时，病毒才被激活，有可能直接攻击目标对象，主要是EXE，COM等可执行文件</p>
+<p><strong>宏病毒</strong></p>
+<p>主要是在office软件中，利用宏语言的功能将自己复制并且繁殖到其他数据文档中</p>
+<p><strong>脚本病毒</strong></p>
+<p>VBS脚本病毒是直接通过自我复制来感染文件的，病毒中的绝大部分代码都可以直接附加在其他同类程序的中间</p>
+<p><strong>PE病毒</strong></p>
+<p>通过在PE文件中增加节来实现自身逻辑功能</p>
+<p><strong>木马</strong></p>
+<p>完整的木马一般由木马配置程序、控制端程序（客户端）和木马程序（服务端程序，即被控端）等三部分组成。</p>
+<p>分为正向连接和反向连接</p>
+<ul>
+<li>正向连接：控制端主动连接被控端；</li>
+</ul>
+<p>攻击者无需外部IP地址，木马不会泄露攻击者IP；</p>
+<p>可能被防火墙阻挡，被攻击者必须具备外部IP地址；</p>
+<ul>
+<li>反向连接1：被控端连接控制端</li>
+</ul>
+<p>通过防火墙相对容易，可以控制局域网内的目标；</p>
+<p>样本会暴露控制服务器的信息，攻击者通常应当具备外部IP的服务器</p>
+<ul>
+<li>反向连接2：被控端连接肉鸡，肉鸡连接控制端</li>
+</ul>
+<p>绕过防火墙，自动连接上线，不易被发现；</p>
+<p><strong>后门</strong></p>
+<p>后门是一个允许攻击者绕过系统中常规安全控制机制的程序，他按照攻击者自己的意图提供通道。</p>
+<p>。。。。。</p>
+<p>后面的东西感觉没什么内容。</p>
+<p><strong>Rootkit</strong></p>
+<p>用于隐藏对应恶意进程</p>
+<p><strong>加壳脱壳</strong></p>
+<p>加壳一般是指保护程序资源的方法。可以缩减程序的大小，阻碍对程序的探测与分析。</p>
+<h2 id="第三章-渗透测试方法及工具"><a href="#第三章-渗透测试方法及工具" class="headerlink" title="第三章 渗透测试方法及工具"></a>第三章 渗透测试方法及工具</h2><h3 id="1-渗透测试的概念"><a href="#1-渗透测试的概念" class="headerlink" title="1. 渗透测试的概念"></a>1. 渗透测试的概念</h3><p>是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。这个过程包括对系统的任何弱点、技术缺陷或漏洞的主动分析，这个分析是从一个攻击者可能存在的位置来进行的，并且从这个位置有条件主动利用安全漏洞。</p>
+<p><strong>两个显著特点</strong></p>
+<ul>
+<li>渗透测试是一个渐进的并且逐步深入的过程。</li>
+<li>渗透测试是选择不影响业务系统正常运行的攻击方法进行的测试。</li>
+</ul>
+<h3 id="2-渗透测试方法"><a href="#2-渗透测试方法" class="headerlink" title="2. 渗透测试方法"></a>2. 渗透测试方法</h3><ul>
+<li>黑盒测试</li>
+</ul>
+<p>假定渗透测试人员前期对目标网络，公司流程或应用提供的服务没有了解。</p>
+<p>需要进行大量的侦察。</p>
+<ul>
+<li>白盒测试</li>
+</ul>
+<p>渗透测试人员对系统非常熟悉时采取的方法。一般由公司内部的安全团队执行。</p>
+<ul>
+<li>灰盒测试</li>
+</ul>
+<p>渗透测试人员会知道目标的一些基本情况；不过，系统内部工作原理和其他一些受限信息仍然不会公开给渗透测试人员。</p>
+<h3 id="3-渗透测试工具"><a href="#3-渗透测试工具" class="headerlink" title="3. 渗透测试工具"></a>3. 渗透测试工具</h3><p>backTrack5或kali</p>
+<h3 id="4-渗透测试生命周期"><a href="#4-渗透测试生命周期" class="headerlink" title="4. 渗透测试生命周期"></a>4. 渗透测试生命周期</h3><p>侦察（信息收集），扫描（目标测试），获取访问（漏洞利用、渗透），提升权限，维持访问、清楚痕迹</p>
+<p><strong>侦察</strong></p>
+<p>目标：找出目标，定义应用和商业用途，找出系统类型，找出可用端口，找出运行的服务，对信息进行社会工程，记录发现的内容</p>
+<p><strong>目标测试</strong></p>
+<p>目标：测试出目标的薄弱环节；找出易受攻击的系统，并确定其优先级；将易受攻击系统和资产所有者进行映射；记录发现的内容；</p>
+<p><strong>漏洞利用</strong></p>
+<p>利用找到的漏洞来验证漏洞是否真实存在，并会验证能获得什么样的信息或是什么样的访问权限。</p>
+<p>目标：漏洞利用；拿到权限；抓取非授权数据；积极地进行社会工程；攻击其他系统或应用；记录发现的信息。</p>
+<p><strong>提升权限</strong></p>
+<p>提升权限包括找出和破解密码、用户账户和非授权的IT空间。 </p>
+<p>目标：获得更高级别的访问系统和网络的权限；获取其他用户的账户信息；使用提升过的权限来访问其他系统；记录发现的信息。</p>
+<p><strong>维持访问、清楚痕迹</strong></p>
+<p>目标：建立到目标网络的多种访问方法； 删除未授权访问的证据；修复在漏洞利用中受影响的系统；如有必要，注入假数据；通过加密或其他方式隐藏通信方式；记录发现的信息。  </p>
+<hr>
+<h3 id="5-常用攻击举例"><a href="#5-常用攻击举例" class="headerlink" title="5. 常用攻击举例"></a>5. 常用攻击举例</h3><p><strong>信息搜集</strong></p>
+<ul>
+<li>Google Hacking    一些属性搜索关键字（filetype，info，inurl）</li>
+</ul>
+<p><strong>社会工程学</strong></p>
+<p><strong>操作系统指纹探测</strong></p>
+<ul>
+<li>fping 使用ICMP协议发现存活主机</li>
+<li>p0f 被动监听，用于操作系统探测</li>
+<li>nmap 端口扫描，服务识别</li>
+</ul>
+<p><strong>漏洞扫描</strong></p>
+<p>Nessus，OpenVAS（实践性太强辣）</p>
+<p><strong>漏洞利用</strong></p>
+<p>MSF，metasploit</p>
+<p><strong>维持访问</strong></p>
+<p>netcat</p>
+<p><strong>Web渗透</strong></p>
+<p>SQL注入：sqlmap，XSS跨站脚本攻击，文件包含攻击（实验内容，都忘的差不多了）</p>
+<p><strong>无线网络渗透</strong></p>
+<p>了解即可</p>
+<hr>
+<h2 id="第四章-模糊测试与漏洞挖掘"><a href="#第四章-模糊测试与漏洞挖掘" class="headerlink" title="第四章 模糊测试与漏洞挖掘"></a>第四章 模糊测试与漏洞挖掘</h2><h3 id="1-模糊测试简介"><a href="#1-模糊测试简介" class="headerlink" title="1. 模糊测试简介"></a>1. 模糊测试简介</h3><p>基本思想：</p>
+<ul>
+<li>模糊测试将随机的坏数据插入程序，观察程序是否能容忍杂乱输入，以检测程序的健壮性。</li>
+<li>模糊测试产生杂乱数据攻击程序。采用模糊测试攻击应用程序可发现其他采用逻辑思维来测试很难发现的安全漏洞。</li>
+</ul>
+<h3 id="2-模糊测试方法"><a href="#2-模糊测试方法" class="headerlink" title="2. 模糊测试方法"></a>2. 模糊测试方法</h3><p><strong>盲Fuzz</strong></p>
+<p>在随机位置插入随机的数据以生成畸形文件</p>
+<p><strong>智能Fuzz</strong></p>
+<ul>
+<li>面向逻辑</li>
+</ul>
+<p>要测试的目标是解析文件的程序逻辑，而不是文件本身，纯纯抽象！</p>
+<p>我的理解：对于输入数据，可能包括很多层（比如一个IP数据包），面向逻辑就是对这很多层的数据按照组织结构逻辑进行划分的Fuzz</p>
+<ul>
+<li>面向数据类型</li>
+<li>基于样本</li>
+</ul>
+<p><strong>Fuzz测试的主要方法</strong></p>
+<p>按照测试对象的信息获取程度：黑盒，白盒，灰盒</p>
+<p>按照测试用例生成方法：基于生成的Fuzz，基于变异的Fuzz</p>
+<p>还讲遗传算法。。。呃呃了</p>
+<h3 id="3-模糊测试器类型"><a href="#3-模糊测试器类型" class="headerlink" title="3. 模糊测试器类型"></a>3. 模糊测试器类型</h3><p><strong>文件Fuzz测试</strong></p>
+<p>文件作为程序主要输入；按照事先约定好的数据结构对文件中不同的数据域进行解析；</p>
+<p>一般步骤：以一个正常的文件模板作为基础，按照一定规则产生一批畸形文件进行测试，监视目标状态，记录产生的错误信息，如寄存器状态、栈状态等</p>
+<p><strong>协议Fuzz测试</strong></p>
+<p>对网络协议的Fuzz，目标是聚类实现报文分类，然后对报文域识别</p>
+<p><strong>组件Fuzz测试</strong></p>
+<p>组件提取；组件接口分析；构造测试用例；测试驱动、异常跟踪；结果分析。</p>
+<p><strong>Web Fuzz测试</strong></p>
+<p>特殊形式的网络协议模糊测试；构造Web请求，对指定URL进行检测，如sqlmap</p>
+<p><strong>内存模糊测试</strong></p>
+<p>通过程序快照，实现数据的多次注入</p>
+<p>适用于涉及客户端和服务器之间的大量交互的模糊网络应用程序</p>
+<h3 id="4-程序插桩原理及实例"><a href="#4-程序插桩原理及实例" class="headerlink" title="4. 程序插桩原理及实例"></a>4. 程序插桩原理及实例</h3><p>程序插桩方法：借助往被测程序中插入操作，来实现测试目的的方法，即向源程序中添加一些语句，实现对程序语句的执行、变量的变化等情况进行检查。了解一个程序在某次运行中所有可执行语句被覆盖的情况，或是每个语句的实际执行次数。</p>
+<p><strong>代码覆盖率</strong>，是一种通过计算测试过程中被执行的源代码占全部源代码的比例，进而间接度量软件质量的方法。它在保证测试质量的时候潜在保证实际产品的质量，可以基于此在程序中寻找没有被测试用例测试过的地方，进一步创建新的测试用例来增加覆盖率。按性质，它属于白盒测试的范畴，即主要依据源代码的内部结构来设计测试用例，通过设计不同的输入来测试软件的不同部分。</p>
+<ul>
+<li>编译期间的插桩</li>
+<li>自定义调试器，使用断点来计算代码覆盖率</li>
+<li>已经编译的程序上的动态插桩</li>
+<li>直接向二进制文件插入代码的静态插桩技术</li>
+<li>使用一些硬件特性（IntelPT）</li>
+</ul>
+<hr>
+<h3 id="5-模糊测试工具及实例"><a href="#5-模糊测试工具及实例" class="headerlink" title="5. 模糊测试工具及实例"></a>5. 模糊测试工具及实例</h3><p>AFL, Peach, Sanitizers, Radamsa, Honggfuzz, LibFuzzer, Domato, </p>
+<h3 id="6-模糊测试的局限性"><a href="#6-模糊测试的局限性" class="headerlink" title="6. 模糊测试的局限性"></a>6. 模糊测试的局限性</h3><ul>
+<li>很难发现访问控制漏洞</li>
+<li>很难发现逻辑设计漏洞</li>
+<li>无法发现多阶段安全漏洞</li>
+<li>无法发现深入的漏洞（需要很多前置条件的）</li>
+</ul>
+<hr>
+<h2 id="第五章-用户身份认证机制"><a href="#第五章-用户身份认证机制" class="headerlink" title="第五章 用户身份认证机制"></a>第五章 用户身份认证机制</h2><h3 id="1-身份认证概述"><a href="#1-身份认证概述" class="headerlink" title="1. 身份认证概述"></a>1. 身份认证概述</h3><p>一个成熟的身份认证系统应该具有以下特征：</p>
+<ul>
+<li>验证者正确识别对方的概率极大</li>
+<li>攻击者伪装以骗取信任的成功率极小</li>
+<li>通过重放攻击进行欺骗和伪装的成功率极小</li>
+<li>实现身份认证的算法计算量足够小</li>
+<li>实现身份认证所需的通信量足够小</li>
+<li>秘密参数能够安全存储</li>
+<li>可信的第三方</li>
+<li>可证明安全性</li>
+</ul>
+<h3 id="2-基于口令的身份认证"><a href="#2-基于口令的身份认证" class="headerlink" title="2. 基于口令的身份认证"></a>2. 基于口令的身份认证</h3><p>Windows下LM Hash值生成原理：参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44108455/article/details/123316800">链接</a></p>
+<p>假设明文口令是 <code>jtc123456</code> ，生成过程如下：</p>
+<ol>
+<li>全部转换为大写：<code>JTC123456</code> ，然后写成16进制ASCII码表示：<code>0x4a5443313233343536</code></li>
+<li>不足14字节用0补全：<code>0x 4a 54 43 31 32 33 34 35 36 00 00 00 00 00</code></li>
+<li>中间切开分成两组7字节数据：<code>0x4a544331323334</code> 和 <code>0x35360000000000</code></li>
+<li>对每组7字节的数据，进行扩充，每7位后面插入一个0，变成两组8字节的数据，共128位：<code>0x4a2a10661290cca8</code>和<code>0x349a800000000000</code></li>
+<li>将以上步骤得到的两组8字节编码，分别作为DES加密密钥，为魔术字符串明文“KGS!@#$% ”进行加密，明文转换为16进制：<code>0x4B47532140232425</code></li>
+<li>密文分别为：<code>0xA7F5E8CDFB5A748A</code>, <code>0x1E929FFC01395127</code></li>
+</ol>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230306143439174.png" alt="image-20230306143439174"></p>
+<ol>
+<li>最后对两段密文进行拼接，得到LM-Hash值：<code>A7F5E8CDFB5A748A1E929FFC01395127</code></li>
+</ol>
+<p>LM Hash一般用于WINXP，Win2000系统中</p>
+<hr>
+<p>Windows 下NTLM Hash生成原理见上面的链接</p>
+<p>WIN 10使用HMAC和MD5生成SAM密码</p>
+<p><strong>Linux口令身份认证机制</strong></p>
+<p>口令文件：<code>/etc/passwd</code></p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230306145448940.png" alt="image-20230306145448940"></p>
+<p>影子口令文件：<code>/etc/shadow</code></p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230306145503571.png" alt="image-20230306145503571"></p>
+<p>之前记录过密钥构成，在加盐hash算法那里</p>
+<p><strong>Base64编码</strong></p>
+<p>标准Base64中的64个字符是</p>
+<p><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/0123456789</code></p>
+<p>因为base64只有64个可用字符，所以它编码后的每个字节只能表示6个bit的信息内容；</p>
+<p>我们待编码的内容是8个bit的，所以就造成了编码以后的数据比原来的数据要长;</p>
+<p>6和8的最小公倍数是24，故<strong>base64的最小编码单元是24bit</strong>，四个字符。</p>
+<p><strong>口令攻击</strong></p>
+<p>种类：穷举尝试；窥探；社会工程学；口令文件泄露；字典攻击；网络数据流窃听；认证信息截取/重放</p>
+<p>网络数据流窃听：截获认证系统未经加密的口令明文</p>
+<p>认证信息截取/重放：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230306151939699.png" alt="image-20230306151939699"></p>
+<p>抵御重放攻击的方法：</p>
+<ol>
+<li>在认证交换中使用一个序数来给每一个消息报文编号，仅当收到的消息序号合法时才接受（区别于传输层的序号，这里讨论的是应用层）</li>
+<li>使用时间戳（只接受离server系统时间足够近的消息）</li>
+<li>询问/应答方式（Nonce）A期望从B获得一个新消息 ，则先发给 B一个临时值 （Nonce)，并要求后续从B收到的消息包含正确的这个临时值</li>
+</ol>
+<p>抵御口令文件泄露的方法：</p>
+<ul>
+<li>使用机器相关函数：密码和机器特征绑定，窃取无用（主机号）</li>
+<li>使用门限密码方案：见 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150535159">链接</a></li>
+<li>放置假口令（蜜罐）</li>
+</ul>
+<h3 id="3-基于智能卡的身份认证"><a href="#3-基于智能卡的身份认证" class="headerlink" title="3. 基于智能卡的身份认证"></a>3. 基于智能卡的身份认证</h3><p>身份认证过程中为了产生<strong>变动的密码</strong>一般采用双运算因子的计算方式，也就是加密算法的输入值有两个数值：一为用户密钥、另一为变动因子</p>
+<p>服务器及智能卡必须随时保持相同的变动因子，才能算出相同的动态密码。</p>
+<p><strong>1. 询问/应答认证</strong></p>
+<ul>
+<li>登录请求，Client向Server发出登录请求，Server提示用户输入ID和PIN</li>
+<li>询问，用户提供ID给服务器，然后服务器提供一个随机串X，给插在客户端的智能卡作为验证算法的输入，服务器则根据用户ID取出对应的密钥K后，利用发送给客户机的随机串X，在服务器上用加密算法计算RS</li>
+<li>应答，智能卡根据随机串X于内在密钥K使用硬件加密算法得到RC，并发送给服务器</li>
+<li>验证，比较RS和RC便可确定用户的合法性</li>
+</ul>
+<p>优点：没有同步的问题；一片认证卡可以用来存取被不同认证服务器所保护的系统；最安全的认证方式</p>
+<p>缺点：使用者必须按较多的按钮；比较多输入的失误</p>
+<p><strong>2. 时间同步认证</strong></p>
+<p>变动因子使用服务器端与客户端的同步时间值。 </p>
+<p>认证过程如下：</p>
+<ul>
+<li>用户向服务器发出登录请求，服务器提示用户输入用户ID和用户PIN。</li>
+<li>服务器根据用户ID取出对应的密钥K，使用K与服务器时间T计算动态密码RS。</li>
+<li>智能卡根据内在的密钥K与客户机时间T使用相同的专用算法计算动态密码RC，并发送给服务器。</li>
+<li>服务器比较RS与RC，如果相同则用户合法。</li>
+</ul>
+<p>优点：易于使用</p>
+<p>缺点：时间同步困难，可能造成必须重新输入新密码。软体认证卡采用PC的时刻，很可能随时被修改。常常需要与服务器重新对时。不如Challenge/Response认证更安全</p>
+<p><strong>3. 事件同步认证</strong></p>
+<p>事件同步认证卡依据认证卡上的私有密钥产生一序列的动态密码。</p>
+<p>一旦一个密码被使用过后，在密码序列中所有这个密码之前的密码都会失效。</p>
+<p>如果使用者意外多产生了几组密码造成不同步的状态，服务器会自动重新同步到目前使用的密码。</p>
+<p>（类似密钥流之类的东西。。）</p>
+<p>优点：容易使用；由于使用者无法知道序列数字，所以安全性高，序列号码绝不会显示出来。</p>
+<p>缺点：需要密码序列，较复杂。</p>
+<h3 id="4-局域网身份认证-Kerberos"><a href="#4-局域网身份认证-Kerberos" class="headerlink" title="4. 局域网身份认证-Kerberos"></a>4. 局域网身份认证-Kerberos</h3><p>开放式系统的认证的要求：</p>
+<p>安全性；可靠性；透明性（用户察觉不到认证服务，只是输入口令）；可拓展性（毕竟是分布式环境）</p>
+<p>不想学具体的通信流程了，，，感觉不至于考这么细吧</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/266491528">链接</a> </p>
+<font color="red">更新于2023/3/15，来啃这个协议的具体规则</font>
+
+<p>Kerberos 是一种基于加密 Ticket 的身份认证协议</p>
+<p>Kerberos 主要由三个部分组成：Key Distribution Center (即KDC)、Client 和 Service。</p>
+<p>大致关系如图</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/v2-d765c03f50bae99c1bfe7625aa64fba3_720w.webp" alt="img"></p>
+<p> 发现还是书上更清楚</p>
+<p>首先解释一下应用场景：</p>
+<p>假设你去一个游乐园玩，游乐园很坑，除了门票外，各项设施还需要各自的票，为了区分两种票，我们把游乐园的门票称为认证票，设施的门票称为服务票。需要体验一项设施，用户需要进行三个步骤：</p>
+<ol>
+<li>获取认证票，对应上图的①，②两个步骤</li>
+<li>获取服务票，对应上图的③，④两个步骤</li>
+<li>使用服务票到对应设施获取服务，对应上图⑤，⑥两个步骤</li>
+</ol>
+<p>Kerberos的加密都是对称加密的，身份认证的实现是基于Ticket，而非密码</p>
+<p><strong>客户端</strong></p>
+<p>客户端本地保留有自己的ID和加密密钥，KDC上保留有所用用户ID和对应的加密密钥（保存在Kerberos Database），只有发出请求的用户拥有对应ID的密钥，才能解密AS返回的信息。</p>
+<p>客户端与其他组件交互都能获取到两条信息，其中一条可以通过本地密钥解密出，另外一条将无法解密出。</p>
+<p>客户端想要访问的目标服务，<strong>将不会直接</strong>与KDC交互，而是通过能否正确解密出客户端的请求来进行认证。</p>
+<p><strong>Authentication Service(AS)</strong></p>
+<p>进行用户信息认证，为客户端提供 Ticket Granting Tickets。（TGT）</p>
+<p><strong>Ticket Granting Service(TGS)</strong></p>
+<p>验证 TGT 与 Authenticator，为客户端提供 Service Tickets。</p>
+<p><strong>通信原理：</strong></p>
+<ul>
+<li>客户端与Authentication Service<ul>
+<li>client以明文形式，将自己的ID，想要访问的目标服务的ID，网络地址，以及TGT有效期的寿命发送给AS</li>
+<li>AS检查该ID是否存在于KDC数据库中，若检查操作没有异常，KDC将随机生成一个会话密钥，用于之后client与TGS的通信；随后AS返回两条消息给client</li>
+<li>第一条，使用client的本地密钥进行加密，client可以正常解密，包括 <code>TGS session key（就是上面说的会话密钥），目标服务ID，时间戳，寿命等</code></li>
+<li>第二条，使用TGS密钥进行加密，client不能正常解密，包括：<code>TGT, client ID,目标服务ID, 地址，时间戳，寿命，和TGS session key</code></li>
+</ul>
+</li>
+<li>客户端收到信息后，利用本地密钥解密第一条信息，得到会话密钥，第二条信息不能正常解密</li>
+<li><p>客户端与TGS</p>
+<ul>
+<li>直接将AS发送的第二条，包含TGT的信息，转发给TGS（这部分信息是用TGS密钥加密的，TGS可以解密）</li>
+<li>将自身的 <code>ID, 时间戳</code> 用TGS session key加密，发送给TGS（这部分信息叫做Authenticator）</li>
+</ul>
+</li>
+<li><p>TGS解密出所有信息后，将进行身份检查和认证</p>
+<p>先来捋一下两条信息中都包含什么内容</p>
+<p>首先是由Client转发的，来自AS的信息</p>
+<ul>
+<li>{TGT，client ID，目标服务ID，TGS session key, 地址, 时间戳, 寿命}enc by TGS key</li>
+</ul>
+<p>其次是Authenticator</p>
+<ul>
+<li>{client ID, 时间戳}enc by TGS session key</li>
+</ul>
+<p>TGS使用自己的TGS key解密第一条信息，获得TGS session key，用来解密第二条信息，然后进行如下检查：</p>
+<ul>
+<li>检查两个信息中的client ID是否相同</li>
+<li>比较时间戳，判断是否超时</li>
+<li>通过寿命和时间戳，判断该次票据是否过期</li>
+<li>检查Authenticator是否已经在TGS的缓存中（避免重放攻击）</li>
+</ul>
+</li>
+<li><p>所有检查都通过后，TGS随机生成一个Service session key，然后将以下两条消息发送给client：</p>
+<ul>
+<li>{Service session key, client ID, timestamp}enc by TGS Session Key</li>
+<li>{ticket for service, client ID, service ID, address, timestamp, lifetime, Service session key}enc by service key</li>
+</ul>
+</li>
+<li><p>client收到信息后，只能解密第一条由TGS Session Key加密的信息，第二条不能解密，但是已经拥有获取服务的ticket了</p>
+</li>
+<li><p>client利用解密得到的Service session key，向目标服务器发送如下两条信息：</p>
+<ul>
+<li>直接转发上一步由service key加密的信息</li>
+<li>使用service session key加密的{client ID, timestamp}，就是这一步是Authenticator</li>
+</ul>
+</li>
+<li><p>server收到这两条信息后，用service key解密出第一条，获得 Service session key，然后解密第二条消息，最后进行信息检查：</p>
+<ul>
+<li>比较Authenticator中的ID和ticket中的ID是否相同</li>
+<li>时间戳比较</li>
+<li>检查是否过期</li>
+<li>检查Authenticator是否在缓存中（防止重放攻击）</li>
+</ul>
+</li>
+<li><p>至此，所有的认证过程通过，客户端即可与远程HTTP服务完成了身份认证，可以进行后续的信息通信。</p>
+</li>
+</ul>
+<p><strong>Kerberos的优势</strong></p>
+<ol>
+<li>密钥无需进行网络传输，基于ticket实现身份认证，保证密钥安全性</li>
+<li>双向认证。整个认证过程中，不仅需要客户端进行认证，待访问的服务也需要进行身份认证。</li>
+<li>高性能。一旦Client获得用过访问某个Server的Ticket，该Server就能根据这个Ticket实现对Client的验证，而无须KDC的再次参与。</li>
+</ol>
+<p>局限性：时间同步问题；口令猜测问题；认证域之间的信任问题；重放攻击的问题；密钥的存储问题；系统程序的安全性、完整性问题</p>
+<h3 id="5-统一身份认证-PAM"><a href="#5-统一身份认证-PAM" class="headerlink" title="5. 统一身份认证-PAM"></a>5. 统一身份认证-PAM</h3><p>概念：</p>
+<p>Linux-PAM(Pluggable Authentication Modules） </p>
+<p>基于Linux的插入式验证模块)是一组共享库，使用这些模块，系统管理者可以自由选择应用程序使用的验证机制。也就是说，勿需重新编译应用程序就可以切换应用程序使用的验证机制。甚至，不必触动应用程序就可以完全升级系统使用的验证机制。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230306194824593.png" alt="image-20230306194824593"></p>
+<p>好像就是开放API，给需要认证的程序提供服务</p>
+<hr>
+<h3 id="6-问题与思考"><a href="#6-问题与思考" class="headerlink" title="6. 问题与思考"></a>6. 问题与思考</h3><p>口令不能明文存储和传输，目前有哪些方法可以保护口令在存储和传输中的安全？ </p>
+<font color="orange">加密存储，加密传输</font>
+
+<p>什么是加盐机制，如何实现加盐机制？</p>
+<font color="orange">在传统hash中引入随机“盐”值，拼接进明文再计算hash</font>
+
+<p>智能卡身份认证中，智能卡里通常存放的内容是什么？为什么需要动态因子？动态因子产生的方式有哪些？</p>
+<font color="orange">密钥和硬件加密算法；为了产生变动的密码提高安全性；随机数和同步时间</font>
+
+<p>Kerberos协议中，可信第三方AS和TGS的作用是什么？Ticket~TGS~ 和 Ticket~S~ 的作用是什么？应用服务器如何验证用户的身份？</p>
+<font color="orange">AS提供TGS和Client的认证，TGS提供Server和Client的认证；Ticket~TSG~的作用是确认用户的身份，Ticket~S~的作用是确认服务器的身份</font>
+
+<p>彩虹表</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105578739">链接</a></p>
+<h2 id="第六章-访问控制模型"><a href="#第六章-访问控制模型" class="headerlink" title="第六章 访问控制模型"></a>第六章 访问控制模型</h2><h3 id="1-访问控制的基本概念"><a href="#1-访问控制的基本概念" class="headerlink" title="1. 访问控制的基本概念"></a>1. 访问控制的基本概念</h3><p>基本目标：依据授权对提出的资源访问请求进行控制，防止对任何资源（如计算资源、通信资源或信息资源）进行未授权的访问。</p>
+<p>未授权的访问包括：未经授权的使用、泄露、修改、销毁信息以及颁发指令等。</p>
+<p><strong>三要素：</strong></p>
+<ul>
+<li>主体：访问的发起者</li>
+<li>客体：可供访问的各种软硬件资源</li>
+<li>策略：定义了主体对客体的权限</li>
+</ul>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230307105340393.png" alt="image-20230307105340393"></p>
+<h3 id="2-自主访问控制"><a href="#2-自主访问控制" class="headerlink" title="2. 自主访问控制"></a>2. 自主访问控制</h3><p>DAC（Discretionary Access Control）</p>
+<p>其依据是用户的身份和授权，并为系统中的每个用户（或用户组）和客体规定了用户允许对客体进行访问的方式。</p>
+<p>每个用户对客体进行访问的要求都要经过权限检验，如果授权中允许用户以这种方式访问客体，则访问就可以得到允许，否则就不予许可。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAaG9uZXN0X3J1bg==,size_12,color_FFFFFF,t_70,g_se,x_16.png" alt="img"></p>
+<p>类似这样？</p>
+<p>自主访问控制允许用户自主地在系统中规定谁可以存取它的资源实体</p>
+<p>安全操作系统需要具备的特征之一就是自主访问控制，它基于对主体或主体所属的主体组的识别来限制对客体的存取</p>
+<p>优点：主体的拥有者负责设置访问权限。根据主体的身份和授权来决定访问模式，比较灵活。</p>
+<p>缺点：</p>
+<ol>
+<li>权限在转移过程中，其访问权限关系会被改变。</li>
+</ol>
+<p>例如：用户A可以将其对客体目标O的访问权限传递给用户B，从而使不具备对O访问权限的B也可以访问O，这样做很容易产生安全漏洞，所以自主访问控制的安全级别很低。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230307140043016.png" alt="image-20230307140043016"></p>
+<ol>
+<li>当用户数量多、管理数据量大时，由于访问控制的粒度是单个用户，访问控制策略会很庞大。</li>
+</ol>
+<h3 id="3-强制访问控制"><a href="#3-强制访问控制" class="headerlink" title="3. 强制访问控制"></a>3. 强制访问控制</h3><p>MAC（Mandatory Access Control）</p>
+<p><strong>定义：</strong>如果只有系统才能控制对客体的访问，而用户个体不能改变这种控制，那么这样的访问控制称为强制访问控制。</p>
+<p>系统对所有主体及其所控制的客体（例如：进程、文件、段、设备）指定敏感标记，这些标记是等级分类和非等级类别的组合，它们是实施强制访问控制的依据。</p>
+<p>MAC通过安全标签实现单向信息流通模式。</p>
+<p><strong>安全标签</strong>是定义在目标上的一组安全属性信息项。在访问控制中，一个安全标签隶属于一个用户、一个目标、一个访问请求或传输中的一个访问控制信息。</p>
+<h4 id="BLP模型"><a href="#BLP模型" class="headerlink" title="BLP模型"></a>BLP模型</h4><p>每个主体和客体都划分一个密级 A；</p>
+<p>每个主体和客体都划分一个业务范围 C；</p>
+<p>实体E的安全级别是一个二元组<a, c="">，其中A是密级，可用整数表示，C是类别，用集合表示；</a,></p>
+<p>设在BLP模型中，实体E1和实体E2的安全级别分别为：</p>
+<p>$level(E1)=(A_1,C_1)，level(E_2)=(A_2,C2)$</p>
+<p>$\leq$ 表示支配关系，那么：</p>
+<p>$level(E_1)\leq level(E_2)$ 当且仅当：$A_1\leq A_2 \&amp;\&amp;C_1\subseteq C_2$ </p>
+<p>BLP模型满足：不上读，不下写</p>
+<ul>
+<li>简单安全原则（向下读）</li>
+</ul>
+<p>主体 S 对客体 O 具有读权限 ，当且仅当 S 支配 O ，即 $level(E_O)\leq level(E_S)$ </p>
+<ul>
+<li>* 特性（向上写）</li>
+</ul>
+<p>主体 S 对客体 O 具有写权限，当且仅当 O 支配 S，即 $level(E_S)\leq level(E_O)$ </p>
+<ul>
+<li>稳定原则</li>
+</ul>
+<p>主体和客体的安全级别在它们被引用时必须保持不变</p>
+<p>具有强制性：通过比较主体和客体之间的安全级别的支配关系来控制主体对客体的访问。 主体不能自主的授予客体权力或回收权力。</p>
+<p>优点：更安全，可以阻止某些类型的特洛伊木马攻击</p>
+<p>缺点：对用户限制较多，用户感到不够灵活；注重保密性控制，而缺少完整性控制，不能控制“向上写”，不能有效限制隐蔽通道；仅能处理单级客体，不支持系统运行时动态调节安全级；</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230307150734015.png" alt="image-20230307150734015"></p>
+<p>解释一下这个图</p>
+<p>首先由绝密进程A创建data文件，公开进程B创建control文件，由简单安全原则（向下读），A可以读取control文件，假设B和A约定，control文件每写入一个字符，就传递1bit信息；信息通过data文件传递，A对data有读写权限，作为所有者可以修改其DAC属性（是否允许B对其写入，要注意，在BLP模型中，B是不能对data进行读取的，最多只能写），约定可写就是1，不可写就是0。A每修改一次，B就尝试对data进行写入，允许写入就得到信息1，不允许就得到信息0。</p>
+<h4 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h4><p>Biba模型解决了当位于较低安全级内的主体能够向位于较高安全级内的客体写入时，以及主体能够读取较低安全级的数据时，受到威胁的数据的完整性问题。</p>
+<p>两条主要规则：不能向上写（一个主体不能把数据写入位于较高完整性级别的客体。），不能向下读（主体不能从较低的完整性级别客体读取数据）</p>
+<p>主体低水标规则：</p>
+<ul>
+<li>当且仅当 $i(S)\geq i(O)$ 时，主体 S 可以写客体 O</li>
+<li>设 S 是任意主体，O 是任意客体，$i_{min}=min(i(S),i(O))$，那么，不管完整性级别如何，<em>S</em>都可以读<em>O</em>，但是，“读”操作实施后，主体<em>S</em>的完整性级别被调整为$i_{min}$。</li>
+</ul>
+<p>意思就是任意主体可以读任意完整性级别的客体，但是如果主体读完整性级别比自己低的客体时，主体的完整性级别降低为客体完整性级别，否则，主体的完整性级别保持不变。</p>
+<p>可以保证：<strong>信息不会从低完整性级别的客体传向高完整性级别的客体</strong></p>
+<h3 id="4-基于角色的访问控制"><a href="#4-基于角色的访问控制" class="headerlink" title="4. 基于角色的访问控制"></a>4. 基于角色的访问控制</h3><p>RBAC（Role-based access control）</p>
+<p><strong>基本思想：</strong>是根据用户所担任的角色来决定用户的在系统中的访问权限。</p>
+<p>一个用户必须扮演某种角色，而且还必须激活这一角色，才能对一个对象进行访问或执行某种操作。</p>
+<p>例子：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230307160813172.png" alt="image-20230307160813172"></p>
+<p><strong>基本概念</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>访问计算机资源的主体，用户集合为<em>U</em></td>
+</tr>
+<tr>
+<td>角色</td>
+<td>一种岗位，代表一种资格、权利和责任 角色集合为 <em>R</em></td>
+</tr>
+<tr>
+<td>权限</td>
+<td>对客体的操作权力 集合为 <em>P</em></td>
+</tr>
+<tr>
+<td>用户分配</td>
+<td>将用户与角色关联，用户分配集合为 UA = { (u, r) | u∈U, r∈R }</td>
+</tr>
+<tr>
+<td>权限分配</td>
+<td>将角色与权限关联，权限分配集合为 PA = { (p, r) | p∈P, r∈R }</td>
+</tr>
+<tr>
+<td>激活角色</td>
+<td>角色只有激活才能起作用，通过会话激活角色</td>
+</tr>
+<tr>
+<td>会话</td>
+<td>用户要访问系统资源时，必须先建立一个会话，一次会话仅对应一个用户，一次会话可激活几个角色</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>授权机制：将访问权限分配给角色，将角色分配给用户</p>
+<p>授权要满足安全约束条件：最小特权原则；职责分离原则；角色互斥原则；角色激活限制原则</p>
+<p>角色分级：高级角色可以继承低级角色的访问权限</p>
+<p>一个角色可以拥有多个访问权限，不同的角色也可以拥有相同的权限</p>
+<p><strong>安全约束</strong></p>
+<ul>
+<li>职责分离约束，如，公检法三权分立，互相配合，又互相监督。</li>
+<li>角色互斥约束，例如，一个人不能又当裁判员又当运动员。</li>
+<li>最小特权约束，只给角色分配完成某工作所需的最小权力。</li>
+<li>角色激活约束，限制一个角色同时授权和激活的数目，如一个总经理；限制一个角色激活的时间。如岗位任期制。</li>
+</ul>
+<p>优点：便于授权管理；便于处理工作分级；利用安全约束，容易实现各种安全策略；便于任务分担；</p>
+<p>缺点：复杂的权限校验，影响性能。</p>
+<hr>
+<h3 id="5-Chinese-Wall"><a href="#5-Chinese-Wall" class="headerlink" title="5. Chinese Wall"></a>5. Chinese Wall</h3><p>访问数据受限于主体已经获得的对数据的访问权限，而不是数据的属性（密级）。 </p>
+<p>Chinese Wall 模型的思想是将一些可能会产生访问冲突的数据分成不同的数据集，强制所有主体最多只能访问一个数据集，但访问哪个数据集并未受强制规则的限制。</p>
+<p>系统结构：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230308110408341.png" alt="image-20230308110408341"></p>
+<p>底层由独立的数据项组成，每项涉及一个独立的公司法人 </p>
+<p>中层将涉及同一公司法人的所有客体组织起来，称为“公司数据集”</p>
+<p>上层将公司数据集结合成组，每个组之间互为竞争对手，称为“兴趣冲突组”</p>
+<p>Chinese Wall模型有两种安全属性：</p>
+<p>简单安全属性：用户只能访问那些与已经拥有的信息不冲突的信息</p>
+<p>* 属性：访问必须满足简单安全属性；主体能够对一个客体写访问的前提，是主体未对任何属于其他公司数据集的客体进行读访问。</p>
+<h2 id="第七章-操作系统基础安全机制"><a href="#第七章-操作系统基础安全机制" class="headerlink" title="第七章 操作系统基础安全机制"></a>第七章 操作系统基础安全机制</h2><h3 id="1-访问控制列表"><a href="#1-访问控制列表" class="headerlink" title="1. 访问控制列表"></a>1. 访问控制列表</h3><p>ACL(Access Control List)</p>
+<p>通常将访问控制矩阵表示为存在于计算机中的一张表(ACL)，保存用户对特定系统对象例如文件目录或单个文件的存取权限。每个对象拥有一个在访问控制表中定义的安全属性。最一般的访问权限包括读文件（包括所有目录中的文件），写一个或多个文件和执行一个文件（如果它是一个可执行文件或者是程序的时候）。</p>
+<h3 id="2-Windows安全模型和访问控制机制"><a href="#2-Windows安全模型和访问控制机制" class="headerlink" title="2. Windows安全模型和访问控制机制"></a>2. Windows安全模型和访问控制机制</h3><p>Windows采用微内核结构和模块化的系统设计。</p>
+<p>有的模块运行在底层的内核模式上，有的模块则运行在受内核保护的用户模式上。</p>
+<p>Windows的安全子系统置于核心 (kernel) 层。</p>
+<p>安全子系统的主要任务：身份认证和访问控制</p>
+<p>Windows安全模型由以下几个部分构成：</p>
+<ul>
+<li>登录过程（login process, LP）接受本地用户或者远程用户的登录请求，处理用户信息，为用户做一些初始化工作</li>
+<li>本地安全授权机构 (local security authority，LSA) ，LSA管理本地安全策略、管理审计策略和设置、为用户生成包含SID和组权限关系的令牌。LSA验证的过程：LSA通过访问本地SAM（Security Accounts Manager）数据库，可以完成本地用户的验证。</li>
+<li><strong>安全账号管理器</strong> (security account manager，SAM) 。维护账号的安全性管理数据库 。</li>
+<li>安全引用监视器 (security reference monitor，SRM) 。检查存取合法性，防止非法存取和修改。</li>
+</ul>
+<p>Windows的安全概念</p>
+<ul>
+<li>安全标识（security identifier, SID）安全标识和账号唯一对应，在账号创建时创建，账号删除时删除，而且永不再用。安全标识与对应的用户和组的账号信息一起存储在SAM数据库里。</li>
+<li>访问令牌 (access token) 。当用户登录时，本地安全授权机构为用户创建一个访问令牌，包括用户名、所在组、安全标识等信息。以后，用户的所有程序都将拥有访问令牌的拷贝。</li>
+<li>主体。用户登录到系统之后，本地安全授权机构为用户构造一个访问令牌，这个令牌与该用户所有的操作相联系，用户进行的操作和访问令牌一起构成一个主体。</li>
+<li>对象、资源、共享资源。对象的实质是封装了数据和处理过程的一系列信息集合体；资源是用于网络环境的对象；共享资源是在网络上共享的对象。</li>
+<li>安全描述符 (security descriptor) ，Windows系统为共享资源创建的安全描述符包含了该<strong>对象</strong>的一组安全属性，包括：拥有者SID；对象所在组SID；自主访问控制表（DAC）；系统访问控制表（ACL）。</li>
+</ul>
+<p>Windows的访问控制过程</p>
+<ul>
+<li>身份认证：当一个账号被创建时，Windows为它分配一个SID，并与其他账号信息一起存入SAM数据库。每次用户登录时，登录主机 (通常为工作站) 的系统首先把用户输入的用户名、口令和用户希望登录的服务器域信息送给安全账号管理器，安全账号管理器将这些信息与SAM数据库中的信息进行比较。</li>
+<li>身份认证：比较结果，如果匹配，服务器发给工作站允许访问的信息，并返回用户的安全标识和用户所在组的安全标识，工作站系统为用户生成一个进程。服务器还要记录用户账号的特权、主目录位置、工作站参数等信息。</li>
+<li>授权：本地安全授权机构为用户创建<strong>访问令牌</strong>（SID有效期对应整个账号，访问令牌只对应一次登录），访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。 此后，用户<strong>每新建一个进程</strong>，都将访问令牌复制作为该进程的访问令牌。</li>
+<li>访问控制：当用户或者用户生成的进程要访问某个对象时，安全引用监视器将用户/进程的访问令牌中的SID与对象安全描述符中的自主访问控制表进行比较，从而决定用户是否有权访问对象</li>
+</ul>
+<h3 id="3-Linux基本访问控制机制"><a href="#3-Linux基本访问控制机制" class="headerlink" title="3. Linux基本访问控制机制"></a>3. Linux基本访问控制机制</h3><p>采用自主访问控制（DAC），用户组体现了一点角色的概念</p>
+<p>DAC的核心内容是：在 Linux 中，进程理论上所拥有的权限与执行它的用户的权限相同</p>
+<p>Linux通过 <code>/etc/passwd</code> 和 <code>/etc/group</code> 保存用户和组信息，通过 <code>/etc/shadow</code> 保存密码口令及其变动信息， 每行一条记录。</p>
+<p>用户和组分别用 <code>UID</code> 和 <code>GID</code> 表示，一个用户可以同时属于多个组，默认每个用户必属于一个与之 <code>UID</code> 同值同名的 <code>GID</code> 。</p>
+<p>文件权限之类的应该都比较熟悉了，记一下进程权限：</p>
+<p>对于进程，有如下属性与文件访问权限相关：</p>
+<ul>
+<li><p><code>effective user id</code> : 进程访问文件权限相关的 <code>UID</code> （简写为 <code>euid</code> ）。</p>
+</li>
+<li><p><code>effective group id</code> : 进程访问文件权限相关的 <code>GID</code> （简写为 <code>egid</code> ）。</p>
+</li>
+<li><p><code>real user id</code> : 创建该进程的用户登录系统时的 <code>UID</code> （简写为 <code>ruid</code> ）。</p>
+</li>
+<li><p><code>real group id</code> :  创建该进程的用户登录系统时的 <code>GID</code> （简写为 <code>rgid</code> ）。</p>
+</li>
+<li><p><code>saved set user id</code> : 拷贝自 <code>euid</code> 。</p>
+</li>
+<li><p><code>saved set group id</code> : 拷贝自 <code>egid</code> 。</p>
+</li>
+</ul>
+<p>linux程序通过exec执行其他程序，可以改变euid：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230309153739475.png" alt="image-20230309153739475"></p>
+<p>关于setuid：<br>首先，setuid和setgid是两个权限标记位</p>
+<p><code>setuid</code>：该设置使文件在执行阶段时其有效用户id （euid）(可以通过<code>geteuid()</code>获得 ) 为该文件拥有者的id。 而内核检查一个进程是否具有访问某权限时，是使用进程的有效用户 ID(euid) 来进行检查的，因而使其在执行阶段具有文件所有者的权限</p>
+<p><code>setgid</code>: 该权限只对目录有效，目录被设置该位后任何用户在此目录下创建的文件都具有和该目录所属的组相同的组。</p>
+<p>举例：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230309154855316.png" alt="image-20230309154855316"></p>
+<h3 id="4-SELinux"><a href="#4-SELinux" class="headerlink" title="4. SELinux"></a>4. SELinux</h3><p>传统Linux的不足：</p>
+<p>存在特权用户root，任何人只要得到root的权限，对于整个系统都可以为所欲为。</p>
+<p>对于文件的访问权划分的不够细，在linux系统里，对于文件的操作，只有「所有者」,「所有组」,「其他」这３类的划分。</p>
+<p>SUID程序的权限升级，如果设置了SUID权限的程序有了漏洞的话，很容易被攻击者所利用</p>
+<p>DAC问题：文件的所有者可以对文件进行所有的操作</p>
+<p>SElinux的优点：</p>
+<ul>
+<li><p>更严格和细粒度的访问控制：对于文件、目录、端口等资源的访问，都可以是基于策略设定的，策略只能由管理员定制（有点像apparmor）</p>
+</li>
+<li><p>对于进程只赋予最小的权限</p>
+</li>
+<li>防止权限升级</li>
+<li>对于用户只赋予最小的权限</li>
+</ul>
+<p><strong>SELinux的常见概念</strong></p>
+<p><strong>MAC/TE</strong></p>
+<p>MAC就是强制访问控制</p>
+<p><strong>TE（Type Enforcement）:</strong></p>
+<p>对所有的文件都赋予一个叫type的文件类型标签，对于所有的进程也赋予各自的一个叫 domain的标签。Domain标签能够执行的操作也是在访问控制策略里定义好的。</p>
+<p>域是主体的类别，类型是客体的类别</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310105905950.png" alt="image-20230310105905950"></p>
+<p><strong>TE的安全上下文</strong></p>
+<p>在SELinux当中，所有操作系统访问控制都是以<strong>关联的客体和主体的某种访问控制属性</strong>为基础。</p>
+<p>访问控制属性叫做安全上下文 </p>
+<p>所有的客体以及主体都有与其有关联的安全上下文</p>
+<p>一个安全上下文由三部分组成：用户、角色和类型标识符</p>
+<p><strong>策略</strong></p>
+<p>因为SELinux默认不允许任何访问，所以，所有的访问都必须明确授权，不管用户／组ID是什么, 在SELinux中，通过allow 语句对主体授权对客体的访问权限</p>
+<p>Allow 规则由四部分组成</p>
+<p>源类型(Source type(s)) 通常是尝试访问进程的域类型</p>
+<p>目标类型(Target type(s)) 被进程访问的客体的类型</p>
+<p>客体类别(Object class(es)) 指定允许访问的客体的类型 如file,dir,socket等</p>
+<p>许可(Permission(s))  象征目标类型允许源类型访问客体类型的访问种类</p>
+<p>例如: <code>allow user_t   bin_t: file {read execute getattr}</code> </p>
+<p>解释：拥有域类型user_t的进程可以读／执行或获取具体有bin_t类型的文件客体的属性</p>
+<p>SELinux策略表示：</p>
+<p>AV（Access vectors, AVs）用来表示策略的规则。如允许域访问各种系统客体，一个AV是一套许可。一个基本的AV规则是主体和客体的类型对，AV规则的语法如下： </p>
+<p><code>&lt;av_kind&gt; &lt;source_type(s)&gt; &lt;target_type(s)&gt;:&lt;class(es)&gt; &lt;permission(s)&gt;</code></p>
+<p><strong>SELinux实现架构</strong></p>
+<p>LSM（Linux security module)- LSM框架的思想是允许安全模块以插件形式进入内核，以便更严格地控制Linux默认的基于身份的自主访问控制（DAC）安全性。LSM在内核系统调用逻辑中提供了一套钩子（hooks），这些钩子通常放在标准Linux访问检查后、且内核调用访问真实资源之前.</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310111106791.png" alt="image-20230310111106791"></p>
+<h2 id="第八章-硬件安全与可信计算"><a href="#第八章-硬件安全与可信计算" class="headerlink" title="第八章 硬件安全与可信计算"></a>第八章 硬件安全与可信计算</h2><h3 id="1-可信计算概论"><a href="#1-可信计算概论" class="headerlink" title="1. 可信计算概论"></a>1. 可信计算概论</h3><p>可信计算的定义：可信计算是增强信息系统安全的一种行之有效的技术。它基于一个硬件安全模块，建立可信的计算环境。可信硬件安全模块担任信任根的角色，通过密码技术、硬件访问控制技术和存储加密等技术保证系统和数据的信任状态。 </p>
+<p>可信计算的目标：提高计算机系统的可信性；现阶段，确保系统数据完整性，数据安全存储，<strong>平台可信性远程证明</strong></p>
+<p>可信计算用途：身份认证；系统完整性保护，数字资产保护4744TCG：可信计算组织</p>
+<p><strong>可信计算的基本思想</strong></p>
+<ul>
+<li>首先建立一个信任根，信任根的可信性由物理安全、技术安全和管理安全共同确保</li>
+<li>再建立一条信任链，从信任根开始到硬件平台、到操作系统、再到应用，一级认证一级，一级信任一级，从而把这种信任扩展到整个计算机系统</li>
+</ul>
+<p><strong>信任根</strong></p>
+<p>TCG认为一个可信计算平台必须包含三个可信根</p>
+<p>可信测量根RTM（root of trust for measurement）</p>
+<p>可信存储根RTS（root of trust for storage）</p>
+<p>可信报告根RTR（root of trust for reporting）</p>
+<p><strong>可信平台模块（TPM）</strong></p>
+<p>由CPU、存储器、I/O、密码引擎、随机数产生器和嵌入式操作系统等部件组成。</p>
+<p>TPM本身就是一个小的计算机系统，一般是一种片上系统SoC（System on Chip），而且它应当是物理可信、技术可信和管理可信的。</p>
+<p>硬件的安全性比软件高，而且对硬件的安全管理比软件容易。</p>
+<p>为了能够反映平台的启动序列和软件的完整性，采用Hash函数来度量其完整性值。</p>
+<p>系统安装时计算出其完整性值并存储。系统启动时重新计算，并于存储值比较，以确定其完整性。</p>
+<p>为了存储度量的值，在TPM内部开设一些平台配置寄存器(PCR)。</p>
+<h3 id="2-可信平台模块与信任根"><a href="#2-可信平台模块与信任根" class="headerlink" title="2. 可信平台模块与信任根"></a>2. 可信平台模块与信任根</h3><h4 id="2-1-TPM（Trusted-Platform-Module）的结构"><a href="#2-1-TPM（Trusted-Platform-Module）的结构" class="headerlink" title="2.1 TPM（Trusted Platform Module）的结构"></a>2.1 TPM（Trusted Platform Module）的结构</h4><p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310143839528.png" alt="image-20230310143839528"></p>
+<p><strong>密码协处理器</strong></p>
+<p>分为公钥密码和对称密码</p>
+<p><strong>公钥密码引擎</strong></p>
+<p>TCG主要使用公钥密码，支持加密、解密、签名和签名验证</p>
+<p>TCG建议使用RSA密码，支持1024，2048的RSA密钥，其中根密钥应为2048位</p>
+<p>数据格式采用PKCS#1标准，并可以采用CRT格式表示证书</p>
+<p>RSA主要用于数字签名，签名格式要符合IEEE P1363</p>
+<p> TPM允许使用其它公钥密码。如DSA或ECC。</p>
+<p><strong>对称密码引擎</strong></p>
+<p>TCG有意淡化对称密码，TPM中没有明确设置对称密码引擎。</p>
+<p>TCG允许TPM使用对称密码进行内部数据的加密。</p>
+<p>对应认证数据和传输数据的加密可采用“一次一密”方式的异或方式加密。</p>
+<p>传输数据的长度较长，必须采用PKCS#1中的MGF1函数对密钥进行扩展，然后再异或方式加密。</p>
+<p><strong>密钥产生</strong></p>
+<p>用于产生RSA的密钥对，RSA密钥对的产生算法、素数测试算法都要符合IEEEP1363。</p>
+<p>对称密钥的产生使用TPM的RNG（random number generator）。</p>
+<p><strong>HMAC引擎</strong></p>
+<p>HMAC（Keyed-Hashing for Message Authentication）是基于hash函数的消息认证码，比基于分组密码的MAC算法快。</p>
+<p><strong>SHA-1引擎</strong></p>
+<p>用途：数据完整性校验；数字签名的数字摘要；计算HMAC</p>
+<p><strong>随机数产生器（RNG）</strong></p>
+<p>TPM采用所产生的随机数用作为Nonce、对称密码的密钥或认证中的随机数。</p>
+<p>TCG既允许使用真随机的TRNG，也允许使用伪随机的PRNG</p>
+<p><strong>电源检测</strong></p>
+<p>TPM电源状态和平台电源状态，TCG要求所有的电源状态变化应通知TPM</p>
+<p>原因：支持初始化、信任链等操作；与平台电源状态匹配；避免基于电量功耗的测信道攻击</p>
+<p><strong>Opt-in</strong></p>
+<p>一组选择配置开关，进行系统配置。</p>
+<p><strong>I/O</strong></p>
+<p>TPM的输入和输出接口</p>
+<p><strong>执行引擎</strong></p>
+<p>运行程序，执行TPM接收到的命令</p>
+<p><strong>非易失存储器</strong></p>
+<p>用于存储固定标识和TPM状态</p>
+<p>已经设置了一些存储内容，如背书密钥EK等，其余空间，经TPM的属主授权的实体可以使用。</p>
+<p><strong>易失存储器</strong>：工作存储器</p>
+<h4 id="2-2-TPM的密钥体系"><a href="#2-2-TPM的密钥体系" class="headerlink" title="2.2 TPM的密钥体系"></a>2.2 TPM的密钥体系</h4><p><strong>密码配置</strong></p>
+<p>主要采用公钥密码，淡化对称密码；公钥密码采用RSA密码。</p>
+<p><strong>密钥配置</strong></p>
+<ul>
+<li>背书密钥EK（Endorsement Key）<ul>
+<li>TPM的根密钥，出厂时固化在TPM芯片里</li>
+<li>与TPM绑定，唯一对应</li>
+<li>2048位RSA密钥</li>
+<li>不可迁移密钥</li>
+</ul>
+</li>
+<li>平台身份证明密钥AIK（Attestation Identity Key）<ul>
+<li><strong>EK的替身密钥</strong></li>
+<li>2048位RSA密钥对</li>
+<li>不可迁移密钥</li>
+<li>仅用于对TPM内部表示平台可信状态的<strong>数据和信息</strong>（如PCR值、时间戳、计数器值、密钥的可迁移属性等数据）进行签名和验证签名，<strong>不能用于加密</strong></li>
+</ul>
+</li>
+<li>存储密钥SK（Storage Key）<ul>
+<li>用于对其他密钥进行存储保护</li>
+<li>分为存储根密钥（SRK）和一般存储密钥（SK）</li>
+<li>存储根密钥：2048位RSA密钥对；保护一般存储密钥；不可迁移</li>
+<li>一般存储密钥：1024位RSA密钥对；保护其他密钥</li>
+<li>构成一个密钥树</li>
+<li><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/41b680f965a54f638d281161153d8f56tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp" alt="截图-2023-02-15-133701.png"></li>
+</ul>
+</li>
+<li>签名密钥SIGK（Signing Key）<ul>
+<li>用于对数据签名</li>
+<li>不可用于加密</li>
+<li>1024位RSA密钥对</li>
+</ul>
+</li>
+<li>绑定密钥BK（Bind Key）<ul>
+<li>加密保护数据和对称密钥</li>
+<li>1024位RSA密钥对</li>
+</ul>
+</li>
+<li>继承密钥LK（Legacy Key）<ul>
+<li>用于加密保护数据</li>
+<li>在TPM之外产生，使用时调入TPM</li>
+<li>1024位RSA密钥对</li>
+</ul>
+</li>
+<li>认证密钥AK（Authentication Key）<ul>
+<li>对称密钥</li>
+<li>用于保护TPM的会话</li>
+</ul>
+</li>
+</ul>
+<p><strong>密钥的控制属性</strong></p>
+<ol>
+<li>迁移性（Migration）</li>
+</ol>
+<p>为了对密钥管理，设置密钥的迁移属性</p>
+<p>可迁移：允许密钥从一个可信计算平台转移到另一个可信计算平台的移动</p>
+<p>不可迁移：就是不允许迁移</p>
+<p>密钥的迁移属性是在创建密钥时设置的，并且不可改变</p>
+<p>EK，AIK，SRK（背书密钥，平台身份证明密钥，存储根密钥）是不可迁移的。如果AIK可以迁移，就会出现一个TPM冒充另一个TPM的问题。不可迁移密钥只能与一个平台绑定，永不离开产生它的平台。</p>
+<ol>
+<li>授权数据</li>
+</ol>
+<p>TCG使用授权数据机制来控制密钥使用</p>
+<ul>
+<li>TCG规定密钥的使用必须经过授权</li>
+<li>使用者必须拥有该密钥的授权数据的验证码，并且通过验证，否则就不能使用密钥</li>
+<li>密钥的授权数据是在密钥产生时设定的</li>
+<li>TCG规定：<code>授权数据 = Hash（共享的秘密数据||随机数）</code>。</li>
+<li>授权数据的作用与口令类似，实体要进行一个操作，必须先进行口令验证。</li>
+<li>由于TPM的存储空间很小，所以在TPM内部只存储EK和SRK的授权数据。</li>
+</ul>
+<p><strong>密钥证书配置</strong></p>
+<ul>
+<li><p>背书密钥证书EC（Endorsement Credential）</p>
+<ul>
+<li>TPM生产商的名称</li>
+<li>TPM的型号</li>
+<li>TPM的版本</li>
+<li>EK的公钥</li>
+</ul>
+</li>
+<li><p>身份证书IC/AIK证书AC（Identity Credential/AIK Credential）</p>
+<ul>
+<li>TPM生产商的名称</li>
+<li>TPM的型号</li>
+<li>TPM的版本</li>
+<li>AIK的公钥</li>
+</ul>
+<p>AIK证书用以确保AIK公钥的安全，产生AIK时产生。</p>
+</li>
+</ul>
+<h4 id="2-3-可信PC平台的信任根"><a href="#2-3-可信PC平台的信任根" class="headerlink" title="2.3 可信PC平台的信任根"></a>2.3 可信PC平台的信任根</h4><p>TCG的技术规范：在可信PC中要有一个信任根，这个信任根包含三个根：</p>
+<ul>
+<li><p>可信度量根RTM（root of trust for measurement）</p>
+</li>
+<li><p>可信存储根RTS（root of trust for storage）</p>
+</li>
+<li><p>可信报告根RTR（root of trust for reporting）</p>
+</li>
+</ul>
+<p>在TPM中，这三个根分别为：</p>
+<ul>
+<li>软件的可信度量根核（CRTM）</li>
+<li>由存储根密钥SRK 和 TPM芯片中的PCR寄存器（平台配置寄存器）共同组成</li>
+<li>由平台身份证明密钥AIK（背书密钥EK）和 TPM芯片中的PCR寄存器（平台配置寄存器）共同组成</li>
+</ul>
+<p><strong>可信度量根(CRTM)</strong></p>
+<p>是一个软件模块，是信任链的起点</p>
+<ul>
+<li>CRTM必须是平台初始化代码中的不可变部分</li>
+<li>CRTM是在平台复位时被首先执行，而且CRTM必须控制TBB。</li>
+</ul>
+<p>草了<span class="github-emoji" style="display:inline;vertical-align:middle"><span>😅</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>  ，ppt里搞一堆缩写，都不告诉我是什么东西</p>
+<p>TBB是Trusted Building Block的缩写：</p>
+<blockquote>
+<p>可信构建块(TBB)是实例化可信根（信任根）所需的组件或组件集合。 通常，特定于平台的TBB是没有屏蔽位置的可信根的一部分。</p>
+<p>TBB的一个例子是CRTM（核心可信度量根），CRTM是存储和主板之间的连接，CRTM存储和CPU之间的路径，TPM和主板之间的连接，以及CPU和TPM之间的路径。 此组合包括RTR(可信报告根)。</p>
+<p>TBB是一种行为不会损害受信任平台目标的组件<br>————————————————<br>版权声明：本文为CSDN博主「guitar monkey」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_49274884/article/details/124959208">https://blog.csdn.net/weixin_49274884/article/details/124959208</a></p>
+</blockquote>
+<ul>
+<li><strong>它应当存储于TBB的可信ROM中</strong>。</li>
+</ul>
+<p>根据BIOS的结构不同，在PC平台上有两种类型的CRTM结构：</p>
+<ul>
+<li>以BIOS的引导模块作为CRTM<ul>
+<li>这种BIOS包括两部分：BIOS引导模块和POST BIOS</li>
+<li>每个都是独立的模块并且都能单独升级而不影响另一个</li>
+<li>以BIOS引导模块作为CRTM。而POST BIOS是信任链中的一个组件，它要被CRTM度量</li>
+</ul>
+</li>
+<li>以整个BIOS作为CRTM<ul>
+<li>这种BIOS是一个完整的实体</li>
+<li>整个BIOS作为一个整体升级、修改和维护</li>
+<li>将CRTM代码放置到BIOS的头部</li>
+</ul>
+</li>
+</ul>
+<p><strong>可信存储根（RTS）</strong></p>
+<p>可信存储根由TPM中的平台配置寄存器PCR和存储根密钥SRK组成</p>
+<ul>
+<li>平台配置寄存器PCR(保证可信)<ul>
+<li>在TPM存储器中开辟的一组寄存器</li>
+<li>存储平台的可信度量值</li>
+<li>TPM 1.2 中定义了24个寄存器</li>
+</ul>
+</li>
+<li>存储根密钥SRK(存储根实体)<ul>
+<li>包括SK和SRK</li>
+</ul>
+</li>
+</ul>
+<p><strong>可信报告根（RTR）</strong></p>
+<p>可信报告根由TPM中的平台配置寄存器PCR和平台身份证明密钥AIK组成</p>
+<ul>
+<li>平台配置寄存器PCR<ul>
+<li>PCR中的内容是平台可信状态的标志</li>
+</ul>
+</li>
+<li>平台身份证明密钥AIK<ul>
+<li>PCR的内容向外报告时用AIK（2048位的RSA密钥）签名保护</li>
+<li>AIK由背书密钥EK控制产生，因此真正的可信报告根是EK</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-远程证明"><a href="#3-远程证明" class="headerlink" title="3. 远程证明"></a>3. 远程证明</h3><p>远程证明是一个综合完整性校验和身份认证的过程，向验证者提供了一份可信的平台状态报告</p>
+<p>下面的定义摘自 <a target="_blank" rel="noopener" href="https://feizaipp.github.io/2021/04/09/%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%AF%81%E6%98%8E/#:~:text=%E8%BF%9C%E7%A8%8B%E8%AF%81%E6%98%8E%E6%98%AF%E6%8C%87%E4%B8%80%E4%B8%AA,%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8F%AF%E4%BF%A1%E7%8A%B6%E6%80%81%E3%80%82">可信计算之远程证明</a></p>
+<blockquote>
+<p>远程证明是指一个节点将自己平台的某些信息使用约定的格式和协议向另一个节点报告，使得另一节点能够获得这些信息，并判定该平台的可信状态。</p>
+</blockquote>
+<p>流程：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310190854937.png" alt="image-20230310190854937"></p>
+<h3 id="4-可信计算的典型应用"><a href="#4-可信计算的典型应用" class="headerlink" title="4. 可信计算的典型应用"></a>4. 可信计算的典型应用</h3><p><strong>系统可信启动</strong></p>
+<p>一图流</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310192307739.png" alt="image-20230310192307739"></p>
+<p>BIOS完整性保护：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310192349872.png" alt="image-20230310192349872"></p>
+<p>后面是Linux可信启动实例，不想看了 <span class="github-emoji" style="display:inline;vertical-align:middle"><span>😔</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f614.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>PCR的内容：</p>
+<ul>
+<li>PCR记录了按照启动顺序依次迭代计算的部件特征数据的Hash值</li>
+<li>PCR中的值与度量日志中记录的启动顺序相对应</li>
+<li>PCR中的值和度量事件日志，每次开机时重新计算生成</li>
+</ul>
+<p>信任链传递一图流：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310192842080.png" alt="image-20230310192842080"></p>
+<p><strong>BitLocker</strong></p>
+<p>BitLocker主要针对的问题： 由计算机设备的物理丢失导致的数据失窃或恶意泄漏。</p>
+<p>Windows BitLocker驱动器加密通过加密Windows操作系统卷上存储的所有数据可以更好地保护计算机中的数据</p>
+<p>BitLocker还可以在没有TPM的情况下使用。可以把密钥放在U盘上。</p>
+<p>加密原理：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310194931639.png" alt="image-20230310194931639"></p>
+<p>利用TPM保护磁盘卷上的信息</p>
+<p>解密原理：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230310195002782.png" alt="image-20230310195002782"></p>
+<p>对主密钥VMK的封装和解封（Seal and Unseal）：</p>
+<p>初次整卷加密时的封装</p>
+<ul>
+<li>计算系统分区相关组件的哈希值</li>
+<li>把计算结果扩展到PCR寄存器</li>
+<li>用相应寄存器封装主密钥VMK</li>
+</ul>
+<p>引导时的完整性检查</p>
+<ul>
+<li>依次计算系统分区相关组件的哈希值</li>
+<li>把计算结果扩展到PCR寄存器</li>
+<li>解封主密钥VMK</li>
+</ul>
+<h2 id="第八章-硬件安全与可信计算-1"><a href="#第八章-硬件安全与可信计算-1" class="headerlink" title="第八章 硬件安全与可信计算"></a>第八章 硬件安全与可信计算</h2><h3 id="1-可信执行环境技术（TEE）"><a href="#1-可信执行环境技术（TEE）" class="headerlink" title="1. 可信执行环境技术（TEE）"></a>1. 可信执行环境技术（TEE）</h3><p>TEE(Trusted Execution Environment)</p>
+<p>可信执行环境，目标是建立一个在内存中安全的执行环境，该环境中的计算可以保证不被常规操作系统干扰，因此称为”可信”。</p>
+<h3 id="2-TrustZone"><a href="#2-TrustZone" class="headerlink" title="2. TrustZone"></a>2. TrustZone</h3><p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/guyongqiangx/article/details/78020257">链接</a></p>
+<p>和PPT里一模一样，不知道是谁洗稿捏 <span class="github-emoji" style="display:inline;vertical-align:middle"><span>😋</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60b.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>移动设备安全环境险恶：恶意软件；木马、钓鱼、APT（高级持续性威胁）；设备被盗或丢失；弱安全控制；支付安全；</p>
+<p>Arm TrustZone技术为受信任的软件提供了系统范围的硬件隔离。TrustZone创建了一个隔离的安全世界，可以用来为系统提供机密性和完整性。</p>
+<p><strong>处理器模型</strong></p>
+<p>每个带 TrustZone 安全扩展的处理器核都有两个虚拟处理器核，每个处理器核分属不同的执行环境（安全和非安全）。</p>
+<p>引入了一个特殊的机制——监控模式，负责不同执行环境间的切换。</p>
+<p>非安全虚拟处理器只能访问非安全系统资源，但安全虚拟处理器能访问所有的资源。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230311140007689.png" alt="image-20230311140007689"></p>
+<p><strong>从非安全状态进入监控模式</strong>：</p>
+<p>执行SMC（Secure Monitor Call）指令，SMC 指令是一条特殊指令，它类似于软件中断指令（SWI），通过它来调用监控器例程。</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230311140639543.png" alt="image-20230311140639543"></p>
+<p><strong>系统总线</strong></p>
+<p>TrustZone 在系统总线上针对每一个信道的读写增加了一个额外的控制信号位，这个控制位叫做Non-Secure或者NS位。</p>
+<p>NS位指明当前系统的状态。如果NS为0，则当前系统处于安全态；如果NS为1，则当前系统处于非安全态。</p>
+<blockquote>
+<p>NS控制信号在AMBA3 AXI总线规范中定义。可以将其看作为原有地址的扩展位，如果原有32为寻址，增加NS可以看成是33位寻址，其中一半的32位物理寻址位于安全世界，另一半32位物理寻址位于非安全世界。</p>
+</blockquote>
+<p><strong>外围总线</strong></p>
+<p>TrustZone 架构一个最有用的特性就是其有保护外设安全的能力。</p>
+<p>安全中断控制器和计数器允许非中断安全任务来监控系统</p>
+<p>安全时钟源提供了可靠的时间基准</p>
+<p>安全键盘使得用户密码输入能够得到安全保障。</p>
+<p><strong>内存模型</strong></p>
+<p>MMU（Memory Management Unit）</p>
+<blockquote>
+<p>MMU是一种硬件电路，它包含两类部件，一类是分段部件，一类是分页部件，对应于内存管理的分段机制和分页机制。分段机制把一个逻辑地址转换为线性地址；接着，分页机制把一个线性地址转换为物理地址。</p>
+<p>当CPU访问一个虚拟地址时，这个虚地址被送到MMU翻译，硬件首先把它和TLB中的所有条目同时(并行地)进行比较，如果它的虚页号在TLB中，并且访问没有违反保护位，它的页面会直接从TLB中取出而不去访问页表，从而提高地址转换的效率。</p>
+</blockquote>
+<p>安全世界和非安全世界都有自己的虚拟MMU，各自管理物理地址的映射。实际上只是两个世界都有一份TTBR0、TTBR1、TTBCR寄存器，因此就会对应两个MMU表。</p>
+<p>尽管MMU有两套，但TLB缓存硬件上只有一套，因此TLB对于两个世界来说是共享的，其通过NS位来标志其每一项具体属于哪一个世界。这样在两个世界间进行切换时不再需要重新刷新TLB，提高执行效率。</p>
+<p>Cache</p>
+<p>同TLB类似，硬件上两个世界共享一套Cache，具体的Cache数据属于哪一个世界也由其NS位指定，在世界间切换也不需要刷新Cache。</p>
+<p><strong>安全中断</strong></p>
+<p>监控器在没有任何执行环境的代码帮助下就能够直接捕获FIQ和IRQ的能力，可以让安全中断源发出的中断不能被普通环境软件操作。</p>
+<p>ARM建议配置IRQ作为非安全世界的中断源，FIQ作为安全世界的中断源。</p>
+<ul>
+<li>当处理器运行在非安全世界时，IRQ直接进入非安全世界的处理函数； </li>
+<li>如果处理器运行在安全世界，当IRQ发生时，会先进入到Monitor模式，然后跳到非安全世界的IRQ处理函数执行。</li>
+</ul>
+<p>见上面的架构图，图的最下面是中断信号</p>
+<p><strong>隔离机制</strong></p>
+<p>TrustZone 通过两个设备来保障物理内存的安全</p>
+<ul>
+<li>TrustZone 地址空间控制器（TZASC: TrustZone Address Space Controller） </li>
+<li><p>TrustZone 存储适配器（TZMA:  TrustZone Memory Adapter）</p>
+<p>内存隔离：</p>
+</li>
+</ul>
+<p>TZASC可以把外部内存分成多个区域，每个区域可以单独配置为安全或非安全区域，非安全世界的代码和应用只能访问非安全区域。</p>
+<p>TZMA可以把片上ROM和SRAM隔离出安全和非安全区域。TZMA最大可以将片上存储的低2MB配置为安全区域，其余部分配置为非安全区域。大小划分上，片上安全区域可以在芯片出厂前设置为固定大小，或运行时通过TZPC动态配置。（攻防三的IOT安全好像讲过）</p>
+<blockquote>
+<p>插播一条关于CPU架构的知识</p>
+<p>Intel和AMD用的是x86架构，Apple用的arm架构，然后arm架构的功耗小很多，至于为什么我没深究</p>
+</blockquote>
+<p>外设隔离：外设的安全特性是动态变化的，例如键盘平时可以作为非安全的输入设备，在输入密码时可以配置为安全设备，只允许安全世界访问。</p>
+<p>整体隔离机制如下图：</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d1eW9uZ3FpYW5neA==,size_16,color_FFFFFF,t_70.png" alt="系统内存和外设隔离机制"></p>
+<p><strong>安全启动</strong></p>
+<p>系统上电复位后，先从安全世界开始执行。</p>
+<p>安全世界会对非安全世界的bootloader进行验证，确保非安全世界执行的代码经过授权而没有被篡改过。然后非安全世界的bootloader会加载非安全世界的OS，完成整个系统的启动。</p>
+<p>在非安全系统的bootloader加载OS时，仍然需要安全世界对OS的代码进行验证，确保没有被篡改。</p>
+<p><strong>应用</strong></p>
+<p>数字版权管理；密钥存储；移动支付；安全启动管理；内核完整性检测；隐私保护；</p>
+<h3 id="3-SGX"><a href="#3-SGX" class="headerlink" title="3. SGX"></a>3. SGX</h3><p>Intel的SGX是实现在第六代CPU之后的一组扩展指令集[1]。SGX着眼于提供一个为用户应用程序提供可信的执行环境，为了达到这一目标，SGX使得应用程序在一段位于Enclave地址空间中能够开辟一段受保护的内存空间。这段受保护空间实行严格的访问控制和加密操作来提供对程序数据机密性和代码完整性的保护，使得即使是Hypervisor、BIOS，操作系统等特权应用都不能随意访问这段地址空间。在enclave中运行的受保护程序还拥有一个密码学测度，这可被发送给客户端来验证程序的可信执行和为远程终端或不可信平台提供secrets。</p>
+<p>好复杂啊，有时间的话看看王鹃等老师的论文：<a target="_blank" rel="noopener" href="http://www.jos.org.cn/html/2018/9/5594.htm#outline_anchor_3">http://www.jos.org.cn/html/2018/9/5594.htm#outline_anchor_3</a></p>
+<p><strong>应用</strong></p>
+<p>PC安全：将PC指纹认证放入SGX中</p>
+<p>Microsoft Research ：将云服务与分析放入SGX中</p>
+<p>阿里云：阿里云和英特尔联合发布了基于SGX 的机密计算平台</p>
+<h3 id="4-TrustZone与SGX的区别"><a href="#4-TrustZone与SGX的区别" class="headerlink" title="4. TrustZone与SGX的区别"></a>4. TrustZone与SGX的区别</h3><p><strong>应用环境不同</strong></p>
+<p>TrustZone主用于嵌入式设备，SGX主要用于服务器和云端</p>
+<p><strong>运行权限不同</strong></p>
+<p>TrustZone可以运行在内核层，需要trustOS支持，SGX运行在应用层，不信任OS</p>
+<p><strong>应用保护粒度不同</strong></p>
+<p>TrustZone仅分为两个区域（安全世界和非安全世界），SGX里面可以跑多个Enclave</p>
+<h2 id="第九章-系统风险评估方法与工具"><a href="#第九章-系统风险评估方法与工具" class="headerlink" title="第九章 系统风险评估方法与工具"></a>第九章 系统风险评估方法与工具</h2><h3 id="1-风险评估的目标和内容"><a href="#1-风险评估的目标和内容" class="headerlink" title="1. 风险评估的目标和内容"></a>1. 风险评估的目标和内容</h3><p>概念：</p>
+<ul>
+<li><p>风险评估也称为风险分析，就是信息资产面临的威胁、存在的脆弱点、造成的影响以及三者综合作用而带来的风险的可能性进行评估。</p>
+</li>
+<li><p>清楚信息系统的安全需求，了解信息系统的脆弱性，从而达到信息安全建设和管理的目的。</p>
+</li>
+<li><p>利用适当的风险评估工具，包括定性和定量的方法，确定资产风险等级和优先控制顺序。 </p>
+</li>
+</ul>
+<p>风险评估是信息安全建设和管理的科学方法，是信息安全建设的起点和基础</p>
+<p><strong>资产识别（Asset）</strong></p>
+<p>在这一过程中确定信息系统的资产，并明确资产的价值。资产是组织(企 业、机构)赋予了价值因而需要保护的东西。</p>
+<p>资产分类：软件、硬件、数据、服务、文档、人员、其他等；</p>
+<p>资产复制：三个安全属性：保密性、完整性、可用性；</p>
+<p><strong>威胁识别（Threat）</strong></p>
+<p>安全威胁是一种对组织及其资产构成潜在破坏的可能性因素或者事件。 </p>
+<p>威胁分类：中间人攻击、冒充已授权实体以及DDoS等</p>
+<p>威胁赋值：对威胁出现的频率进行评估。在评估中对出现的频率进行等级划分，等级数值越大，威胁出现的频率越高。</p>
+<p><strong>脆弱性识别（Vulnerability）</strong></p>
+<p>脆弱性，多指漏洞，也就是硬件、软件或策略上存在的安全缺陷。</p>
+<p>CVE (Common Vulnerabilities &amp; Exposures、通用漏洞披露），漏洞标准化组织</p>
+<p>对于一个信息系统来讲，它的安全性不在于它是否采用了最新的加密算法或者最先进的设备，而是由系统本省最薄弱之处，即漏洞所决定的。—信息系统安全“木桶原则</p>
+<p>脆弱性识别方法：主要从技术和管理两个方面进行，如工具检测、人工核查、渗透测试等</p>
+<p>脆弱性赋值：根据脆弱性对资产的暴露程度、技术实现的难易程度等，采用等级划分对已识别的脆弱性的严重程度进行赋值。</p>
+<p><strong>风险评估的内容</strong></p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313135029281.png" alt="image-20230313135029281"></p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313135433619.png" alt="image-20230313135433619"></p>
+<h3 id="2-风险评估及等级测评标准"><a href="#2-风险评估及等级测评标准" class="headerlink" title="2. 风险评估及等级测评标准"></a>2. 风险评估及等级测评标准</h3><p><strong>BS7799</strong></p>
+<p><strong>CC</strong></p>
+<p><strong>计算机等级保护标准</strong>（中国提出的）</p>
+<p>1999年，中国颁布，由低到高划分为5个等级</p>
+<ul>
+<li>第一级：用户自主保护级<ul>
+<li>由用户来决定如何对资源进行保护，以及采用何种方式进行保护</li>
+<li>它的安全保护机制使用户具备自主安全保护的能力，保护用户的信息免受非法的读写破坏</li>
+</ul>
+</li>
+<li>第二级：系统审计保护级<ul>
+<li>本级的安全保护机制支持用户具有更强的自主保护能力，特别是具有访问审计能力</li>
+</ul>
+</li>
+<li>第三级：安全标记保护级<ul>
+<li>具有第二级系统审计保护级的所有功能，并对访问者及其访问对象实施<strong>强制访问控制</strong></li>
+<li>通过对访问者和访问对象指定不同安全标记，限制访问者的权限</li>
+</ul>
+</li>
+<li>第四级：结构化保护级<ul>
+<li>将前三级的安全保护能力扩展到所有访问者和访问对象，支持形式化的安全保护策略</li>
+<li>隐蔽信道分析</li>
+<li>可信路径</li>
+<li>本身构造也是结构化的，以使之具有相当的抗渗透能力</li>
+<li>本级的安全保护机制能够使信息系统实施一种系统化的安全保护（讲的什么姬使<span class="github-emoji" style="display:inline;vertical-align:middle"><span>💩</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a9.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</li>
+</ul>
+</li>
+<li>第五级：访问验证保护级<ul>
+<li>基于形式化验证技术，在第四级系统安全保护环境的基础上，实现访问监控器，仲裁主体对客体的访问</li>
+<li>本级的安全保护机制不能被攻击、被篡改，具有极强的抗渗透能力</li>
+<li>可信基最小化</li>
+<li>可信恢复</li>
+</ul>
+</li>
+</ul>
+<p>​        </p>
+<h3 id="3-基线评估"><a href="#3-基线评估" class="headerlink" title="3. 基线评估"></a>3. 基线评估</h3><p>Baseline Risk Assessment</p>
+<p>安全基线——在诸多标准规范中规定的一组安全控制措施或者惯例，这些措施和惯例适用于特定环境下的所有系统，可以满足基本的安全需求，能使系统达到一定的安全防护水平</p>
+<p>采用基线风险评估，组织根据自己的实际情况，对信息系统进行安全基线检查，即拿现有的安全措施与安全基线规定的措施进行比较，找出其中的差距，得出基本的安全需求，通过选择并实施标准的安全措施来消减和控制风险。</p>
+<p>优点：所需资源少、周期短、操作简单，对于环境相似且安全需求相当的诸多组织，基线评估显然是最经济有效的风险评估途径。</p>
+<p>缺点：基线水平的高低难以设定。如果过高，可能导致资源浪费和限制过度；如果过低，可能难以达到充分的安全。在管理安全相关的变化方面，基线评估比较困难。</p>
+<h3 id="4-CVSS"><a href="#4-CVSS" class="headerlink" title="4. CVSS"></a>4. CVSS</h3><p>全称Common Vulnerability Scoring System，即“通用漏洞评分系统”</p>
+<p>是一个行业公开标准，其被设计用来评测漏洞的严重程度，并帮助确定所需反应的紧急度和重要度</p>
+<h3 id="5-风险评估工具"><a href="#5-风险评估工具" class="headerlink" title="5. 风险评估工具"></a>5. 风险评估工具</h3><p>系统基础平台风险评估工具包括脆弱性扫描工具和渗透性测试工具。</p>
+<p>脆弱性扫描工具主要用于对信息系统的主要部件（如操作系统、数据库系统、网络设备等）的脆弱性进行分析。常见的脆弱性扫描工具包括：Nessus脆弱性检测工具、流光(Fluxay)脆弱性检测工具、极光远程安全评估系统以及天镜脆弱性扫描与管理系统等</p>
+<p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313144457726.png" alt="image-20230313144457726"></p>
+<h2 id="第十章-信息系统安全研究新方向"><a href="#第十章-信息系统安全研究新方向" class="headerlink" title="第十章 信息系统安全研究新方向"></a>第十章 信息系统安全研究新方向</h2><h3 id="1-信息安全研究热点"><a href="#1-信息安全研究热点" class="headerlink" title="1. 信息安全研究热点"></a>1. 信息安全研究热点</h3><p>信息安全四大顶级会议</p>
+<p><strong>S&amp;P:</strong> IEEE Symposium On Security and Privacy</p>
+<p>USENIX Security Symposium</p>
+<p><strong>CCS:</strong> ACM Conference on Computer and Communications Security</p>
+<p><strong>NDSS:</strong> Network and Distributed System Security Symposium</p>
+<p><strong>四大会研究热点：</strong></p>
+<ul>
+<li>S&amp;P 2020 40th<ul>
+<li>Hardware Security- Microarchitectural Security</li>
+<li>Web and Cloud Security</li>
+<li>Mobile Security </li>
+<li>Program Analysis </li>
+<li>Machine Learning and Privacy</li>
+<li>Fuzzing</li>
+<li>Systems and Applied Security </li>
+<li>IoT Security </li>
+<li>Blockchain</li>
+</ul>
+</li>
+<li>S&amp;P 2021 41th<ul>
+<li>Software Security</li>
+<li>Mobile Security</li>
+<li>Adversarial Machine Learning and Unlearning</li>
+<li>Crypto Protocols</li>
+<li>Cyber Risk and Abuse </li>
+<li>Security of Autonomous Vehicles</li>
+<li>Hardware Attacks</li>
+<li>Privacy</li>
+<li>Crypto Currencies</li>
+<li>Formal Verification of Protocols</li>
+<li>IoT Security and Privacy</li>
+</ul>
+</li>
+<li>USENIX Security 29th<ul>
+<li>Software Security and Verification</li>
+<li>Network Security</li>
+<li>Mobile</li>
+<li>Web Security and Privacy</li>
+<li>Trusted Execution Environments</li>
+<li>Automotive and Drone Security</li>
+<li>Privacy Enhancing Technologies</li>
+<li>Embedded/IoT Security</li>
+<li>Machine Learning</li>
+</ul>
+</li>
+<li>USENIX Security 30th<ul>
+<li>Usability: Authentication</li>
+<li>Cryptography: Attacks</li>
+<li>Embedded Security &amp; SW Sec</li>
+<li>Usable Security and Privacy: User Perspectives</li>
+<li>Cryptographic Proof Systems, Analysis, and Applications</li>
+<li>Hardware Side Channel Attacks and Defenses</li>
+<li>Permissions and Passwords </li>
+<li>Private Computation and Differential Privacy</li>
+<li>Hardware Security </li>
+<li>Cryptocurrencies and Smart Contracts</li>
+<li>Machine Learning: Backdoor and Poisoning</li>
+<li>Program Analysis</li>
+<li>Privacy Enhancing Technologies</li>
+<li>Machine Learning: Adversarial Examples and Model Extraction</li>
+<li>Automated Security Analysis of Source Code and Binaries </li>
+<li>Secure Multiparty Computation</li>
+<li>Operating Systems Security </li>
+<li>Web Security</li>
+<li>Fuzzing</li>
+<li>IoT; Specialty Networking</li>
+</ul>
+</li>
+<li>CCS 2019 26nd<ul>
+<li>Attacking and Defending ML Systems</li>
+<li>ML and Information Leakage </li>
+<li>Binary Analysis/Policy and Access Control</li>
+<li>Anonymous Routing and Censorship</li>
+<li>Applied Cryptography and Cryptanalysis</li>
+<li>Cyberphysical Systems</li>
+<li>Browser Security</li>
+<li>Mobile Security</li>
+<li>Smart Contracts and Cryptocurrencies</li>
+</ul>
+</li>
+<li>CSS 2021 28nd<ul>
+<li>Authentication and Privacy</li>
+<li>Hardware, Side Channels </li>
+<li>Control System Security</li>
+<li>Network Security</li>
+<li>Messaging and Privacy</li>
+<li>Software Security :Android and Vulnerabilities</li>
+<li>Blockchain and Distributed Systems</li>
+<li>Audio Systems and Autonomous Driving</li>
+<li>Privacy Attacks and Defenses for ML</li>
+<li>Fuzzing</li>
+<li>Privacy for Distributed Data and Federated Learning</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-移动安全"><a href="#2-移动安全" class="headerlink" title="2. 移动安全"></a>2. 移动安全</h3><p>典型的安全问题：组件间通信安全，数据泄露，伪造通信，隐私问题</p>
+<h3 id="3-物联网安全"><a href="#3-物联网安全" class="headerlink" title="3. 物联网安全"></a>3. 物联网安全</h3><p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313152907402.png" alt="image-20230313152907402"></p>
+<h3 id="4-深度学习模型安全"><a href="#4-深度学习模型安全" class="headerlink" title="4. 深度学习模型安全"></a>4. 深度学习模型安全</h3><p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313152927501.png" alt="image-20230313152927501"></p>
+<h3 id="5-系统安全研究基础"><a href="#5-系统安全研究基础" class="headerlink" title="5. 系统安全研究基础"></a>5. 系统安全研究基础</h3><p><img src="/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/image-20230313152956430.png" alt="image-20230313152956430"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/">http://yypyyds.github.io/2023/03/02/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/">信息系统安全</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/13/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E5%92%8C%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81/" title="公钥密码算法和对称密码算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">公钥密码算法和对称密码算法</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/27/go-zero%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" title="go-zero相关概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">go-zero相关概念</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0"><span class="toc-text">信息系统安全笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-text">第一章 信息安全概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8A%E6%96%B9%E6%B3%95"><span class="toc-text">1. 信息安全基本概念及方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">2. 安全模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E4%B8%8E%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81"><span class="toc-text">第二章 软件安全与恶意代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 软件安全简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%B8%E5%9E%8B%E8%BD%AF%E4%BB%B6%E6%BC%8F%E6%B4%9E"><span class="toc-text">2. 典型软件漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E7%B1%BB%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-text">3. 恶意软件分类和原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E5%8F%8A%E5%B7%A5%E5%85%B7"><span class="toc-text">第三章 渗透测试方法及工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 渗透测试的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">2. 渗透测试方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-text">3. 渗透测试工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">4. 渗透测试生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B8%B8%E7%94%A8%E6%94%BB%E5%87%BB%E4%B8%BE%E4%BE%8B"><span class="toc-text">5. 常用攻击举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98"><span class="toc-text">第四章 模糊测试与漏洞挖掘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 模糊测试简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">2. 模糊测试方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">3. 模糊测试器类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A8%8B%E5%BA%8F%E6%8F%92%E6%A1%A9%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E4%BE%8B"><span class="toc-text">4. 程序插桩原理及实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%AE%9E%E4%BE%8B"><span class="toc-text">5. 模糊测试工具及实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">6. 模糊测试的局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="toc-text">第五章 用户身份认证机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 身份认证概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8E%E5%8F%A3%E4%BB%A4%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="toc-text">2. 基于口令的身份认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9F%BA%E4%BA%8E%E6%99%BA%E8%83%BD%E5%8D%A1%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="toc-text">3. 基于智能卡的身份认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B1%80%E5%9F%9F%E7%BD%91%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81-Kerberos"><span class="toc-text">4. 局域网身份认证-Kerberos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BB%9F%E4%B8%80%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81-PAM"><span class="toc-text">5. 统一身份认证-PAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%9D%E8%80%83"><span class="toc-text">6. 问题与思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B"><span class="toc-text">第六章 访问控制模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 访问控制的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">2. 自主访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">3. 强制访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BLP%E6%A8%A1%E5%9E%8B"><span class="toc-text">BLP模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Biba%E6%A8%A1%E5%9E%8B"><span class="toc-text">Biba模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9F%BA%E4%BA%8E%E8%A7%92%E8%89%B2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">4. 基于角色的访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Chinese-Wall"><span class="toc-text">5. Chinese Wall</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="toc-text">第七章 操作系统基础安全机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8"><span class="toc-text">1. 访问控制列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Windows%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B%E5%92%8C%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">2. Windows安全模型和访问控制机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Linux%E5%9F%BA%E6%9C%AC%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">3. Linux基本访问控制机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-SELinux"><span class="toc-text">4. SELinux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E4%B8%8E%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97"><span class="toc-text">第八章 硬件安全与可信计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%A6%82%E8%AE%BA"><span class="toc-text">1. 可信计算概论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E4%BF%A1%E5%B9%B3%E5%8F%B0%E6%A8%A1%E5%9D%97%E4%B8%8E%E4%BF%A1%E4%BB%BB%E6%A0%B9"><span class="toc-text">2. 可信平台模块与信任根</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-TPM%EF%BC%88Trusted-Platform-Module%EF%BC%89%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">2.1 TPM（Trusted Platform Module）的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-TPM%E7%9A%84%E5%AF%86%E9%92%A5%E4%BD%93%E7%B3%BB"><span class="toc-text">2.2 TPM的密钥体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%8F%AF%E4%BF%A1PC%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BF%A1%E4%BB%BB%E6%A0%B9"><span class="toc-text">2.3 可信PC平台的信任根</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E8%AF%81%E6%98%8E"><span class="toc-text">3. 远程证明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-text">4. 可信计算的典型应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E4%B8%8E%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97-1"><span class="toc-text">第八章 硬件安全与可信计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E6%8A%80%E6%9C%AF%EF%BC%88TEE%EF%BC%89"><span class="toc-text">1. 可信执行环境技术（TEE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TrustZone"><span class="toc-text">2. TrustZone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-SGX"><span class="toc-text">3. SGX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-TrustZone%E4%B8%8ESGX%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4. TrustZone与SGX的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%B3%BB%E7%BB%9F%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95%E4%B8%8E%E5%B7%A5%E5%85%B7"><span class="toc-text">第九章 系统风险评估方法与工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9A%84%E7%9B%AE%E6%A0%87%E5%92%8C%E5%86%85%E5%AE%B9"><span class="toc-text">1. 风险评估的目标和内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%8F%8A%E7%AD%89%E7%BA%A7%E6%B5%8B%E8%AF%84%E6%A0%87%E5%87%86"><span class="toc-text">2. 风险评估及等级测评标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9F%BA%E7%BA%BF%E8%AF%84%E4%BC%B0"><span class="toc-text">3. 基线评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CVSS"><span class="toc-text">4. CVSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7"><span class="toc-text">5. 风险评估工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E6%96%B0%E6%96%B9%E5%90%91"><span class="toc-text">第十章 信息系统安全研究新方向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E7%83%AD%E7%82%B9"><span class="toc-text">1. 信息安全研究热点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8"><span class="toc-text">2. 移动安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%89%A9%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8"><span class="toc-text">3. 物联网安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8"><span class="toc-text">4. 深度学习模型安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E5%9F%BA%E7%A1%80"><span class="toc-text">5. 系统安全研究基础</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/" title="声音事件检测综述">声音事件检测综述</a><time datetime="2023-09-28T01:03:40.000Z" title="发表于 2023-09-28 09:03:40">2023-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/23/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E8%B0%83%E7%A0%94/" title="声纹识别相关调研">声纹识别相关调研</a><time datetime="2023-09-23T03:29:14.000Z" title="发表于 2023-09-23 11:29:14">2023-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/18/latex%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/" title="latex语法笔记">latex语法笔记</a><time datetime="2023-09-18T11:58:07.000Z" title="发表于 2023-09-18 19:58:07">2023-09-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记">动手学深度学习笔记</a><time datetime="2023-09-14T11:32:19.000Z" title="发表于 2023-09-14 19:32:19">2023-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/Lombard%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C/" title="Lombard相关工作">Lombard相关工作</a><time datetime="2023-09-06T03:09:48.000Z" title="发表于 2023-09-06 11:09:48">2023-09-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

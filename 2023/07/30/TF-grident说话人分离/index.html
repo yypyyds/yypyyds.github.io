@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>TF-grident说话人分离 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="TF-GRIDNET: MAKING TIME-FREQUENCY DOMAIN MODELS GREAT AGAIN FOR MONAURAL SPEAKER SEPARATION来源：ICASSP 2023，CMU，Language Technology Institute 摘要提出了 TF-GridNet ，一个新的，工作在时域和频域的多路深度神经网络，用于无回声条件下的单通道talk-in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TF-grident说话人分离">
+<meta property="og:url" content="http://yypyyds.github.io/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="TF-GRIDNET: MAKING TIME-FREQUENCY DOMAIN MODELS GREAT AGAIN FOR MONAURAL SPEAKER SEPARATION来源：ICASSP 2023，CMU，Language Technology Institute 摘要提出了 TF-GridNet ，一个新的，工作在时域和频域的多路深度神经网络，用于无回声条件下的单通道talk-in">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-07-30T06:34:37.000Z">
+<meta property="article:modified_time" content="2023-09-26T11:43:39.353Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="speaker separation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'TF-grident说话人分离',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-26 19:43:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">TF-grident说话人分离</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-30T06:34:37.000Z" title="发表于 2023-07-30 14:34:37">2023-07-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-26T11:43:39.353Z" title="更新于 2023-09-26 19:43:39">2023-09-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="TF-grident说话人分离"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="TF-GRIDNET-MAKING-TIME-FREQUENCY-DOMAIN-MODELS-GREAT-AGAIN-FOR-MONAURAL-SPEAKER-SEPARATION"><a href="#TF-GRIDNET-MAKING-TIME-FREQUENCY-DOMAIN-MODELS-GREAT-AGAIN-FOR-MONAURAL-SPEAKER-SEPARATION" class="headerlink" title="TF-GRIDNET: MAKING TIME-FREQUENCY DOMAIN MODELS GREAT AGAIN FOR MONAURAL SPEAKER SEPARATION"></a>TF-GRIDNET: MAKING TIME-FREQUENCY DOMAIN MODELS GREAT AGAIN FOR MONAURAL SPEAKER SEPARATION</h1><p>来源：ICASSP 2023，CMU，Language Technology Institute</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>提出了 TF-GridNet ，一个新的，工作在时域和频域的多路深度神经网络，用于无回声条件下的单通道talk-independent（这个不知道什么概念）说话人分离</p>
+<p>模型堆叠了几个多通道的块，每个块都包括一个帧内模型，一个子带时域模型，一个全频段自注意力模型</p>
+<p>用复数频谱做映射，用实部和虚部（RI）做输入，预测目标的RI，引入了一个新的loss规则</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>由于深度聚类和PIT（是一种多通道音频分离任务的深度学习技术），单声道说话人分离技术又很大的进展，早期的研究在幅度谱上训练模型做分离，有的做了基于幅度谱的相位重建，随后的研究在复数TF域上用 complex ratio masking的方法做分离，或者在时域上用 TasNet提出的 <code>encoder-separator-decorder</code>做分离</p>
+<h3 id="本文的方法"><a href="#本文的方法" class="headerlink" title="本文的方法"></a>本文的方法</h3><ul>
+<li><p>提出在无回声条件下，用复数频谱映射做说话人分离</p>
+</li>
+<li><p>提出了一个新的DNN结构，叫TF-GridNet</p>
+</li>
+<li>基于流行的SI-SDR loss，设计了一个新的时域loss</li>
+</ul>
+<h2 id="Proposed-algorithm"><a href="#Proposed-algorithm" class="headerlink" title="Proposed algorithm"></a>Proposed algorithm</h2><p>给定一个C个说话人的混合录音，时域的物理模型可以用方程<script type="math/tex">y[n]=\sum^C_{c=1}s^{(c)}[n]</script>表示，y表示混合信号，<script type="math/tex">s^{(c)}</script>表示原始信号c，n索引N次取样。</p>
+<p>在短时傅里叶变换域，物理模型可以用方程 $Y(t,f)=\sum^C_{c=1}S^{(c)}(t,f)$ 表示，其中，$Y$ 和 $S^{(c)}$ 分别代表复数谱的 $y$和$s^{(c)}$，t 索引 T 帧，f 索引 F 频率的集合</p>
+<p>在本研究中，C是假设已知的，我们的目标是基于 $y$ 还原每个源说话人 $s^{(c)}$</p>
+<p>网络结构：</p>
+<p><img src="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/image-20230803175606680.png" alt="image-20230803175606680"></p>
+<p>原始信号做STFT变换，然后做2维卷积（二维分别是实部和虚部？）+ gLN（组归一化，一种特征处理的方法）</p>
+<h3 id="2-1-复数谱映射"><a href="#2-1-复数谱映射" class="headerlink" title="2.1 复数谱映射"></a>2.1 复数谱映射</h3><p>$Y$ 的 RI 分量 串联作为输入特征，预测每个说话人的 RI 分量</p>
+<p>损失函数是基于合成后的每个预测的RI分量的时域信号定义的</p>
+<p>将时域混合的样本方差归一化为1，使用相同的缩放因子对每个干净源进行缩放</p>
+<h3 id="2-2-TF-GridNet"><a href="#2-2-TF-GridNet" class="headerlink" title="2.2 TF-GridNet"></a>2.2 TF-GridNet</h3><p>给定一个$2\times T \times F$ 的输入张量，2是因为把RI分量叠起来了</p>
+<p>首先用一个2维的卷积，窗口大小为 $3\times 3$ ，随后使用 gLN 为每个 T-F unit 计算一个 D维的embedding，得到一个 $D\times T \times F$ 大小的张量</p>
+<p>随后把这个张量输入 B 个 TF-GridNet 块，每个块都包括了一个 帧内谱模块，一个子带时域模块，一个全频带自注意力模块，以逐渐利用局部和全局的时域频域信息来优化 TF 嵌入</p>
+<p>最后，一个使用 $3\times 3$的kernel的有 2C个输出通道的 2维的反卷积层，加上一个线性激活来得到预测的RI分量，iSTFT用于信号重建</p>
+<h4 id="2-2-1-帧内谱模块"><a href="#2-2-1-帧内谱模块" class="headerlink" title="2.2.1 帧内谱模块"></a>2.2.1 帧内谱模块</h4><p>由图可知这个模块共四个步骤</p>
+<p>将输入到第b个TF-FridNet 的 block的张量 $R_b \in \mathbb{R}^{D\times T\times F}$ 视为 <font color="red">T 个独立的序列</font>，每个序列的长度为 F</p>
+<p>并使用一个单层的双向长短期记忆网络（BLSTM）对每个帧的局部的频谱信息进行建模</p>
+<ol>
+<li>首先使用 kernel size 为 $I$ ，步长为 $J$ 的窗口执行 unfold，来堆叠每一步相邻的嵌入，然后对频率维度进行 0填充，$F’=\lceil\frac{F-I}{J}\rceil\times J + I$ （没看懂这个公式啥意思），得到 $\dot{R_b}$</li>
+<li>然后在通道维度（第一维）使用层归一化(LN) ，再对每个 direction做单层 H个units的 BLSTM，来对每帧内的频间信息进行建模，得到 $\ddot{R_b}$</li>
+<li>然后对BLSTM隐藏的嵌入，做1维的反卷积，kernel size I,stride size J, input channel 2H and output channel D ，得到$\dddot{R_b}$</li>
+<li>在移除0填充之后，通过残差连接将这个张量与输入张量相加，得到输出张量 $U_b$</li>
+</ol>
+<h4 id="2-2-2-子带时域模块"><a href="#2-2-2-子带时域模块" class="headerlink" title="2.2.2 子带时域模块"></a>2.2.2 子带时域模块</h4><p>和帧内谱模块类似，不过输入是把 $U_b$ 当作<font color="red"> F 个长度为 T 的独立的序列</font>，然后BLSTM用于对每个子带内的时域信息进行建模，输出用 $Z_b$ 表示</p>
+<h4 id="2-2-3-全频带自注意力模块"><a href="#2-2-3-全频带自注意力模块" class="headerlink" title="2.2.3 全频带自注意力模块"></a>2.2.3 全频带自注意力模块</h4><p>结构如图：</p>
+<p><img src="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/image-20230804161240050.png" alt="image-20230804161240050"></p>
+<p>输入为上个模块的 $Z_b$ ，首先基于每帧的T-F嵌入计算帧级嵌入，然后在这些帧级嵌入上使用全序列 self-attention 来捕捉长序列全局的信息，动机是帧内和子带的 BLSTM 只能对局部信息进行建模，一个全序自注意力模块能够使每个帧关注任何感兴趣的帧来利用长序列信息</p>
+<p>自注意力机制和之前提出的不同在于：</p>
+<ol>
+<li>使用多头自注意力机制</li>
+<li>使用双路径模型</li>
+</ol>
+<p>具体来说：</p>
+<p>自注意力模块有L个头，每个头 l，使用一个 二维卷积加上一个激活函数 PReLU，在channel和频率维度做归一化后得到一个 $E\times F \times  T$ 的tensor(第三个block的不一样)，再经过一个 Reshape操作，得到三个2D的tensor</p>
+<p>分别是</p>
+<p>query: $Q_l \in \mathbb{R}^{T\times(F\times E)}$ </p>
+<p>key: $K_l \in \mathbb{R}^{T\times(F\times E)}$</p>
+<p>value: $V_l \in \mathbb{R}^{T\times(F\times D/L)}$</p>
+<p>用于获取query和key张量的Conv2D层都具有E个输出channel，再每帧内叠加TF嵌入后，最终输出 $F\times E$ 维的向量，同样，用于计算 value张量的Conv2D层有 D/L 输出通道，所以得到的value张量有D/L 个channel</p>
+<p>最后得到的注意力输出 $A_l \in \mathbb{R}^{T\times(F\times D/L)}$ ：</p>
+<script type="math/tex; mode=display">
+a_l=softmax(\frac{Q_lK_l^\intercal}{\sqrt{F\times E}})V_l</script><p>然后沿着第二维度将L个头连接起来，重塑回 $D\times T \times F$ 维张量，再走一遍卷积+激活函数+归一化来聚合 cross-head 的信息，然后通过残差连接添加到输入张量中，得到输出张量 $R_{b+1}$ ，被喂到下一个block</p>
+<p>两个优点：</p>
+<ol>
+<li>引入参数少</li>
+<li>计算量少</li>
+</ol>
+<h3 id="2-3-Loss-Function"><a href="#2-3-Loss-Function" class="headerlink" title="2.3 Loss Function"></a>2.3 Loss Function</h3><p>模型使用 utterance-level PIT(uPIT)方法训练</p>
+<blockquote>
+<p>uPIT: PIT是一种训练的方法，全称为Permutation Invariant Training。这种训练方式就可以end-to-end去训练，总体思想很直觉，就是我先随便假设一个speakers对应于输出的的顺序，稍微train几下，得到一个model。然后，下一次train的时候，我会算两次SI-SDR之类的评价指标，分别是红1，蓝2和蓝1，红2，然后把Loss小的那个作为排序，然后按这个顺序train下去</p>
+<p>uPIT 相当于在上述所有permutation组合的情况中，找一种最优的输出。</p>
+</blockquote>
+<p>有两种相同的SI-SDR的方法，一种是缩放目标以使其能量水平与生成的语音的的能量水平相同，另一种是反过来</p>
+<p><img src="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/image-20230827225747037.png" alt="image-20230827225747037"></p>
+<p>$\hat S^{(c)}$ 是预测得到的RI分量重建后的信号， $\hat \alpha ^{(c)} = (\hat S^{(c)})^\intercal S^{(c)}/(\hat S^{(c)})^\intercal \hat S^{(c)}$  </p>
+<p>这个loss function让收敛更快</p>
+<p>还在混合和缩放后的预测源之间加了一个混合约束，如下：</p>
+<p><img src="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/image-20230827230911835-1693148953424-1.png" alt="image-20230827230911835"></p>
+<p>然后后面就是讲这么设置得到的结果为什么更好</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>看了，写了注释，跑hugging face上的模型的时候说要数据集，没弄到</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/">http://yypyyds.github.io/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a><a class="post-meta__tags" href="/tags/speaker-separation/">speaker separation</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="数学知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数学知识</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">机器学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">43</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TF-GRIDNET-MAKING-TIME-FREQUENCY-DOMAIN-MODELS-GREAT-AGAIN-FOR-MONAURAL-SPEAKER-SEPARATION"><span class="toc-text">TF-GRIDNET: MAKING TIME-FREQUENCY DOMAIN MODELS GREAT AGAIN FOR MONAURAL SPEAKER SEPARATION</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">本文的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proposed-algorithm"><span class="toc-text">Proposed algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%A4%8D%E6%95%B0%E8%B0%B1%E6%98%A0%E5%B0%84"><span class="toc-text">2.1 复数谱映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-TF-GridNet"><span class="toc-text">2.2 TF-GridNet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%B8%A7%E5%86%85%E8%B0%B1%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2.1 帧内谱模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E5%AD%90%E5%B8%A6%E6%97%B6%E5%9F%9F%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2.2 子带时域模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E5%85%A8%E9%A2%91%E5%B8%A6%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2.3 全频带自注意力模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Loss-Function"><span class="toc-text">2.3 Loss Function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/" title="声音事件检测综述">声音事件检测综述</a><time datetime="2023-09-28T01:03:40.000Z" title="发表于 2023-09-28 09:03:40">2023-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/23/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E8%B0%83%E7%A0%94/" title="声纹识别相关调研">声纹识别相关调研</a><time datetime="2023-09-23T03:29:14.000Z" title="发表于 2023-09-23 11:29:14">2023-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/18/latex%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/" title="latex语法笔记">latex语法笔记</a><time datetime="2023-09-18T11:58:07.000Z" title="发表于 2023-09-18 19:58:07">2023-09-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记">动手学深度学习笔记</a><time datetime="2023-09-14T11:32:19.000Z" title="发表于 2023-09-14 19:32:19">2023-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/Lombard%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C/" title="Lombard相关工作">Lombard相关工作</a><time datetime="2023-09-06T03:09:48.000Z" title="发表于 2023-09-06 11:09:48">2023-09-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
