@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
 <meta property="article:published_time" content="2023-10-11T02:06:53.000Z">
-<meta property="article:modified_time" content="2023-10-13T11:11:48.713Z">
+<meta property="article:modified_time" content="2023-10-16T12:44:51.918Z">
 <meta property="article:author" content="脚踏车没有脚">
 <meta property="article:tag" content="论文">
 <meta property="article:tag" content="SED">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-10-13 19:11:48'
+  postUpdate: '2023-10-16 20:44:51'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -158,7 +158,7 @@
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BEATS-Audio Pre-Training with Acoustic Tokenizers</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-11T02:06:53.000Z" title="发表于 2023-10-11 10:06:53">2023-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-13T11:11:48.713Z" title="更新于 2023-10-13 19:11:48">2023-10-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="BEATs-Audio-Pre-Training-with-Acoustic-Tokenizers"><a href="#BEATs-Audio-Pre-Training-with-Acoustic-Tokenizers" class="headerlink" title="BEATs: Audio Pre-Training with Acoustic Tokenizers"></a>BEATs: Audio Pre-Training with Acoustic Tokenizers</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>自监督学习这几年用的很好，当离散标签预测(dicrete label prediction)被广泛运用于其他领域，最先进的音频SSL模型仍然使用重建损失进行预训练。与重建损失相比，语义丰富的离散标签预测鼓励SSL像人类感知一样抽象高级音频语义并丢弃冗余细节。但是这种token比较难获得。</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BEATS-Audio Pre-Training with Acoustic Tokenizers</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-11T02:06:53.000Z" title="发表于 2023-10-11 10:06:53">2023-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-16T12:44:51.918Z" title="更新于 2023-10-16 20:44:51">2023-10-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="BEATs-Audio-Pre-Training-with-Acoustic-Tokenizers"><a href="#BEATs-Audio-Pre-Training-with-Acoustic-Tokenizers" class="headerlink" title="BEATs: Audio Pre-Training with Acoustic Tokenizers"></a>BEATs: Audio Pre-Training with Acoustic Tokenizers</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>自监督学习这几年用的很好，当离散标签预测(dicrete label prediction)被广泛运用于其他领域，最先进的音频SSL模型仍然使用重建损失进行预训练。与重建损失相比，语义丰富的离散标签预测鼓励SSL像人类感知一样抽象高级音频语义并丢弃冗余细节。但是这种token比较难获得。</p>
 <p>本文提出了一个新的框架，BEATs(Bidirectional Encoder representation from Audio Transformers)</p>
 <p>一个迭代音频预训练框架，用于从Audio Transformers(这是什么东西)学习双向编码表示</p>
 <p>其中声学标记器（acoustic tokenizer）和音频SSL模型是通过迭代优化的</p>
@@ -178,7 +178,7 @@
 <li>另一方面，与语音不同，一般音频信号包含的数据变化过大，包括各种非语音声学事件和环境声音，无法直接应用常用的语音分词器进行音素信息提取</li>
 </ul>
 <p>然后用本文提出的这个BEATs来解决上面的问题</p>
-<p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231011111452071.png" alt="image-20231011111452071"></p>
+<p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231011111452071.png" alt="image-20231011111452071"></p>
 <p>就是这么一个循环迭代器，在每轮迭代中，首先用 声学标记器 生成未标记的音频的离散标签，并使用它们来优化带有掩码和离散标签预测损失的音频SSL模型。</p>
 <p>经过收敛后，音频SSL模型充当教师的角色，引导声学标记器通过知识蒸馏学习音频语义</p>
 <p>在第一次迭代中，我们使用随机投影声学标记器来生成离散标签作为冷启动。</p>
@@ -194,7 +194,7 @@
 <h2 id="BEATs"><a href="#BEATs" class="headerlink" title="BEATs"></a>BEATs</h2><h3 id="Iterative-Audio-Pre-training"><a href="#Iterative-Audio-Pre-training" class="headerlink" title="Iterative Audio Pre-training"></a>Iterative Audio Pre-training</h3><p>就还是上面那张图那个大流程，对于图中的音频SSL模型，可以用一个预训练的SSL模型或者一个微调的SSL模型。微调的模型从自监督预训练和监督微调中学习语义知识，对于语义蒸馏的工作做的更好。</p>
 <h3 id="Acoustic-Tokenizers"><a href="#Acoustic-Tokenizers" class="headerlink" title="Acoustic Tokenizers"></a>Acoustic Tokenizers</h3><p>这个部件用于为BEATs生成每轮迭代的离散标签。在第一轮迭代中，考虑到教师模型不可用（就是SSL model没训练），用随机投影标记器（什么玩意）将连续的声学特征聚类到离散的标签中作为冷启动</p>
 <p>第二轮开始，训练一个自蒸馏标记器，使用从上次迭代中获得的预训练/微调音频SSL模型中提取的语音感知知识生成精细的离散标签。</p>
-<h4 id="Cold-Start-Random-Projection-Tokenizer"><a href="#Cold-Start-Random-Projection-Tokenizer" class="headerlink" title="Cold Start: Random-Projection Tokenizer"></a>Cold Start: Random-Projection Tokenizer</h4><p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231011190012224.png" alt="image-20231011190012224"></p>
+<h4 id="Cold-Start-Random-Projection-Tokenizer"><a href="#Cold-Start-Random-Projection-Tokenizer" class="headerlink" title="Cold Start: Random-Projection Tokenizer"></a>Cold Start: Random-Projection Tokenizer</h4><p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231011190012224.png" alt="image-20231011190012224"></p>
 <p>架构如图</p>
 <p>按照图的样子，首先，输入是 $X = \{x_t\}^T_{t=1}$（corresponding acoustic features），就当是语谱图好了，将语谱图分成小块，通过一个线性层 $W$ ，$W$ 的参数是<strong>随机生成</strong>的，得到向量 $Wx_t$ 。</p>
 <p>然后引入一个 <code>frozen Codebook Embeddings</code>  ，相当于一个<strong>嵌入参考码本</strong>，定义为 $V=\{v_i\}^K_{i=1}$ ，K 是码本大小，其中的每个向量 $v_i$ 的值都是随机生成的。</p>
@@ -202,7 +202,7 @@
 <script type="math/tex; mode=display">
 \hat z_t= \underset{i}{\arg\min} \Vert v_i-Wx_t\Vert_2^2\qquad(1)</script><h4 id="Iteration-Self-Distilled-Tokenizer"><a href="#Iteration-Self-Distilled-Tokenizer" class="headerlink" title="Iteration: Self-Distilled Tokenizer"></a>Iteration: Self-Distilled Tokenizer</h4><p>第二次迭代，使用上一次迭代的SSL模型作为教师，可以是预训练或者微调模型，来教授当前轮的迭代标记器学习。我们称为 <code>Self-Distilled Tokenizer</code> ，为每个输入音频生成 patch-level 的离散标签。</p>
 <p>具体结构如下图</p>
-<p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231011192524254.png" alt="image-20231011192524254"></p>
+<p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231011201429823.png" alt="image-20231011192524254"></p>
 <p>这里和冷启动又是一套不同的东西。首先对于输入，还是一样的格式 $X = \{x_t\}^T_{t=1}$ ，送入一个 12层的Transformer-based tokenizer encoder，得到编码向量序列 $E=\{e_t\}^T_{t=1}$ </p>
 <p>然后应该是同样计算向量距离，不过这里计算的码本向量是一个叫 <code>Learnable Codebook Embeddings</code>的东西，不再是之前那个随机生成的而是一个可学习的，得到离散标签，距离计算规则如下：</p>
 <script type="math/tex; mode=display">
@@ -210,20 +210,20 @@
 <p>以量化向量序列 $E^q=\{v_{\hat z_t}\}^T_{t=1}$ 作为输入，使用一个3层的 Transformer estimator来预测上一层教师模型的输出 $\{\hat O_t\}^T_{t=1}$</p>
 <p>为了解决向量量化不可微的问题，采用 <code>Straight-Through Gradients</code>机制，在反向传播过程中，直接将梯度从 $E^q$ 中复制到 $E$</p>
 <p>这个 <code>Self-distilled tokenizer</code>的总体训练目标定义为 <code>Tokenizer estimator</code> 和 教师模型的输出之间的 <code>余弦相似度</code> 还有 $E$ 与 $E^q$ 之间的 <code>均方误差</code></p>
-<p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231011201429823.png" alt="image-20231011201429823"></p>
+<p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231011192524254.png" alt="image-20231011201429823"></p>
 <p><code>sg</code> 是 stopgradient operator</p>
 <p> 为什么是这样处理，后面两项是干嘛的</p>
 <p>使用指数移动平均进行码本嵌入优化，以实现更稳定的标记器训练。</p>
 <p>在推断时，舍弃<code>tokenizer estimator</code> ，并利用预训练的标记器编码器和码本嵌入将每个输入音频 X 转换为离散标签，如公式(2) 所示。</p>
 <h3 id="Audio-SSL-Model"><a href="#Audio-SSL-Model" class="headerlink" title="Audio SSL Model"></a>Audio SSL Model</h3><h4 id="Backbone"><a href="#Backbone" class="headerlink" title="Backbone"></a>Backbone</h4><p>使用ViT架构作为主干网络，结构看图</p>
 <h4 id="Pre-Training"><a href="#Pre-Training" class="headerlink" title="Pre-Training"></a>Pre-Training</h4><p>提出了一个 掩盖音频模型（Masked Audio Modeling）任务来进行预训练，如下图：</p>
-<p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231012161311295.png" alt="image-20231012161311295"></p>
+<p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231013163709407.png" alt="image-20231012161311295"></p>
 <p>不同于其他预训练方法，本模型是通过预测patch-level的离散标签来进行优化</p>
 <p>给定输入patch序列 $X = \{x_t\}^T_{t=1}$ 和对应的离散声学标签（使用之前的tokenizer生成的） $\hat Z=\{\hat z_t\}^T_{t=1}$ </p>
 <p>随机掩盖 75% 的输入小块（patches），表示为 $M = \{1,\dots,T\}^{0.75T}$ ，然后将未掩盖的块送入ViT encoder，得到表示 $R^U$ ，然后将未被掩盖的块的表示 和 被掩盖的位置的特征 并在一起送入Label Predictor</p>
 <p>和 $\hat Z$ 做交叉熵算Loss</p>
 <p>（感觉文章里好多错误）</p>
-<h4 id="Fine-Tuning"><a href="#Fine-Tuning" class="headerlink" title="Fine-Tuning"></a>Fine-Tuning</h4><p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231013102456908.png" alt="image-20231013102456908"></p>
+<h4 id="Fine-Tuning"><a href="#Fine-Tuning" class="headerlink" title="Fine-Tuning"></a>Fine-Tuning</h4><p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231013170901829.png" alt="image-20231013102456908"></p>
 <p>在微调阶段，在最后放弃了标签预测器，改用一个特定于任务的（task-specific）线性分类器。以生成下游分类任务的标签。</p>
 <p>首先在时域和频域随机的掩盖声学特征（和spec-augmentation的做法一样，但这个又是什么做法）然后展开成小块序列，和预训练不同的是，不再是将未掩盖的块送入ViT encoder中，而是将全部块都送入，得到表示，最后，使用一个线性分类器来计算每个类别的概率。概率计算如下（线性层出来还有两步图上没有，分别是一个池化和一个softmax）</p>
 <script type="math/tex; mode=display">
@@ -243,17 +243,17 @@ p(C) = softmax(MeanPool(W_cR))</script><p>采用二元交叉熵损失作为多�
 <p>和其他 BEATs模型相比，3+在微调和预训练两个阶段都利用了下游任务的监督数据，</p>
 <h3 id="Comparing-with-the-SOTA-Single-Models"><a href="#Comparing-with-the-SOTA-Single-Models" class="headerlink" title="Comparing with the SOTA Single Models"></a>Comparing with the SOTA Single Models</h3><p>第一轮迭代的模型 $BEATs_{iter1}$ ，使用的是随机投影标记器生成的离散标签，在6个任务中的5个任务上已经获得了比以前工作更好的性能，这表明了离散标签预测损失与重建损失相比的优越性。</p>
 <p>对于第三次迭代，2和3 的性能相似，这说明自蒸馏标记器对不同给的SSL教师模型具有鲁棒性。并且如果使用经过微调的BEAT2模型作为教师模型，BEAT3+可以在as2m和as20k任务上带来显著的性能提升，通过在迭代训练中引入监督微调数据，Tokenizer和SSL model相互学习更多特定于任务的语义知识，这将有效提高在下游任务的性能。</p>
-<h3 id="Comparing-Different-BEATs-Tokenizers"><a href="#Comparing-Different-BEATs-Tokenizers" class="headerlink" title="Comparing Different BEATs Tokenizers"></a>Comparing Different BEATs Tokenizers</h3><p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231013163709407.png" alt="image-20231013163709407"></p>
+<h3 id="Comparing-Different-BEATs-Tokenizers"><a href="#Comparing-Different-BEATs-Tokenizers" class="headerlink" title="Comparing Different BEATs Tokenizers"></a>Comparing Different BEATs Tokenizers</h3><p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231013164319872.png" alt="image-20231013163709407"></p>
 <p>可以看出，自蒸馏标记器比随机投影标记器的表现更好，特别是数据量少的情况下更为明显。</p>
 <p>这是因为具有简单特征聚类过程的随机投影标记器<strong>不足以提供具有高级音频语义抽象的标签</strong>，而自提取标记器能够从预训练良好的音频SSL模型中提取语义知识到生成的离散标签。</p>
 <p>另外，自蒸馏标记器，对不同的自监督学习老师模型不敏感，但是对不同的监督学习老师敏感。</p>
-<h3 id="Comparing-Differrent-Pre-Training-Targets-via-Visualization"><a href="#Comparing-Differrent-Pre-Training-Targets-via-Visualization" class="headerlink" title="Comparing Differrent Pre-Training Targets via Visualization"></a>Comparing Differrent Pre-Training Targets via Visualization</h3><p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231013164319872.png" alt="image-20231013164319872"></p>
+<h3 id="Comparing-Differrent-Pre-Training-Targets-via-Visualization"><a href="#Comparing-Differrent-Pre-Training-Targets-via-Visualization" class="headerlink" title="Comparing Differrent Pre-Training Targets via Visualization"></a>Comparing Differrent Pre-Training Targets via Visualization</h3><p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231012161311295.png" alt="image-20231013164319872"></p>
 <p>使用ESC-50的音频样本，来比较不同SSL模型的预训练目标</p>
 <p>上面三个图分别是，基于重建损失的SSL模型的声学特征，使用自监督学习预训练的老师学习的标记器量化的表示，使用监督学习微调的老师学习的标记器量化的表示</p>
 <p>同一个颜色代表同一个类别，同一个颜色的不同点代表对原始数据添加的不同干扰，比如混响和噪声。</p>
 <p>我的理解：</p>
 <p>可以看出，对tokenizer的训练中引入监督学习微调，会提高表示之间的距离，语义信息更加丰富</p>
-<h3 id="Comparing-with-the-SOTA-Ensemble-Models"><a href="#Comparing-with-the-SOTA-Ensemble-Models" class="headerlink" title="Comparing with the SOTA Ensemble Models"></a>Comparing with the SOTA Ensemble Models</h3><p><img src="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/image-20231013170901829.png" alt="image-20231013170901829"></p>
+<h3 id="Comparing-with-the-SOTA-Ensemble-Models"><a href="#Comparing-with-the-SOTA-Ensemble-Models" class="headerlink" title="Comparing with the SOTA Ensemble Models"></a>Comparing with the SOTA Ensemble Models</h3><p><img src="https://jiaotache-blog.oss-cn-hangzhou.aliyuncs.com/img/image-20231013102456908.png" alt="image-20231013170901829"></p>
 <p>第一次了解到 ensemble models的概念，大概就是把训练的几个模型的结果汇总，然后用一些方法计算最终结果，比如投票机制，均值机制等</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>BEATs，一个预训练框架，一个自监督学习模型。</p>
 <p>提出了 self-distilled tokenizer，在预训练中，使用tokenizer生成的离散标签代替重建损失。</p>
