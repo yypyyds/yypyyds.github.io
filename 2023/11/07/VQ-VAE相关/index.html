@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>VQ-VAE相关 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="VQ-VAE相关相关文章原理解读：  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;657857297 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;633744455 https:&#x2F;&#x2F;www.spaces.ac.cn&#x2F;archives&#x2F;6760 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;260627899 https:&#x2F;&#x2F;zhuanlan.zhihu.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VQ-VAE相关">
+<meta property="og:url" content="http://yypyyds.github.io/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="VQ-VAE相关相关文章原理解读：  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;657857297 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;633744455 https:&#x2F;&#x2F;www.spaces.ac.cn&#x2F;archives&#x2F;6760 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;260627899 https:&#x2F;&#x2F;zhuanlan.zhihu.co">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-07T08:57:48.000Z">
+<meta property="article:modified_time" content="2023-11-13T02:36:47.427Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'VQ-VAE相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-13 10:36:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">VQ-VAE相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-07T08:57:48.000Z" title="发表于 2023-11-07 16:57:48">2023-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-13T02:36:47.427Z" title="更新于 2023-11-13 10:36:47">2023-11-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="VQ-VAE相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="VQ-VAE相关"><a href="#VQ-VAE相关" class="headerlink" title="VQ-VAE相关"></a>VQ-VAE相关</h1><h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p>原理解读：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/657857297">https://zhuanlan.zhihu.com/p/657857297</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/633744455">https://zhuanlan.zhihu.com/p/633744455</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.spaces.ac.cn/archives/6760">https://www.spaces.ac.cn/archives/6760</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260627899">https://zhuanlan.zhihu.com/p/260627899</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/429686815">https://zhuanlan.zhihu.com/p/429686815</a></li>
+</ul>
+<p>实现：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/640000410">https://zhuanlan.zhihu.com/p/640000410</a></li>
+</ul>
+<h2 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto Encoder"></a>Auto Encoder</h2><p>自动编码器，由一对编码器和解码器组成，编码器从原始数据中抽取出隐变量特征，解码器使用这个隐变量去还原原始数据<br><img src="https://pic3.zhimg.com/80/v2-6371146dd171e22faf9d5c87ffb163d6_1440w.webp" alt="AE"></p>
+<p>自动编码器是一种数据的压缩算法，其中数据的压缩和解压缩函数是数据相关的、有损的、从样本中自动学习的<br>这个框架在训练完成之后，编解码过程是没有随机性的，常用于特征提取</p>
+<p>对于AE，如果我们想随机生成一个隐变量，送入Decoder中得到一个生成的数据，这样做往往是行不通的（为什么</p>
+<p>这里引入一个向量空间的概念，隐变量实际上就是一个多维向量，每一个输入的数据（就当是图片好了），在Encoder的处理下，都会被映射为n维向量空间中的一个点。但是，对于所有的输入数据，这些点在向量空间中的分布==并不是均匀的==，将MINIST数据集的隐变量降维可视化之后得到的结果如下：<br><img src="https://pic3.zhimg.com/80/v2-81231c59df037eb41ea653c54f21f042_1440w.webp" alt="MINIST"><br>可以看到，对于同类别的输入数据的隐变量，其在向量空间中的距离可能确实会比较接近，但是整个向量空间中==仍然存在许多没有与原始输入数据对应的点==，使用这些点作为Decoder的输入，产生的图像可能毫无意义。</p>
+<blockquote>
+<p>这就是我们所说的潜在空间没有正则化的意思。 这样的潜在空间只有少数具有生成能力的区域/簇，这意味着对潜在空间中簇内的任何点进行采样都会生成与该簇相关的变量， 但是整个潜在空间并不都具备生成能力。 不属于任何簇的区域将产生垃圾输出。 一旦网络被训练，并且训练数据被移除，我们就无法知道解码器从一个随机采样的潜在向量产生的输出是否有效。</p>
+</blockquote>
+<p>对于有效输入，AE能够将它们压缩到更少的维度，基本消除了冗余，所以能够用来做压缩</p>
+<h2 id="Variational-Auto-Encoder"><a href="#Variational-Auto-Encoder" class="headerlink" title="Variational Auto Encoder"></a>Variational Auto Encoder</h2><p>变分自动编码器，这个变分是什么？（科学空间中提到这是二阶范数求导中用到的方法）<br>先看结构（==看一下这个分布的数量是怎么界定的，是定好的还是生成的==）<br>均值和方差的数量是定好的，代码里使用两个线性层分别生成<br></p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.mean_linear = nn.Linear(prev_channels * img_length * img_length,</span><br><span class="line">                                     latent_dim)</span><br><span class="line">self.var_linear = nn.Linear(prev_channels * img_length * img_length,</span><br><span class="line">                                    latent_dim)</span><br></pre></td></tr></tbody></table></figure><br>均为隐变量维数，然后在forward的过程中：<br><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mean = self.mean_linear(encoded)</span><br><span class="line">logvar = self.var_linear(encoded)</span><br><span class="line">eps = torch.randn_like(logvar)</span><br><span class="line">std = torch.exp(logvar / <span class="number">2</span>)</span><br><span class="line">z = eps * std + mean</span><br></pre></td></tr></tbody></table></figure><br>会如下文所讲的，取一个 $\varepsilon$ 然后乘标准差加均值，这样就可以做梯度了<p></p>
+<p><img src="https://pic4.zhimg.com/80/v2-9b4ff3e9dc22347d478e25ceba528363_1440w.webp" alt="VAE"></p>
+<p>相较AE，VAE在Encoder的部分得到的不再是隐变量，而是一堆均值和方差，送入Decoder中的 $Z_i$ 则是以这堆均值和方差的正态分布为基准采样得到的。</p>
+<p>相较AE，VAE的输出则是一个概率分布，而不是一个离散的值。为什么是这么做呢</p>
+<p>看了几篇，有这么几种说法，首先是对上面那个向量空间的说法：</p>
+<blockquote>
+<p>VAE的编码器不输出潜空间中的向量，而是输出每个输入的潜空间中预定义分布的参数。然后VAE对这个潜在分布施加约束，迫使它成为一个正态分布。这个约束确保了潜在空间是正则化的。</p>
+<p>很可惜，AE的编码器编码出来的向量空间是不规整的。也就是说，解码器只认识经编码器编出来的向量，而不认识其他的向量。如果你把自己随机生成出来的向量输入给解码器，解码器是生成不出有意义的图片的。</p>
+</blockquote>
+<p>这样的处理让隐变量具有了语义，在两个不同的分布之间的点，会具有两个分布融合的属性，可视化如下<br><img src="https://pic2.zhimg.com/80/v2-87b589ea7d2b954570509dc7dde8765d_1440w.webp" alt></p>
+<p>我只能说，看起来更散</p>
+<p>科学空间中用概率论来解释<br>要做生成，实际上是假设了隐变量 Z 服从某些常见的分布，然后希望训练一个模型 $X=g(Z)$ ，这个模型能够将原来的概率分布映射到训练集的概率分布。<br>对于一个生成模型，我们希望从一批数据 $\{X_1,\dots ,X_n\}$ 中得到 $X$ 的分布 $p(X)$ ，然后直接从这个分布中抽样，就能得到所有可能的 $X$ 了，但是这对于稍微复杂的数据就已经是不可能的了，于是我们将分布改一改</p>
+<script type="math/tex; mode=display">
+p(X) = \sum_Z p(X|Z)p(Z)</script><p>变成一个后验概率分布乘一个假设已知的概率分布，这里的 $p(X|Z)$ 就描述了一个由 $Z$ 来生成 $X$ 的模型。<br>但是在训练的过程中，隐变量 $Z$ ，需要与每个输入 $X_k$ 对应，也就是说，对于多个输入 $X_k$ 如果隐变量只有一个分布，那就不能将 $Z$ 与每个输入一一对应，所以对每个输入，我们需要一个专属于这个输入的 $p(Z|X_k)$ ，这是VAE网络拟合的目标</p>
+<p><img src="https://spaces.ac.cn/usr/uploads/2018/03/2584918486.png" alt></p>
+<p>于是构建两个神经网络 $\mu _k = f_1(X_k),\; \log \sigma_k^2 = f_2(X_k)$ 使用对数的目的是将非负的 $\sigma_k^2$ 映射到实数域，就不需要加激活函数了，模型训练目标是最小化重建损失，即 $\min(D(X_k,\hat X_k))$ </p>
+<p>然后提到了一个模型退化的问题，在训练过程中，为了最小化重建损失，会使方差尽可能为0，这样模型就会失去随机性，退化为普通的自编码器（就是过拟合问题？）</p>
+<p>为了解决这个问题，需要在重构损失的基础上添加新的损失来约束模型，VAE方法中使用的是目标正态分布与标准正态分布的KL散度作为这个额外的Loss。</p>
+<p>Loss选择完后，开始做模型训练了，但是由分布抽样得到的隐变量 $Z$ 是无法进行反向传播的（抽样过程不可导），文中使用 <code>reparameterization trick</code> 来解决这个问题。</p>
+<p>$Z$ 落在点 $Z$ 处的概率表示为概率密度乘上 $Z$ 的微分</p>
+<script type="math/tex; mode=display">
+\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(z-\mu)^2}{2\sigma^2}\right)dz</script><p>文章在这里凑微分，把微分项凑成了 $d\left( \frac{z-\mu}{\sigma}\right)$ ，令 $\varepsilon = \frac{z-\mu}{\sigma}$ ，则 $\varepsilon$ 是服从标准正态分布的，所以从分布中抽样 $Z$ 相当与从标准正态中抽样 $\varepsilon$ ，让 $Z=\mu + \varepsilon\times \sigma$ ，然后对这个抽样结果进行梯度下降</p>
+<h2 id="Vector-Quantisized-Variational-AutoEncoder"><a href="#Vector-Quantisized-Variational-AutoEncoder" class="headerlink" title="Vector Quantisized - Variational AutoEncoder"></a>Vector Quantisized - Variational AutoEncoder</h2><p>VAE编码出来的向量是连续向量，也就是说向量的每一维都是浮点数。对某一维的轻微改动，对生成的影响不大。<br>VQ-VAE的作者认为，VAE的生成图片之所以质量不高，是因为图片被编码成了连续向量，而编码成离散向量更加合理。</p>
+<blockquote>
+<p>比如我们想让画家画一个人，我们会说这个是男是女，年龄是偏老还是偏年轻，体型是胖还是壮，而不会说这个人性别是0.5，年龄是0.6，体型是0.7。</p>
+</blockquote>
+<p>但是Decoder对离散的向量处理是乏力的，对离散的值要做梯度下降，又会默认按照是连续的值来计算，比如对0，1，2三个离散值，神经网络会认为1是在0，2之间的一种状态。为了解决整个这个问题，借用了NLP中对离散单词的处理方法。</p>
+<p>将每个离散标签映射到独一无二的连续向量上，这样完成了一个连续-离散-连续的转换，可以让模型完成计算。<br>这个部分在VQ-VAE中叫做<code>embedding space</code>，在后续文章中则被称为 <code>codebook</code><br><img src="https://pic4.zhimg.com/v2-4382b984165170e238be55b914ff3503_r.jpg" alt="vqvae结构"></p>
+<p>在具体介绍VQ-VAE的细节之前，先作如下说明：</p>
+<ul>
+<li>模型本身无法单独完成生成任务，需要配合其他自回归模型（下面会提到）</li>
+<li>对于生成的离散向量，单条向量的信息载荷是无法承担一张图片或者其他内容的信息的，实际使用过程中是生成一个具有离散值的矩阵，每个值是embedding space中的一个向量下标。</li>
+</ul>
+<p>VQ-VAE用于图像生成的工作过程</p>
+<ul>
+<li>训练VQ-VAE的编码器和解码器，使得VQ-VAE能够把图像变为由离散标签组成的‘小图像’，也能将小图像解码回大图像。</li>
+<li>训练一个自回归模型，能够生成小图像</li>
+<li>随机采样时，先用自回归模型采样出小图像，再用VQ-VAE把小图像翻译成最终生成的图像</li>
+</ul>
+<p>就是说明明两个模型都可以做生成，但为什么要放在一起做，看到两个文章从两个角度分别是这么解释的</p>
+<ol>
+<li>这样做的目的是为了解决一个问题： ==离散空间不好采样== <font color="red">为什么？</font></li>
+<li>自回归模型逐像素生成很慢，且对于大一点的图像，不管是RNN还是CNN模型都无法很好的捕捉这么长的依赖。</li>
+</ol>
+<h3 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h3><p><strong>输出离散编码</strong><br>Encoder输出的是一个连续的编码向量，这里用 $Z_e$ 表示，使用<strong>最近邻重构</strong>的方法，将这个输出的编码向量与嵌入空间 $E=[e_1,e_2,\dots,e_k]$ 中的某一个向量关联起来，达到离散化的目的。</p>
+<ol>
+<li>首先，一张 $n\times n\times 3$ 的图片被传入一个 encoder 中，得到连续的编码向量 $Z_e$</li>
+<li>计算向量 $Z_e$ 与嵌入空间中的每个向量的距离，选取距离最小的下标 $k = \underset{j}{\arg\min} \Vert z-e_j\Vert_2$ </li>
+<li>将与 $Z_e$ 距离最小的嵌入空间向量记为 $Z_q$ ，作为最后的编码结果，送入 decoder 中。</li>
+</ol>
+<p>如下：<br><img src="https://pic4.zhimg.com/80/v2-85ebf6142dc52d39497b9161c5099d77_1440w.webp" alt="VQVAE细节"></p>
+<p><strong>梯度无法传递的情况下的优化过程</strong><br>我们优化的最终目标是要让输出的重建图像与原图像一致，所以很自然的有重建损失</p>
+<script type="math/tex; mode=display">
+L_{reconstruct}=\Vert x - decoder(z_q)\Vert ^2_2</script><p>但是从 $Z_e$ 到 $Z_q$ 的过程是不可导的，这里采用了一个叫 Straight-Through Estimator 的方法，将梯度直接传递到 encoder，在 <a href="BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers.md">BERTS</a> 中也有用到，指的是==前向传播和反向传播的计算可以不对应==<br>基于这一技术，VQ-VAE提出了一种叫做sg（stop gradient）的运算</p>
+<script type="math/tex; mode=display">
+sg(x)= \left\{
+\begin{aligned}
+&x(in\;forward\;propagation)\\
+&0(in\;backward\;propagation)
+\end{aligned}
+\right.</script><p>正向传播不变，反向传播不计算梯度，最终的Loss如下：</p>
+<script type="math/tex; mode=display">
+L_{reconstruct}=\Vert x-decoder(z_e+sg(z_q-z_e))\Vert_2^2</script><p>按照 $sg(x)$ 的定义，正向传播的Loss为：</p>
+<script type="math/tex; mode=display">
+L=\Vert x-decoder(z_q)\Vert_2^2</script><p>反向传播求梯度为：</p>
+<script type="math/tex; mode=display">
+L=\Vert x-decoder(z_e)\Vert_2^2</script><p>对于嵌入空间的优化，我们希望嵌入空间的每一个向量应该能概括一类编码器输出的向量，也就是说，对于一类编码器输出，其对应的嵌入空间向量应该与他们尽量接近，很自然的我们会把这个距离添加到Loss函数中去</p>
+<script type="math/tex; mode=display">
+L_d = \Vert z_e-z_q\Vert_2^2</script><p>但是作者认为，嵌入空间向量相对来说比较自由，而编码器输出 $z_e$ 要尽可能保证重构效果，所以要让 $z_q$ 比 $z_e$ 更努力的接近对方，于是把上面的Loss拆成两项</p>
+<script type="math/tex; mode=display">
+L_d = \alpha \Vert sg(z_e)-z_q\Vert_2^2 + \beta \Vert z_e-sg(z_q)\Vert_2^2</script><p>其中第一项误差来自字典学习算法里的经典算法 Vector Quantisation，用于优化嵌入空间<br>第二个误差叫做专注误差，用于约束编码器的输出，不让它跑到离嵌入空间太远的地方。</p>
+<h2 id="总结和思考"><a href="#总结和思考" class="headerlink" title="总结和思考"></a>总结和思考</h2><p>看完VQ-VAE再回去看之前那篇BEATs，一些方法是直接照搬VQ-VAE的做法的，这个离散标签化的做法在图像音频上都取得了很好的效果，但是我觉得这种孤立的，离散的做法无法表示出码本中的向量之间的关系。</p>
+<p>VAE中对隐变量的向量空间正则化是否可以通过某种手段应用到 zero-shot 分类当中去？</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/">http://yypyyds.github.io/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/07/FF14mod%E4%B8%80%E6%96%87%E9%80%9F%E9%80%9A/" title="FF14mod一文速通"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">FF14mod一文速通</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/07/Typora%E8%BF%81%E7%A7%BB%E5%88%B0Obsdian/" title="Typora迁移到Obsdian"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Typora迁移到Obsdian</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/" title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">BEATS-Audio Pre-Training with Acoustic Tokenizers</div></div></a></div><div><a href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">TF-grident说话人分离</div></div></a></div><div><a href="/2023/10/17/TinyCLIP/" title="TinyCLIP: CLIP Distillation via Affinity Mimicking and Weight Inheritance"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-17</div><div class="title">TinyCLIP: CLIP Distillation via Affinity Mimicking and Weight Inheritance</div></div></a></div><div><a href="/2023/11/13/AudioLDM/" title="AudioLDM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-13</div><div class="title">AudioLDM</div></div></a></div><div><a href="/2023/11/10/Efficient%20large-scale%20audio%20tagging%20via%20transformer-to-cnn%20knowledge%20distillation/" title="Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-10</div><div class="title">Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VQ-VAE%E7%9B%B8%E5%85%B3"><span class="toc-text">VQ-VAE相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-Encoder"><span class="toc-text">Auto Encoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Variational-Auto-Encoder"><span class="toc-text">Variational Auto Encoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector-Quantisized-Variational-AutoEncoder"><span class="toc-text">Vector Quantisized - Variational AutoEncoder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">实现细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%92%8C%E6%80%9D%E8%80%83"><span class="toc-text">总结和思考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/13/AudioLDM/" title="AudioLDM">AudioLDM</a><time datetime="2023-11-13T02:45:19.000Z" title="发表于 2023-11-13 10:45:19">2023-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/10/Efficient%20large-scale%20audio%20tagging%20via%20transformer-to-cnn%20knowledge%20distillation/" title="Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation">Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation</a><time datetime="2023-11-10T03:11:39.000Z" title="发表于 2023-11-10 11:11:39">2023-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/FF14mod%E4%B8%80%E6%96%87%E9%80%9F%E9%80%9A/" title="FF14mod一文速通">FF14mod一文速通</a><time datetime="2023-11-07T13:13:50.000Z" title="发表于 2023-11-07 21:13:50">2023-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/" title="VQ-VAE相关">VQ-VAE相关</a><time datetime="2023-11-07T08:57:48.000Z" title="发表于 2023-11-07 16:57:48">2023-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/Typora%E8%BF%81%E7%A7%BB%E5%88%B0Obsdian/" title="Typora迁移到Obsdian">Typora迁移到Obsdian</a><time datetime="2023-11-07T08:02:30.000Z" title="发表于 2023-11-07 16:02:30">2023-11-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

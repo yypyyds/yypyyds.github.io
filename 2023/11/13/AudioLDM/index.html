@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>AudioLDM | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AudioLDM作者：Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu, Danilo Mandic, Wenwu Wang, Mark D. Plumley机构：CVSSP, University of Surrey, Guildford, UK；Department of EEE, Imperial College London, Lon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AudioLDM">
+<meta property="og:url" content="http://yypyyds.github.io/2023/11/13/AudioLDM/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="AudioLDM作者：Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu, Danilo Mandic, Wenwu Wang, Mark D. Plumley机构：CVSSP, University of Surrey, Guildford, UK；Department of EEE, Imperial College London, Lon">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-13T02:45:19.000Z">
+<meta property="article:modified_time" content="2023-11-16T12:38:42.026Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yypyyds.github.io/2023/11/13/AudioLDM/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AudioLDM',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-16 20:38:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AudioLDM</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-13T02:45:19.000Z" title="发表于 2023-11-13 10:45:19">2023-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-16T12:38:42.026Z" title="更新于 2023-11-16 20:38:42">2023-11-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AudioLDM"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AudioLDM"><a href="#AudioLDM" class="headerlink" title="AudioLDM"></a>AudioLDM</h1><p>作者：Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu, Danilo Mandic, Wenwu Wang, Mark D. Plumley<br>机构：CVSSP, University of Surrey, Guildford, UK；Department of EEE, Imperial College London, London, UK<br>发表情况： ICML 2023</p>
+<h2 id="学习过程参考的相关文章"><a href="#学习过程参考的相关文章" class="headerlink" title="学习过程参考的相关文章"></a>学习过程参考的相关文章</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/638442430">Diffusion Model</a></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>贡献：</p>
+<ul>
+<li>第一次将连续的隐扩散模型（LDM）应用于TTA生成，且取得了SOTA效果</li>
+<li>使用了CLAP嵌入使TTA生成的训练不用依赖音频文本对</li>
+<li>实验证明了在LDM训练中只使用音频数据可以得到高质量和高计算效率的TTA系统</li>
+<li>展示了提出的TTA系统能够在未经过微调的情况下进行文本引导的音频风格操作，比如音频风格迁移，高分辨率生成，音频修复。</li>
+</ul>
+<h2 id="Text-Conditional-Audio-Generation"><a href="#Text-Conditional-Audio-Generation" class="headerlink" title="Text-Conditional Audio Generation"></a>Text-Conditional Audio Generation</h2><h3 id="Contrastive-Language-Audio-Pretraining-CLAP"><a href="#Contrastive-Language-Audio-Pretraining-CLAP" class="headerlink" title="Contrastive Language-Audio Pretraining (CLAP)"></a>Contrastive Language-Audio Pretraining (CLAP)</h3><p>参考图像文本预训练（CLIP），提出了CLAP<br>分别由一个text encoder和一个audio encoder，分别提取文本和音频的嵌入特征，两个encoder的架构分别为</p>
+<ul>
+<li>text: RoBERTa</li>
+<li>audio: HTSAT<br>以对称交叉熵损失作为训练目标，将音频和文本特征对其到同一个嵌入空间。</li>
+</ul>
+<h3 id="Conditional-Latent-Diffusion-Models"><a href="#Conditional-Latent-Diffusion-Models" class="headerlink" title="Conditional Latent Diffusion Models"></a>Conditional Latent Diffusion Models</h3><p>条件隐扩散模型<br>这部分有点绕，先翻译一下<br>TTA系统可以给定一个文本描述 $y$ 生成一个音频样本 $\hat x$ 。在有概率生成模型LDMs的情况下，我们使用模型分布 $p_{\theta}(z_0|E^y)$ 评估了真实的条件数据分布 $q(z_o|E^y)$ ，其中 $z_0 \in \mathbb{R}^{C\times \frac{T}{r} \times \frac{F}{r}}$ 是音频样本 $x$ 在由 $X \in \mathbb{R}^{T\times F}$ 梅尔谱压缩表示组成向量空间的前置，$E^y$ 是由CLAP预训练的文本encoder得到的文本嵌入。$r$ 表示压缩等级，C表示压缩表示的通道数，T 和 F 表示梅尔谱图 X 的时域频域维数。通过预训练的CLAP联合嵌入音频和文本信息，音频嵌入 $E^x$ 和文本嵌入 $E^y$ 共享一个联合的跨模态空间。这允许我们使用 $E^x$ 训练LDMs，同时将 $E^y$ 用于TTA生成。</p>
+<p>这部分的重点在这两个概率分布模型  $p_{\theta}(z_0|E^y)$ 和 $q(z_o|E^y)$ ，其中 $q(z_o|E^y)$ 是真实分布，也就是我们拟合的目标，这是一个条件概率模型，条件是 $E^y$ ，也就是文本描述的嵌入，随机变量是 $z_0$ ，原文描述为</p>
+<blockquote>
+<p>$z_0 \in \mathbb{R}^{C\times \frac{T}{r} \times \frac{F}{r}}$ is the prior of an audio sample $x$ in the space formed from the compressed representation of the mel-spectrogram  $X \in \mathbb{R}^{T\times F}$ </p>
+</blockquote>
+<p>关键是 <code>the prior of an audio sample</code> 就把它当作一个用于重建音频的隐变量就好了，至于是怎么还原的之后应该会提到。<br>所以这个要拟合的分布，就是给定文本描述的情况下，符合文本描述的音频的分布</p>
+<p>然后讲本文用到的扩散模型，基本和参考文章中的扩散模型一样，首先分为前向过程和反向过程，前向过程一层一层加噪声，反向过程一层一层去噪声。<br><strong>forward process</strong><br>预定义一个噪声尺度 $0 &lt; \beta_1 &lt; \cdots &lt; \beta_n &lt; \cdots &lt; \beta_N &lt;1$ ，共做 $N$ 次加噪过程，最终会将数据分布转换为一个标准高斯分布</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+q(z_n|z_{n-1}) &= \mathcal{N}(z_n;\sqrt{1-\beta_n} \; z_{n-1},\beta_n \boldsymbol I)
+\qquad &(1)
+\newline
+q(z_n|z_0) &= \mathcal{N}(z_n;\sqrt{\bar \alpha_n}\;z_0,(1-\bar \alpha_n)\boldsymbol \epsilon)\qquad &(2) 
+\end{aligned}</script><p>这里的 $\boldsymbol \epsilon \sim \mathcal N (0,I)$ 表示输入噪声，$\alpha_n = 1-\beta_n$ 是构造参数的技巧，让式子更简洁，$\bar \alpha_n \coloneqq \prod ^n_{s=1}\alpha_s$ 表示每一步的噪声水平。最后一步 $N$ ，$z_N \sim \mathcal N(0,I)$ 是一个标准正态高斯分布</p>
+<p>对于模型优化，使用调整过权重的噪声评估训练目标（在参考文章中有相关证明）</p>
+<script type="math/tex; mode=display">
+L_n(\theta)=\mathbb E_{z_0,\epsilon,n}\Vert\epsilon-\epsilon_\theta(z_n,n,E^x)\Vert^2_2 \qquad (3)</script><p>其中，$E^x$ 是由audio encoder生成的 音频波形 $x$ 的音频嵌入。<br>在反向过程中，从高斯分布 $p(z_N)\sim \mathcal N(0,I)$ 和文本嵌入 $E^y$ 开始，以 $E^y$ 为条件的去噪过程通过以下过程逐渐产生音频先验（audio prior） $z_0$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p_{\theta}(z_{0:N}|E^y) &= p(z_N)\prod^N_{t=n}p_\theta(z_{n-1}|z_n,E^y) \qquad &(4)
+\newline
+p_\theta(z_{n-1}|z_n,E^y) &= \mathcal N (z_{n-1};\mu_\theta(z_n,n,E^y),\sigma^2_nI)\qquad &(5)
+\end{aligned}</script><p>公式（4）是对整个过程的一个描述，从高斯分布的采样 $p(z_N)$ 开始，连乘 N 个去噪的概率分布得到生成的结果，其中，每一步的去噪过程，可以定义为给定阶段 $n$ 的带噪隐变量 $z_n$ 和文本嵌入 $E^y$ ，加噪声前一阶段 $z_{n-1}$ 的概率分布。</p>
+<p>反向过程在参考文章中给了很清晰的解释</p>
+<blockquote>
+<p>在正向过程中，我们人为设置了 $T$ 步加噪声过程。而在反向过程中，我们希望能够倒过来取消每一步加噪声操作，让一幅纯噪声图像变回数据集里的图像。这样，利用这个去噪声过程，我们就可以把任意一个从标准正态分布里采样出来的噪声图像变成一幅和训练数据长得差不多的图像，从而起到图像生成的目的。<br>现在问题来了：去噪声操作的数学形式是怎么样的？怎么让神经网络来学习它呢？数学原理表明，当 $\beta_t$ 足够小时，每一步加噪声的逆操作也满足正态分布。</p>
+</blockquote>
+<p>重点：<strong>直接计算所有数据的加噪声逆操作的分布是不太现实的</strong>，但是，如果给定了某个训练集输入 $x_0$，多了一个限定条件后，该分布是可以用贝叶斯公式计算的</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+q(x_{t-1}|x_t,x_0) &= \frac{q(x_{t-1},x_t,x_0)}{q(x_t,x_0)} \newline
+&=\frac{q(x_t,x_{t-1},x_0)}{q(x_0)q(x_t|x_0)} \newline
+&=\frac{q(x_t|x_{t-1},x_0)q(x_{t-1},x_0)}{q(x_0)q(x_t|x_0)} \newline
+&=\frac{q(x_t|x_{t-1},x_0)q(x_{t-1}|x_0)q(x_0)}{q(x_0)q(x_t|x_0)}
+\newline
+&=q(x_t|x_{t-1},x_0)\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}
+\end{aligned}</script><p>等式右边的所有东西都是正向过程中已知的，代入可以计算得到等式左边的均值和方差，具体的推导过程见参考文章</p>
+<p>回到论文，得到去噪的过程的均值和方差如下</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mu_\theta(z_n,n,E^y)&=\frac{1}{\sqrt{\alpha_n}}(z_n-\frac{\beta_n}{\sqrt{1-\bar \alpha_n}}\epsilon_\theta(z_n,n,E^y)) \qquad&(6) \newline
+\sigma^2_n &= \frac{1-\bar\alpha_{n-1}}{1-\bar\alpha_n}\beta_n \qquad&(7)
+\end{aligned}</script><p>本文的 $\epsilon_\theta$ 和 $DDPM$ 的 $\epsilon$ 好像不是一个东西，DDPM的是从标准高斯中采样的，而这里文章中说这是预测的生成噪声，应该是原始的diffusion没有text prompt这个限制，是随机生成图片，而这里是有一个文本嵌入 $E^y$ 在限制</p>
+<p>在训练阶段，学习给定音频样本 $x$ 的跨模态表示 $E^x$ 的audio prior $z_0$ 的生成。然后在TTA生成，提供文本嵌入 $E^y$ 来预测噪声 $\epsilon_\theta$<br>建立在CLAP嵌入的基础上，LDM可以不需要文本监督也能理解TTA生成</p>
+<h3 id="Conditioning-Augmentation"><a href="#Conditioning-Augmentation" class="headerlink" title="Conditioning Augmentation"></a>Conditioning Augmentation</h3><p>条件作用增强<br>在图像生成中，可以捕捉到图像间微小的差别，其中一个原因是大量的language-image样本对，但是音频没有这么多样本。本文的方法在训练LDMs的时候不需要文本样本，所以数据增强只需要音频，通过以下方式对音频样本 $x_1,x_2$ 进行混频增强</p>
+<script type="math/tex; mode=display">
+x_{1,2}=\lambda x_1 + (1-\lambda)x_2 \qquad(8)</script><p>其中 $\lambda$ 是从beta分布 $\mathcal B(5,5)$ 中采样的0到1之间的数</p>
+<h3 id="Classifier-free-Guidance"><a href="#Classifier-free-Guidance" class="headerlink" title="Classifier-free Guidance"></a>Classifier-free Guidance</h3><p>用于指导扩散模型的生成。<br>在训练过程中，使用固定的概率随机丢弃条件 $E^x$ 来同时训练条件LDMs $\epsilon_\theta(z_n,n,E^x)$ 和非条件LDMs $\epsilon_\theta(z_n,n)$ 。生成的时候，使用文本嵌入 $E^y$ 作为条件，并使用改进的噪声估计 $\hat \epsilon_\theta(z_n,n,E^y)$ 进行采样：</p>
+<script type="math/tex; mode=display">
+\hat \epsilon_\theta(z_n,n,E^y) = w\epsilon_\theta(z_n,n) + (1-w)\epsilon_\theta(z_n,n,E^y) \qquad (9)</script><p>其中 $w$ 决定指导尺度<br>看起来就是俩系数，分别决定条件LDMs和非条件LDMs在预测噪声中占的比重，非条件LDMs就是原始的Diffusion的那个正态采样噪声</p>
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/11/13/AudioLDM/">http://yypyyds.github.io/2023/11/13/AudioLDM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/10/Efficient%20large-scale%20audio%20tagging%20via%20transformer-to-cnn%20knowledge%20distillation/" title="Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/" title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">BEATS-Audio Pre-Training with Acoustic Tokenizers</div></div></a></div><div><a href="/2023/07/30/TF-grident%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%88%86%E7%A6%BB/" title="TF-grident说话人分离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">TF-grident说话人分离</div></div></a></div><div><a href="/2023/10/17/TinyCLIP/" title="TinyCLIP: CLIP Distillation via Affinity Mimicking and Weight Inheritance"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-17</div><div class="title">TinyCLIP: CLIP Distillation via Affinity Mimicking and Weight Inheritance</div></div></a></div><div><a href="/2023/11/10/Efficient%20large-scale%20audio%20tagging%20via%20transformer-to-cnn%20knowledge%20distillation/" title="Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-10</div><div class="title">Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation</div></div></a></div><div><a href="/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/" title="VQ-VAE相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-07</div><div class="title">VQ-VAE相关</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AudioLDM"><span class="toc-text">AudioLDM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E5%8F%82%E8%80%83%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">学习过程参考的相关文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Text-Conditional-Audio-Generation"><span class="toc-text">Text-Conditional Audio Generation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Contrastive-Language-Audio-Pretraining-CLAP"><span class="toc-text">Contrastive Language-Audio Pretraining (CLAP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditional-Latent-Diffusion-Models"><span class="toc-text">Conditional Latent Diffusion Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditioning-Augmentation"><span class="toc-text">Conditioning Augmentation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classifier-free-Guidance"><span class="toc-text">Classifier-free Guidance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decoder"><span class="toc-text">Decoder</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/13/AudioLDM/" title="AudioLDM">AudioLDM</a><time datetime="2023-11-13T02:45:19.000Z" title="发表于 2023-11-13 10:45:19">2023-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/10/Efficient%20large-scale%20audio%20tagging%20via%20transformer-to-cnn%20knowledge%20distillation/" title="Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation">Efficient large-scale audio tagging via transformer-to-cnn knowledge distillation</a><time datetime="2023-11-10T03:11:39.000Z" title="发表于 2023-11-10 11:11:39">2023-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/FF14mod%E4%B8%80%E6%96%87%E9%80%9F%E9%80%9A/" title="FF14mod一文速通">FF14mod一文速通</a><time datetime="2023-11-07T13:13:50.000Z" title="发表于 2023-11-07 21:13:50">2023-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/VQ-VAE%E7%9B%B8%E5%85%B3/" title="VQ-VAE相关">VQ-VAE相关</a><time datetime="2023-11-07T08:57:48.000Z" title="发表于 2023-11-07 16:57:48">2023-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/Typora%E8%BF%81%E7%A7%BB%E5%88%B0Obsdian/" title="Typora迁移到Obsdian">Typora迁移到Obsdian</a><time datetime="2023-11-07T08:02:30.000Z" title="发表于 2023-11-07 16:02:30">2023-11-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
