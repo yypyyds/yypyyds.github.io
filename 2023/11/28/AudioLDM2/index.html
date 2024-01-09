@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>AudioLDM2 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AudioLDM2作者：Haohe Liu, Qiao Tian, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang Kong, Yuping Wang, Wenwu Wang, Yuxuan Wang, Mark D. Plumbley Introduction做Audio generation的大一统工作（有空可以看看这里提到的几篇）  Recent advanc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AudioLDM2">
+<meta property="og:url" content="http://yypyyds.github.io/2023/11/28/AudioLDM2/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="AudioLDM2作者：Haohe Liu, Qiao Tian, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang Kong, Yuping Wang, Wenwu Wang, Yuxuan Wang, Mark D. Plumbley Introduction做Audio generation的大一统工作（有空可以看看这里提到的几篇）  Recent advanc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-28T02:33:00.000Z">
+<meta property="article:modified_time" content="2023-11-30T08:27:32.570Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2023/11/28/AudioLDM2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AudioLDM2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-30 16:27:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AudioLDM2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T02:33:00.000Z" title="发表于 2023-11-28 10:33:00">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-30T08:27:32.570Z" title="更新于 2023-11-30 16:27:32">2023-11-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AudioLDM2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AudioLDM2"><a href="#AudioLDM2" class="headerlink" title="AudioLDM2"></a>AudioLDM2</h1><p>作者：Haohe Liu, Qiao Tian, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang Kong, Yuping Wang, Wenwu Wang, Yuxuan Wang, Mark D. Plumbley</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>做Audio generation的大一统工作（有空可以看看这里提到的几篇）</p>
+<blockquote>
+<p>Recent advancements in addressing problems from a unified perspective have yielded substantial progress [16]– [19]. This trend highlights the potential of constructing a unified audio generation framework.</p>
+</blockquote>
+<p>引入了 language of audio(LOA)，作为音频片段的特征表示，这个片段需要能够表示细粒度和粗粒度的音频信息，考虑到这些需求，我们建议使用 audio masked autoencoder(AudioMAE, 一个预训练框架) 来提取这些特征。<br>具体用的是预训练的GPT2，减少计算量<br>总的来说，贡献如下：</p>
+<ul>
+<li>提出了一个新颖的通用的音频生成模型，能够执行音频，音乐和可理解语音的条件生成。</li>
+<li>该方法基于音频的通用表示，可以在没有音频注释的情况下对LDM进行大规模自监督预训练，并有助于将自回归模型的优点结合起来</li>
+</ul>
+<h2 id="AudioLDM2-1"><a href="#AudioLDM2-1" class="headerlink" title="AudioLDM2"></a>AudioLDM2</h2><p><img src="/2023/11/28/AudioLDM2/image-20231130150850706.png" alt=""><br>总体架构如图，与第一代相比，框架变大了很多。首先是由于大统一特征 LOA 的引入，对于Audio和其他模态的信息需要更多的处理方法，图中分为两部分， $\mathcal{A}(\cdot)$ 为Audio to LOA ENcoder，将原始音频编码为原始大一统特征 $Y$； $\mathcal{M}(\cdot)$ 为 Any modality to LOA Translator，将其他模态的信息编码为对原始大一统特征的估计 $\hat Y$ 。</p>
+<p>之后的做法和第一代类似，就是送入Diffusion用于生成VAE的隐变量，然后VAE重建梅尔谱图。不过Diffusion和VAE的结构和第一代都不同。</p>
+<h3 id="AudioMAE-Encoder"><a href="#AudioMAE-Encoder" class="headerlink" title="AudioMAE Encoder"></a>AudioMAE Encoder</h3><p>是一个和 Vision Transformer（ViT）类似的架构的自监督预训练模型。同其他自监督预训练模型相比，有两个优点</p>
+<ul>
+<li>被证实在综合的音频领域内工作的很好，就是不细分特定领域，比如 speech 或者 music</li>
+<li>使用mask后重建的损失相比以前以对比损失或预测分类损失为目标的方法，在生成任务中可能更好。<br>对于一段音频信号 $x$ 首先转换为梅尔谱图 $X\;\in\;\mathbb{R}^{T\times F}$ ，然后当作图片的处理方式，分成 $P\times P$ 大小的 patch 作为 AudioMAE encoder 的输入，每个patch会得到一个 $D$ 维的嵌入，一段音频经过encoder 得到的特征为 $E\;\in\;\mathbb{R}^{T’\times F’\times D}$ ，最后经过一个二维的 pooling 降维，得到 LOA 特征</li>
+</ul>
+<h3 id="Conditioning-Information-to-LOA-Translation-with-GPT-2"><a href="#Conditioning-Information-to-LOA-Translation-with-GPT-2" class="headerlink" title="Conditioning Information to LOA Translation with GPT-2"></a>Conditioning Information to LOA Translation with GPT-2</h3><p>这部分是要生成 $\hat Y$ ，这里把这个特征当成一个 language modelling task，把特征 $Y$ 视为长度为 $L$ 的序列，在训练过程中，GPT2 根据给定的多模态条件 $C$ 和 之前的真实序列 $y_1,\dots,y_{l-1}$ 去预测序列中的第 $l$ 个向量。优化目标为最大似然估计</p>
+<p>然后讲多模态的特征用不同的专家模型来处理</p>
+<h3 id="Latent-Diffusion-Model"><a href="#Latent-Diffusion-Model" class="headerlink" title="Latent Diffusion Model"></a>Latent Diffusion Model</h3><p>这里同第一代类似，但是用的是Transformer-UNet，是在原始的UNet的卷积后面加一层Transformer，为了将原始的LOA中的条件信息合并，最后一个transformer块把self-attention换成了cross-attention，把LOA作为K和V，并将前一个transformer块的输出作为Q。</p>
+<p>然后上面结构图里有一个Prob Switcher，在训练过程中，这个开关会从两个特征中以概率 $P_{gt},P_{pred}$ 随机选取AudioMAE生成的原始特征和GPT2生成的估计特征</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/11/28/AudioLDM2/">http://yypyyds.github.io/2023/11/28/AudioLDM2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/30/StegaDDPM/" title="StegaDDPM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">StegaDDPM</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" title="读论文过程中碰到的深度学习网络"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">读论文过程中碰到的深度学习网络</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/11/BERTS-Audio-Pre-Training-with-Acoustic-Tokenizers/" title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">BEATS-Audio Pre-Training with Acoustic Tokenizers</div></div></a></div><div><a href="/2023/11/13/AudioLDM/" title="AudioLDM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-13</div><div class="title">AudioLDM</div></div></a></div><div><a href="/2023/11/20/CLAP/" title="CLAP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="title">CLAP</div></div></a></div><div><a href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-06</div><div class="title">Diffusion-TTA</div></div></a></div><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AudioLDM2"><span class="toc-text">AudioLDM2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AudioLDM2-1"><span class="toc-text">AudioLDM2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AudioMAE-Encoder"><span class="toc-text">AudioMAE Encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditioning-Information-to-LOA-Translation-with-GPT-2"><span class="toc-text">Conditioning Information to LOA Translation with GPT-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Latent-Diffusion-Model"><span class="toc-text">Latent Diffusion Model</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation">PoDA: Prompt-driven Zero-shot Domain Adaptation</a><time datetime="2023-12-19T02:31:23.000Z" title="发表于 2023-12-19 10:31:23">2023-12-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/15/Domain%20adaptation/" title="Domain adaptation">Domain adaptation</a><time datetime="2023-12-15T09:08:03.000Z" title="发表于 2023-12-15 17:08:03">2023-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA">Diffusion-TTA</a><time datetime="2023-12-06T08:45:27.000Z" title="发表于 2023-12-06 16:45:27">2023-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/30/StegaDDPM/" title="StegaDDPM">StegaDDPM</a><time datetime="2023-11-30T08:38:03.000Z" title="发表于 2023-11-30 16:38:03">2023-11-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/AudioLDM2/" title="AudioLDM2">AudioLDM2</a><time datetime="2023-11-28T02:33:00.000Z" title="发表于 2023-11-28 10:33:00">2023-11-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

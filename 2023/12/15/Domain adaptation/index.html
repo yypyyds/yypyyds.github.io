@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Domain adaptation | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Domain adaptation参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;463835164 问题描述直观来看，就是在训练集和测试集数据分布差距较远，然后需要这个域自适应方法，将模型从源域迁移到目标域。 域自适应的理论理论出发点域自适应理论最核心的想法就是如何将目标域上的泛化误差和源域上的泛化误差联系在一起。那么通过降低源域上的误差，就能间接地降低目标域上的误差。首先，定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Domain adaptation">
+<meta property="og:url" content="http://yypyyds.github.io/2023/12/15/Domain%20adaptation/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="Domain adaptation参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;463835164 问题描述直观来看，就是在训练集和测试集数据分布差距较远，然后需要这个域自适应方法，将模型从源域迁移到目标域。 域自适应的理论理论出发点域自适应理论最核心的想法就是如何将目标域上的泛化误差和源域上的泛化误差联系在一起。那么通过降低源域上的误差，就能间接地降低目标域上的误差。首先，定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-12-15T09:08:03.000Z">
+<meta property="article:modified_time" content="2023-12-19T02:26:48.158Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2023/12/15/Domain%20adaptation/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Domain adaptation',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-19 10:26:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Domain adaptation</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-15T09:08:03.000Z" title="发表于 2023-12-15 17:08:03">2023-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-19T02:26:48.158Z" title="更新于 2023-12-19 10:26:48">2023-12-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Domain adaptation"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Domain-adaptation"><a href="#Domain-adaptation" class="headerlink" title="Domain adaptation"></a>Domain adaptation</h1><p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/463835164">https://zhuanlan.zhihu.com/p/463835164</a></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>直观来看，就是在训练集和测试集数据分布差距较远，然后需要这个域自适应方法，将模型从源域迁移到目标域。</p>
+<h2 id="域自适应的理论"><a href="#域自适应的理论" class="headerlink" title="域自适应的理论"></a>域自适应的理论</h2><h3 id="理论出发点"><a href="#理论出发点" class="headerlink" title="理论出发点"></a>理论出发点</h3><p>域自适应理论最核心的想法就是如何将目标域上的泛化误差和源域上的泛化误差联系在一起。那么通过降低源域上的误差，就能间接地降低目标域上的误差。<br>首先，定义函数 ℎ 和 ℎ′ 在数据分布 $D$ 上的**差异（Disparity）<br><img src="/2023/12/15/Domain%20adaptation/image-20231219094628941.png" alt=""></p>
+<p>然后，只需要使用泛化误差的定义以及_三角不等式_，我们就可以将目标域误差与源域误差联系起来。<br><img src="/2023/12/15/Domain%20adaptation/image-20231219094718327.png" alt=""></p>
+<p>不等式右边的三个部分，分别为源域误差 ，最优联合误差，差异分歧<br>最优联合误差是指函数空间 H 中最优的函数在源域和目标域上的泛化误差，通常认为深度网络的函数空间足够大，最优联合误差可以忽略不计。<br>差异分歧刻画了不同数据域之间的距离，而大部分域自适应理论的出发点就是估计并缩小不同数据域之间的差异分歧，无法直接计算</p>
+<p>不同的域自适应理论的区别就在于他们是差异分歧不同的上界。</p>
+<h4 id="经典理论-mathcal-H-Delta-mathcal-H-Divergence"><a href="#经典理论-mathcal-H-Delta-mathcal-H-Divergence" class="headerlink" title="经典理论 $\mathcal H \Delta \mathcal H-Divergence$"></a>经典理论 $\mathcal H \Delta \mathcal H-Divergence$</h4><p>思路：<br>让差异分歧在 $h$ 和 $h^*$ 所在的函数空间 $\mathcal H$ 求上界<br><img src="/2023/12/15/Domain%20adaptation/image-20231219100310170.png" alt=""></p>
+<p>取上界的操作尽管很直观，但是通常很难进行计算和优化。因此，实际计算时还会引入一个域判别器（Domain Discriminator） $D$，判别器的任务是将源样本和目标样本区分开。<br>泛化误差界：（二分类问题和01损失）<br><img src="/2023/12/15/Domain%20adaptation/image-20231219100421181.png" alt=""></p>
+<h4 id="返璞归真-Disparity-Discrepancy"><a href="#返璞归真-Disparity-Discrepancy" class="headerlink" title="返璞归真 Disparity Discrepancy"></a>返璞归真 Disparity Discrepancy</h4><p>在上面那个方法中，同时求的是 h 和 $h^*$ 的上界，但这是没有必要的，因为 h 是已知的<br><img src="/2023/12/15/Domain%20adaptation/image-20231219101456510.png" alt=""><br>下图是一个可视化的对比，橙色的区域表示取上界的函数空间。<br><img src="/2023/12/15/Domain%20adaptation/image-20231219101516658.png" alt=""></p>
+<h4 id="间隔理论-Margin-Disparity"><a href="#间隔理论-Margin-Disparity" class="headerlink" title="间隔理论 Margin Disparity"></a>间隔理论 Margin Disparity</h4><p>将对样本 x 在两个类别上的预测的评分函数的距离引入损失<br><img src="/2023/12/15/Domain%20adaptation/image-20231219102125688.png" alt=""><br><img src="/2023/12/15/Domain%20adaptation/image-20231219102132467.png" alt=""><br>基于间隔差异散度，给出了域自适应理论第一个针对多分类问题的泛化误差界，</p>
+<p><img src="/2023/12/15/Domain%20adaptation/image-20231219102449067.png" alt=""></p>
+<p>从这个泛化误差界，我们能得到的结论包括：</p>
+<ol>
+<li>增大源域的样本数 $n$ 和目标域的样本数 $m$ 可以降低目标域上的泛化误差。</li>
+<li>合理控制函数空间 $\mathcal F$ 的大小，能够降低目标域上的泛化误差（ $\mathcal F$ 也不能太小，否则最优联合误差可以忽略的假设不再成立）。</li>
+<li>类别数 $k$ 的增加会导致目标域上泛化误差的增大。</li>
+<li>一定范围增大间隔 $\rho$ 的大小，可以降低目标域上的泛化误差（在实际使用MDD算法时，这也是最重要的超参数）</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2023/12/15/Domain%20adaptation/">http://yypyyds.github.io/2023/12/15/Domain%20adaptation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Diffusion-TTA</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-14</div><div class="title">动手学深度学习笔记</div></div></a></div><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div><a href="/2023/11/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" title="读论文过程中碰到的深度学习网络"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">读论文过程中碰到的深度学习网络</div></div></a></div><div><a href="/2023/07/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-08</div><div class="title">机器学习笔记</div></div></a></div><div><a href="/2023/06/02/%E7%A0%940%E7%AC%94%E8%AE%B0/" title="研0笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-02</div><div class="title">研0笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-adaptation"><span class="toc-text">Domain adaptation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84%E7%90%86%E8%AE%BA"><span class="toc-text">域自适应的理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">理论出发点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%90%86%E8%AE%BA-mathcal-H-Delta-mathcal-H-Divergence"><span class="toc-text">经典理论 $\mathcal H \Delta \mathcal H-Divergence$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F-Disparity-Discrepancy"><span class="toc-text">返璞归真 Disparity Discrepancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%B4%E9%9A%94%E7%90%86%E8%AE%BA-Margin-Disparity"><span class="toc-text">间隔理论 Margin Disparity</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation">PoDA: Prompt-driven Zero-shot Domain Adaptation</a><time datetime="2023-12-19T02:31:23.000Z" title="发表于 2023-12-19 10:31:23">2023-12-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/15/Domain%20adaptation/" title="Domain adaptation">Domain adaptation</a><time datetime="2023-12-15T09:08:03.000Z" title="发表于 2023-12-15 17:08:03">2023-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA">Diffusion-TTA</a><time datetime="2023-12-06T08:45:27.000Z" title="发表于 2023-12-06 16:45:27">2023-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/30/StegaDDPM/" title="StegaDDPM">StegaDDPM</a><time datetime="2023-11-30T08:38:03.000Z" title="发表于 2023-11-30 16:38:03">2023-11-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/AudioLDM2/" title="AudioLDM2">AudioLDM2</a><time datetime="2023-11-28T02:33:00.000Z" title="发表于 2023-11-28 10:33:00">2023-11-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
