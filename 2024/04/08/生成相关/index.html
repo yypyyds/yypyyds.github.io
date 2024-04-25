@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>生成相关 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="生成相关AudiogenICLR 2023Meta AI包括两个主要的阶段第一阶段将原始音频编码成离散的token序列，通过一个压缩模型进行该模型以端到端的方式进行训练，使用压缩表示重建输入音频，并以一组鉴别器的形式添加感知损失。第二阶段使用一个自回归的Transformer-decoder language-model，在文本条件的基础上重建音频序列 主要贡献：  sota方法 提高TTA生成性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成相关">
+<meta property="og:url" content="http://yypyyds.github.io/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="生成相关AudiogenICLR 2023Meta AI包括两个主要的阶段第一阶段将原始音频编码成离散的token序列，通过一个压缩模型进行该模型以端到端的方式进行训练，使用压缩表示重建输入音频，并以一组鉴别器的形式添加感知损失。第二阶段使用一个自回归的Transformer-decoder language-model，在文本条件的基础上重建音频序列 主要贡献：  sota方法 提高TTA生成性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-04-08T09:00:48.000Z">
+<meta property="article:modified_time" content="2024-04-25T02:54:37.879Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '生成相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-25 10:54:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">生成相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-08T09:00:48.000Z" title="发表于 2024-04-08 17:00:48">2024-04-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-25T02:54:37.879Z" title="更新于 2024-04-25 10:54:37">2024-04-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="生成相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="生成相关"><a href="#生成相关" class="headerlink" title="生成相关"></a>生成相关</h1><h2 id="Audiogen"><a href="#Audiogen" class="headerlink" title="Audiogen"></a>Audiogen</h2><p>ICLR 2023<br>Meta AI<br>包括两个主要的阶段<br>第一阶段将原始音频编码成离散的token序列，通过一个压缩模型进行<br>该模型以端到端的方式进行训练，使用压缩表示重建输入音频，并以一组鉴别器的形式添加感知损失。<br>第二阶段使用一个自回归的Transformer-decoder language-model，在文本条件的基础上重建音频序列</p>
+<p>主要贡献：</p>
+<ol>
+<li>sota方法</li>
+<li>提高TTA生成性能的两个方法：classifier free guidance，动态文本和音频混合来提高组合性</li>
+<li>可以做条件和非条件的音频延续</li>
+<li>探索了音频保真度和采样时间之间的关系<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240411103419341.png" alt=""><h4 id="Audio-representation"><a href="#Audio-representation" class="headerlink" title="Audio representation"></a>Audio representation</h4>一个时长为d的音频信号可以表示为一个序列 $x\in[-1,1]^{C_a \times T}$ ，$C_a$ 是通道数，$T=d\cdot f_{sr}$ 是采样点数，至于为什么是 $[-1,1]$ ，是因为py库读取wav文件会自动归一化<br>Audio representation model 包含三个部分</li>
+</ol>
+<ul>
+<li>encoder network E：将音频片段作为输入，输出一个latent representation $z$ </li>
+<li>quantization layer Q：使用Vector Quantizaiton将 $z$ 压缩为 $z_q$</li>
+<li>decoder net work G：从压缩表示 $z_q$ 中重建时域信号 $\hat x$<br>整个系统端到端进行训练，损失包括时域和频域上的重建损失，以及不同时间分辨率的感知损失，这一部分通过多个鉴别器来实现。</li>
+</ul>
+<p>训练目标：<br>时域重建损失：$\ell_t(x,\hat x)=\Vert x-\hat x\Vert_1$<br>频域重建损失：</p>
+<script type="math/tex; mode=display">
+\ell_f(x,\hat x)=\frac{1}{|\alpha|\cdot|s|}\sum_{\alpha_i\in \alpha}\sum_{i\in e}\Vert S_i(x)-S_i(\hat x) \Vert_1 +\alpha_i\Vert S_i(x)-S_i(\hat x) \Vert_2</script><p>其中 $S_i$ 是根据 $i$ 改变的不同窗长和步长的64-bins梅尔谱图，系数 $\alpha_i$ 用于平衡两项损失，但是这里设置的是1<br>感知损失：<br>使用一个multi-scale STFT-based discriminator来捕获声音信号中的不同结构。<br>判别器的结构是一样的，但是时间分辨率不同，对抗损失如下</p>
+<script type="math/tex; mode=display">
+\ell_g(\hat x)=\frac{1}{K}\sum_k \max(0,1-D_k(\hat x))</script><p>根据公式，这个 $D_k(\hat x)$ 输出的应该是为真实样本的概率<br>还有特征匹配损失（这个在VITS中也出现了），L是判别器的层数</p>
+<script type="math/tex; mode=display">
+\ell_{feat}(x,\hat x)=\frac{1}{KL}\sum^K_{k=1}\sum^L_{l=1}\Vert D^l_k(x)-D^l_k(\hat x) \Vert_1</script><p>判别器的总损失还加了一个部分，总的如下</p>
+<script type="math/tex; mode=display">
+L_d(x, \hat x)=\frac{1}{K}\sum^K_{k=1}\max(0,1-D_k(x))+\max(0,1+D_k(\hat x))</script><p>对抗损失的两部分，对真样本 $x$ 输出要大，假的输出要小，因为是损失，所以二者都取负，得到的就是上面这种形式。<br><strong>Audio language modeling</strong><br>看不懂，什么卵<br>给定一个文本输入 $C$ ，Audio Language Model（ALM）组件输出一个音频token序列 $\hat z_q$ 然后在其上面做音频重建<br>给定如下：<br>一个文本编码器F，将原始文本输出投射成一个语义稠密表示（semantic dense representation）$F(c)=u$<br>一个查阅表（Look-Up-Table, LUT）将音频token $\hat z_q$ 嵌入一个连续的空间，$LUT(\hat z_q)=v$<br>然后将 $u,v$ 连接，得到 $Z=u_1,\dots,u_{T_u},v_1,\dots,v_{T_v}$<br>然后使用上面这个表示 $Z$ ，训练一个Transformer-decoder language-model，使用如下损失函数</p>
+<script type="math/tex; mode=display">
+L_{LM}=-\sum^N_{i=1}\sum^{T_v}_{j=1}\log p_{\theta}(v^i_j|u_1^1,\dots,u^i_{T_u},v_1^1,\dots,v^i_{j-1})</script><p>两个连乘，N是样本数吗？然后下标是音频嵌入连续空间序列<br>突然懂了<br>首先这是一个Transformer序列预测器，目标是给定文本，得到音频token序列，上面损失函数是一个条件熵的形式，对于一条样本，最开始的条件是文本表示 $u$ ，然后依次预测下一个音频token，每次预测计算一次条件熵。<br><strong>长序列预测问题</strong><br>本方法对原始音频下采样32倍，让每个audiotoken关联2ms，这会导致很长的序列，因为每秒就需要500个token。<br>使用Multi-stream audio inputs的方法缓解这个问题<br>看不懂，看代码的时候再研究研究</p>
+<h4 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h4><p>一些评估指标<br>Frechet Audio Distance：FAD，是一种与人类感知密切相关的无参考评估指标<br>还评估了KL散度和主观的标准<br>做了音频续写的实验，使用的条件包括音频片段，音频相关文本，音频无关文本</p>
+<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><p>缺乏理解时间顺序的能力，经常生成莫名其妙的语音</p>
+<h2 id="Diffsound"><a href="#Diffsound" class="headerlink" title="Diffsound"></a>Diffsound</h2><p>TASLP2023<br>北大, Tencent AI lab<br>Dongchao Yang, Jianwei Yu<br>传统的自回归token解码器，有两个问题</p>
+<ul>
+<li>梅尔谱token总是按顺序预测，这会限制模型的生成能力，因为有些声音的事件位置可能来自文本的两端</li>
+<li>预测阶段，来自之前的错误的预测token会导致累计的预测错误<br>主要贡献：</li>
+<li>第一次在音频生成任务中使用Diffusion</li>
+<li>提出了一种基于掩码的文本生成策略（mask-based text generation strategy, MBTG），有助于在AudioSet数据集上构建大规模文本-音频数据集</li>
+<li>提出了三个客观的评价指标 <h3 id="Proposed-text-to-sound-framework"><a href="#Proposed-text-to-sound-framework" class="headerlink" title="Proposed text-to-sound framework"></a>Proposed text-to-sound framework</h3><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240412150427637.png" alt=""><br><strong>Text Encoder</strong><br>有点搞，用的是BERT和CLIP的text encoder，但是效果更好，说明和图片的对比学习会让textencoder携带更多的语义信息<br><strong>Learning Discrete Latent Space of Mel-Spectrograms via VQ-VAE</strong><br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240412152710502.png" alt=""><br>和TTS任务不同，TTA任务生成的音频与文本没有直接的对应关系<br>使用VQ-VAE来生成梅尔谱，问题就被转换成生成token序列<br>这里就是普通的VQ-VAE，不再详细记录<br><strong>Token-Decoder</strong><br>用于将文本特征变换到离散的梅尔谱图token序列，本文首先提出采用自回归的token-decoder<br>啥意思，前面说不用自回归，这里又用的自回归<br>说后面给了一个不同自回归的方法，等下看看<br>这里是用自回归预测前面VQ-VAE的encoder生成的梅尔token序列<br>在训练的时候，因为累计错误问题，使用<code>"teacher-forcing" strategy</code>，使用ground truth作为预测第 $i$ 个token时前 $i-1$ 个token条件<br><strong>Vocoder</strong><br>用的MelGAN，不懂<br>这还是自己训练的，在AS上训练的<h3 id="Diffusion-based-decoder"><a href="#Diffusion-based-decoder" class="headerlink" title="Diffusion-based decoder"></a>Diffusion-based decoder</h3>就是经典Diffusion，参考<a href="../_posts/AudioLDM.md">AudioLDM</a>中关于Diffusion的部分<br>这里给了一个好高大上的loss，叫负对数似然变分上界（variational upper bound on the negative log-likelihood）<script type="math/tex; mode=display">
+\mathcal{L}_{vb}=\mathbb{E}_{q(\boldsymbol{x}_0)}\left[
+D_{KL}[q(\boldsymbol{x}_t|\boldsymbol{x}_0)\Vert p(\boldsymbol{x}_t)] + \sum^T_{t=1}\mathbb{E}_{q(\boldsymbol{x}_t|\boldsymbol{x}_0)}
+\left[D_{KL}[q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t,\boldsymbol{x}_0)\Vert
+p_{\theta}(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t)]
+\right]
+\right]</script>这一大坨狗屎是什么<br>首先，$q$ 是前向过程的分布，是加噪过程，$p$ 是不变的高斯分布，$p_\theta$ 是反向过程去噪的分布<br>第一个KL散度是加噪过程的损失，第二个是T步去噪过程的损失，这下懂了</li>
+</ul>
+<p><strong>Discrete Diffuison Model</strong><br>因为送入Decoder的是离散的整数，不能在这上面加噪声，引入一个转移概率矩阵，用于知道前向过程中 $\boldsymbol{x}_0$ 如何一步一步转换为 $\boldsymbol{x}_t$<br>定义为：</p>
+<script type="math/tex; mode=display">
+[\boldsymbol{Q}_t]_{ij}=q(x_t=i|x_{t-1}=j) \in \mathbb{R}^{P\times P}</script><p>对整个序列的前向过程可以写为：</p>
+<script type="math/tex; mode=display">
+q(X_t|X_{t-1})=\boldsymbol{c}^T(x_t)\boldsymbol{Q}_t \boldsymbol{c}(x_{t-1})</script><p>其中 $\boldsymbol{c}(\cdot)$ 是一个将标量元素转换成one-hot向量的函数<br>沟槽的后面好多，这里暂时解释不清，继续往后看<br>然后说按照马尔可夫链和贝叶斯公式，可以计算出 $q(x_t|x_0)$ 和 $q(x_{t-1}|x_t,x_0)$<br><strong>Non-Autoregressive Mel-Spectrograms Generation via Diffsound</strong><br>作者希望预测的结果可以同时获得，并利用扩散模型T步的迭代优化预测结果<br>但是这里的特征是离散的，这里提到，离散扩散模型训练的关键是设计一种合适的策略来预定义马尔可夫转移矩阵 $Q_t$<br>注意到上面用的是离散标签在这搞扩散，我直接一个问号<br>这是将离散标签one-hot之后类似一个分类过程？<br>发现one-hot之后就是一个单位向量啊，然后左乘右乘就是选择 $Q_t$ 中的一个元素嘛<br>定义了三种转移矩阵</p>
+<ul>
+<li>Uniform transition matrix</li>
+<li>mask transition matrix</li>
+<li>mask and uniform transition matrix<br>这个就是传统diffusion的扩展，不想看了<br><strong>Pre-Training Diffsound on AudioSet Dataset</strong><br>对于文本描述，采用的做法是在标签两边随机插入一到两个mask标记，以使模型主要关注于声音事件而不是文本（感觉不太靠谱<br>采用渐进式训练，从单标签开始训练，然后再多标签<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3>相比之前的文章，引入了一个Audio Caption Loss，是将生成的音频送入Audio caption模型，执行caption任务</li>
+</ul>
+<h2 id="Make-an-Audio"><a href="#Make-an-Audio" class="headerlink" title="Make an Audio"></a>Make an Audio</h2><p>ICML2023<br>浙大，北大，字节跳动<br>Rongjie Huang, Jiawei Huang, Dongchao Yang<br>引入了一种数据增强方法，解决音频文本对数据稀缺的问题<br>使用频谱自编码器预测自监督音频表示而不是波形<br>支持多模态输入生成音频<br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240419092228304.png" alt=""></p>
+<h3 id="Pseudo-Prompt-Enhancement-Distill-then-Reprogram"><a href="#Pseudo-Prompt-Enhancement-Distill-then-Reprogram" class="headerlink" title="Pseudo Prompt Enhancement: Distill-then-Reprogram"></a>Pseudo Prompt Enhancement: Distill-then-Reprogram</h3><p>这个方法包含两个阶段，一个expert distillation approach，使用audio caption方法，从无标签音频中得到文本描述，一个dynamic reprogramming procedure来构建不同的音频文本组合<br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240419092220640.png" alt=""></p>
+<p><strong>Expert Distillation</strong><br>使用两个预训练模型来做这个事情，分别是audio caption的工作和audio-text retrieval的工作，我记得两个都是DCASE的task<br>没看懂，这个audio-text retrieval的模型是拿来干嘛的？<br><strong>Dynamic reprogramming</strong><br>根据几个模板，把 $N\in \{0,1,2\}$ 个音频文本对使用预设的几个方法连接</p>
+<h3 id="Textual-Representation"><a href="#Textual-Representation" class="headerlink" title="Textual Representation"></a>Textual Representation</h3><p>就说用了CLAP和T5-Large(一个大语言模型)，实验表明二者的结果相近，但是CLAP更高效，因为不需要offline computation</p>
+<h3 id="Audio-Representation"><a href="#Audio-Representation" class="headerlink" title="Audio Representation"></a>Audio Representation</h3><p>经典的梅尔自编码器带判别器提高重建质量<br>这个除了重建损失和对抗损失还有一个KL散度惩罚损失</p>
+<p>后面还有经典的介绍Diffusion和CLassifier-Free Guidance</p>
+<h3 id="X-To-Audio-No-Modality-Left-Behind"><a href="#X-To-Audio-No-Modality-Left-Behind" class="headerlink" title="X-To-Audio: No Modality Left Behind"></a>X-To-Audio: No Modality Left Behind</h3><p>包括三个部分，text to audio, audio inpainting visual to audio(video or image)<br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240419092200720.png" alt=""></p>
+<h4 id="Personalized-Text-To-Audio-Generation"><a href="#Personalized-Text-To-Audio-Generation" class="headerlink" title="Personalized Text-To-Audio Generation"></a>Personalized Text-To-Audio Generation</h4><p>没搞懂他想干嘛<br>这里给了个例子，在给定打雷的声音时，让模型生成babycrying的音频，就会生成<code>a baby crying in the thunder day</code><br>大概就是通过文本描述修改音频，添加背景声，或者插入说话的主体之类的<br>做法是对给定的音频片段，选取一个特定的时间段$t_0$然后对其进行Diffuision的加噪去噪过程<br>这里提到音频的文本对其度和真实度之间随着T的变大有一个trade-off</p>
+<h4 id="Audio-Inpainting"><a href="#Audio-Inpainting" class="headerlink" title="Audio Inpainting"></a>Audio Inpainting</h4><p>通过mask来实现Inpainting的训练，采用了两种mask方法<br>一个是<a href="Suvorov, R., Logacheva, E., Mashikhin, A., Remizova, A., Ashukha, A., Silvestrov, A., Kong, N., Goka, H., Park, K., and Lempitsky, V. Resolution-robust large mask inpainting with fourier convolutions. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision, pp. 2149–2159, 2022">LaMa</a>中的什么polygonal chains和任意宽高比的矩形mask（听起来像是在mel谱上做mask，因为原来的工作是图像上的<br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240419092131181.png" alt=""><br>大概长这样<br>另一个是在语音相关文献中常用的帧级掩蔽策略</p>
+<h4 id="Visual-To-Audio-Generation"><a href="#Visual-To-Audio-Generation" class="headerlink" title="Visual-To-Audio Generation"></a>Visual-To-Audio Generation</h4><p>用CLIP来抽取图像特征，用文本表示来弥合视觉和音频世界之间的模态差距，用一个或多个Flow模型将CLIP的特征向量空间映射到CLAP的特征向量空间<br>对于视频，抽取固定的4帧，池化得到4帧的平均表示，退化为图片转音频</p>
+<h3 id="Training-and-Evaluation"><a href="#Training-and-Evaluation" class="headerlink" title="Training and Evaluation"></a>Training and Evaluation</h3><p>笑死用了18块V100<br>在常用的评估方法FID和KL散度之上，添加了CLAP分数来评估audio-text alignment<br>对比了Diffsound，AudioLDM和AudioGen<br><img src="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/image-20240419170509432.png" alt=""></p>
+<p>IS: inception score，在AudioLDM中，对他的解释是</p>
+<blockquote>
+<p>IS is effective in evaluating both sample quality and diversity.</p>
+</blockquote>
+<p>网上找的都说什么是用谷歌一个分类模型计算的，对于音频，需要专门的分类器 $C$<br>可以自己训练，计算公式如下</p>
+<script type="math/tex; mode=display">
+IS(G)=\exp(\mathbb{E}_{z\sim P_g} D_{KL}(p(y|x)\Vert p(y)))</script><p>在AudioLDM中有讲，是用的PANNs分类器做的评估</p>
+<p>消融实验中提到，对于文本特征提取，CLAP和T5表现差不多，但是CLAP性能高</p>
+<h3 id="与AudioLDM2的对比"><a href="#与AudioLDM2的对比" class="headerlink" title="与AudioLDM2的对比"></a>与AudioLDM2的对比</h3><p>二者同为多模态内容生成音频的工作，从结构、特征工程、结果三个角度来看<br><strong>结构</strong><br>AudioLDM2</p>
+<ul>
+<li>使用AudioMAE编码音频特征</li>
+<li>使用GPT-2生成其他模态特征</li>
+<li>使用含Transformer块的U-net<br>Make-an-Audio</li>
+<li>使用自己训练的梅尔自编码器结构网络编码音频特征</li>
+<li>使用CLIP和CLAP编码其他模态特征</li>
+<li>使用的普通的卷积U-net</li>
+</ul>
+<p><strong>特征工程</strong><br>AudioLDM2</p>
+<ul>
+<li>使用各模态的专家模型抽取模态特征 </li>
+<li>使用GPT2生成音频大一统特征<br>Make-an-Audio</li>
+<li>也是用的专家模型抽取模态特征</li>
+<li>使用Flow映射分布到自编码器特征空间</li>
+</ul>
+<p><strong>结果</strong><br><img src="file:///C:/Users/89492/Desktop/%E5%91%A8%E6%8A%A5/2024-4-22%E9%84%A2%E6%B9%A7%E6%A3%9A%E5%91%A8%E6%8A%A5/image-20240422100319446.png?lastModify=1713926396" alt="image-20240422100319446"><br>AudioLDM使用的训练数据少很多，主观评价相对也更好<br>OVL：Overall quality<br>REL：relevance t the input text</p>
+<h2 id="Retrieval-Augmented-text-to-audio-generation"><a href="#Retrieval-Augmented-text-to-audio-generation" class="headerlink" title="Retrieval-Augmented text to audio generation"></a>Retrieval-Augmented text to audio generation</h2><p>ICASSP 2024<br>University of Surrey<br>Yi Yuan, Haohe Liu<br>提出的问题：由于TTA模型训练数据的类别不平衡问题，其生成性能存在偏差，这些模型可以为常见的声音事件生成真实的音频片段，但是当遇到不太频繁或看不见的声音事件时，他们可能会生成不正确或不相关的音频。</p>
+<h2 id="VoiceBox"><a href="#VoiceBox" class="headerlink" title="VoiceBox"></a>VoiceBox</h2><h2 id="AudioPaLM"><a href="#AudioPaLM" class="headerlink" title="AudioPaLM"></a>AudioPaLM</h2><h2 id="TANGO"><a href="#TANGO" class="headerlink" title="TANGO"></a>TANGO</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/">http://yypyyds.github.io/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/12/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2024/04/08/%E8%8D%89%E7%A8%BF%E7%BA%B8/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div><a href="/2023/11/13/AudioLDM/" title="AudioLDM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-13</div><div class="title">AudioLDM</div></div></a></div><div><a href="/2023/11/20/CLAP/" title="CLAP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="title">CLAP</div></div></a></div><div><a href="/2023/11/28/AudioLDM2/" title="AudioLDM2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">AudioLDM2</div></div></a></div><div><a href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-06</div><div class="title">Diffusion-TTA</div></div></a></div><div><a href="/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/" title="Few-shot SED相关论文"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-18</div><div class="title">Few-shot SED相关论文</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3"><span class="toc-text">生成相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Audiogen"><span class="toc-text">Audiogen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Audio-representation"><span class="toc-text">Audio representation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Experiments"><span class="toc-text">Experiments</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Limitations"><span class="toc-text">Limitations</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diffsound"><span class="toc-text">Diffsound</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Proposed-text-to-sound-framework"><span class="toc-text">Proposed text-to-sound framework</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Diffusion-based-decoder"><span class="toc-text">Diffusion-based decoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">实验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make-an-Audio"><span class="toc-text">Make an Audio</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pseudo-Prompt-Enhancement-Distill-then-Reprogram"><span class="toc-text">Pseudo Prompt Enhancement: Distill-then-Reprogram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Textual-Representation"><span class="toc-text">Textual Representation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Audio-Representation"><span class="toc-text">Audio Representation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-To-Audio-No-Modality-Left-Behind"><span class="toc-text">X-To-Audio: No Modality Left Behind</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Personalized-Text-To-Audio-Generation"><span class="toc-text">Personalized Text-To-Audio Generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Audio-Inpainting"><span class="toc-text">Audio Inpainting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visual-To-Audio-Generation"><span class="toc-text">Visual-To-Audio Generation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Training-and-Evaluation"><span class="toc-text">Training and Evaluation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8EAudioLDM2%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">与AudioLDM2的对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrieval-Augmented-text-to-audio-generation"><span class="toc-text">Retrieval-Augmented text to audio generation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VoiceBox"><span class="toc-text">VoiceBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AudioPaLM"><span class="toc-text">AudioPaLM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TANGO"><span class="toc-text">TANGO</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/Linux%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" title="Linux相关命令">Linux相关命令</a><time datetime="2024-04-19T02:09:16.000Z" title="发表于 2024-04-19 10:09:16">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/12/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/" title="无题">无题</a><time datetime="2024-04-12T09:21:14.866Z" title="发表于 2024-04-12 17:21:14">2024-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/" title="生成相关">生成相关</a><time datetime="2024-04-08T09:00:48.000Z" title="发表于 2024-04-08 17:00:48">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E8%8D%89%E7%A8%BF%E7%BA%B8/" title="无题">无题</a><time datetime="2024-04-08T08:49:10.010Z" title="发表于 2024-04-08 16:49:10">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/03/VITS/" title="VITS">VITS</a><time datetime="2024-04-03T02:36:25.000Z" title="发表于 2024-04-03 10:36:25">2024-04-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

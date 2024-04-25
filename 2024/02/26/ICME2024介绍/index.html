@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>ICME2024介绍 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ICME2024介绍题目：在域转移下的半监督声学场景分类（ Semi-Supervised Acoustic Scene Classification Under Domain Shift） Introduction声学场景分类（ASC）：在环境中的预定义类中识别一个声学场景，比如广场，街道，餐厅在ASC的深度学习方法的发展中产生了两个关键的考虑  domain shift 标记数据的稀缺比赛建议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICME2024介绍">
+<meta property="og:url" content="http://yypyyds.github.io/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="ICME2024介绍题目：在域转移下的半监督声学场景分类（ Semi-Supervised Acoustic Scene Classification Under Domain Shift） Introduction声学场景分类（ASC）：在环境中的预定义类中识别一个声学场景，比如广场，街道，餐厅在ASC的深度学习方法的发展中产生了两个关键的考虑  domain shift 标记数据的稀缺比赛建议">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-02-26T02:08:35.000Z">
+<meta property="article:modified_time" content="2024-03-05T10:42:13.195Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="声音事件检测">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ICME2024介绍',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-05 18:42:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ICME2024介绍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-26T02:08:35.000Z" title="发表于 2024-02-26 10:08:35">2024-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-05T10:42:13.195Z" title="更新于 2024-03-05 18:42:13">2024-03-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A3%B0%E5%AD%A6%E7%9B%B8%E5%85%B3/">声学相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ICME2024介绍"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ICME2024介绍"><a href="#ICME2024介绍" class="headerlink" title="ICME2024介绍"></a>ICME2024介绍</h1><p>题目：在域转移下的半监督声学场景分类（ Semi-Supervised Acoustic Scene Classification Under Domain Shift）</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>声学场景分类（ASC）：在环境中的预定义类中识别一个声学场景，比如广场，街道，餐厅<br>在ASC的深度学习方法的发展中产生了两个关键的考虑</p>
+<ul>
+<li>domain shift</li>
+<li>标记数据的稀缺<br>比赛建议大家从半监督学习入手</li>
+</ul>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>Chinese Acoustic Scene(CAS) 2023 dataset<br>超过130小时，使用三个工业级的录音设备，从中国22个城市采集的10个不同的声学场景<br>每个声音片段为10s，有位置和时间戳等元数据<br>采集时间为2023年四月到九月</p>
+<p>训练集有24小时，来自8个城市，有20%的带标签数据<br>测试集从12个城市中选择，有5个未见城市用于评估域转移<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240226105436274.png" alt=""></p>
+<h2 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h2><p>pipeline如下<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240226110142095.png" alt=""></p>
+<h3 id="基线模型架构"><a href="#基线模型架构" class="headerlink" title="基线模型架构"></a>基线模型架构</h3><p>包括两个SE块，一个Transformer encoder<br>SE block: 两个卷积层，通道数相同，kernel3x3<br>两个块的通道分别为64和128<br>每个块后面都有一个平均池化层，kernel2x2<br>Transformer：number of head 8，layers 1，全连接层单元数32<br>沿着时间框架的最大聚合以及一个完全连接的层被应用于获得输出</p>
+<h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><p>使用 log mel作为输入特征</p>
+<ul>
+<li>重采样到44100HZ</li>
+<li>40ms汉宁窗，20ms步长，60Mel-filter bands</li>
+<li>logmel 大小为500x64</li>
+<li>fine-tune阶段使用Adam优化器，0.001 learning rate 32batch size</li>
+</ul>
+<h3 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h3><p>使用各类准确率的平均值计算</p>
+<script type="math/tex; mode=display">
+Accuracy=\frac{1}{N}\sum^{N}_{i=1}Accuracy_{i}</script><p>其中N是类别数<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240226111524736.png" alt=""></p>
+<p>baseline源论文中用的损失是分类交叉熵<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240226154106221.png" alt=""></p>
+<p>baseline中使用的数据增强方法FMix</p>
+<ul>
+<li>随机采样复数矩阵 $\boldsymbol{Z}\in\mathbb{C}^{T\times F}$ 和输入的梅尔谱图 $\boldsymbol{X}$ 形状相同</li>
+<li>对 $\boldsymbol{Z}$ 使用低通滤波器</li>
+<li>对 $\boldsymbol{Z}$ 的复数部分使用反向傅里叶变换❓，取实部得到灰度图</li>
+<li>对灰度图的top n元素置1，其余置0，得到一个01mask<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240226155349182.png" alt=""></li>
+</ul>
+<h1 id="半监督学习方法"><a href="#半监督学习方法" class="headerlink" title="半监督学习方法"></a>半监督学习方法</h1><p>参考文献：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/138085660">知乎</a></p>
+<h2 id="伪标签（Pseudo-Label）"><a href="#伪标签（Pseudo-Label）" class="headerlink" title="伪标签（Pseudo-Label）"></a>伪标签（Pseudo-Label）</h2><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227115130202.png" alt=""><br> 感觉就是用有标签数据训练模型，然后去预测无标签数据，然后用无标签数据的预测标签继续训练，在此技术上加上一个时变参数控制伪标签数据对模型的影响</p>
+<blockquote>
+<p><strong>不足</strong>：Pseudo-Label 方法只在训练时间这个维度上，采用了退火思想，即采用时变系数α(t)。而在伪标签这个维度，对于模型给予的预测标签一视同仁，这种方法在实际中存在明显问题。很显然，如果模型对于一个样本所预测的几个类别都具有相似的低概率值，如共有十个类别，每个类别的预测概率值都接近 0.1，那么再以最大概率值对应的类别作为伪标签，是不合适的，将会引入很大的错误信号。</p>
+</blockquote>
+<h2 id="Γ-Model：Semi-supervised-learning-with-ladder-networks"><a href="#Γ-Model：Semi-supervised-learning-with-ladder-networks" class="headerlink" title="Γ Model：Semi-supervised learning with ladder networks"></a>Γ Model：Semi-supervised learning with ladder networks</h2><p>思路：为了结局有监督和无监督之间的冲突，无监督学习希望尽可能保留原始信息，监督学习则主要保留和监督任务相关的信息。<br>网络结构<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227164516711.png" alt=""><br>对于有标签数据，流经Encoder后通过顶层输出构造和原数据标签的目标函数<br>对于无标签数据，数据经过Encoder后经过Decoder逐层解码，并获得一系列的隐层表示，然后同右侧的无噪前向网络计算均方误差，这里每一层的隐层表示就是保证无监督学习对源数据全部信息的学习。</p>
+<h2 id="Π-Model-amp-Temporal-ensembling-Model：Temporal-ensembling-for-semi-supervised-learning"><a href="#Π-Model-amp-Temporal-ensembling-Model：Temporal-ensembling-for-semi-supervised-learning" class="headerlink" title="Π Model &amp; Temporal ensembling Model：Temporal ensembling for semi-supervised learning"></a>Π Model &amp; Temporal ensembling Model：Temporal ensembling for semi-supervised learning</h2><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227171355133.png" alt=""><br>感觉思想也很简单，首先对于每个数据 $x_i$ ，做两次前向运算，一次前向运算包括两个步骤，随机增强变换和带Dropout的模型前向运算，引入的随机性会让两次计算的输出不同，接下来分情况</p>
+<ul>
+<li>如果是带标签数据，则对于两个输出，算两次，第一次随便取一个输出和标签做交叉熵，第二次两个输出之间算均方误差</li>
+<li>如果是无标签数据，计算两个输出之间的均方误差</li>
+</ul>
+<p>对于 Temporal ensembling Model，其整体框架与 Π Model 类似，在获取无标签数据的信息上采用了相同的思想，唯一的不同是：</p>
+<ul>
+<li>在目标函数的无监督一项中， Π Model 是两次前向计算结果的均方差。而在 temporal ensembling 模型中，采用的是当前模型预测结果与历史预测结果的平均值做均方差计算。</li>
+</ul>
+<h2 id="VAT：Virtual-Adversarial-Training-a-Regularization-Method-for-Supervised-and-Semi-supervised-Learning"><a href="#VAT：Virtual-Adversarial-Training-a-Regularization-Method-for-Supervised-and-Semi-supervised-Learning" class="headerlink" title="VAT：Virtual Adversarial Training: a Regularization Method for Supervised and Semi-supervised Learning"></a>VAT：Virtual Adversarial Training: a Regularization Method for Supervised and Semi-supervised Learning</h2><p>思路：模型所描述的系统应该是光滑的，因此当输入数据发生微小变化时，模型的输出也应是微小变化，进而其预测的标签也近似不变。<br>根据这个思路，引入对抗噪声的概念，优化目标包括三个部分</p>
+<ul>
+<li>有标签数据的交叉熵</li>
+<li>无标签数据的一致正则项<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227184307486.png" alt=""><br>其中 $r_{adv}$ 代表对输入数据所施加的对抗噪声，$D$ 是模型对于施加噪声前后两个输入对应输出的非负度量（比如MSE或KL散度）</li>
+<li>熵最小化<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227184609361.png" alt=""><blockquote>
+<p>结果：VAT 所用到的 一致性正则 和 最小熵正则 对于从无标签数据中挖掘信息提升模型泛化能力，都有显著的作用。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Mean-Teacher：Mean-teachers-are-better-role-models-Weight-averaged-consistency-targets-improve-semi-supervised-deep-learning-results"><a href="#Mean-Teacher：Mean-teachers-are-better-role-models-Weight-averaged-consistency-targets-improve-semi-supervised-deep-learning-results" class="headerlink" title="Mean Teacher：Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results"></a>Mean Teacher：Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results</h2><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227190323213.png" alt=""></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/577959642">https://zhuanlan.zhihu.com/p/577959642</a></p>
+</blockquote>
+<h2 id="MixMatch-A-Holistic-Approach-to-Semi-Supervised-Learning"><a href="#MixMatch-A-Holistic-Approach-to-Semi-Supervised-Learning" class="headerlink" title="MixMatch: A Holistic Approach to Semi-Supervised Learning"></a>MixMatch: A Holistic Approach to Semi-Supervised Learning</h2><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227190946017.png" alt=""><br>优化目标还是两项，有标签数据的交叉熵，无标签数据和伪标签之间的均方误差<br>然后中间套用了不同的数据增强方法还有最后的概率锐化<br>看不太懂，要用的时候看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/499870071">知乎</a></p>
+<h2 id="Unsupervised-Data-Augmentation-for-Consistency-Training"><a href="#Unsupervised-Data-Augmentation-for-Consistency-Training" class="headerlink" title="Unsupervised Data Augmentation for Consistency Training"></a>Unsupervised Data Augmentation for Consistency Training</h2><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240227192141066.png" alt=""><br>几乎完全一样的框架，重点在数据增强</p>
+<blockquote>
+<ul>
+<li>采用了最先进的数据增强技术，在CV上运用了19年刚被提出来的 RandAugment，在NLP上则综合运用了 Back Translation 和 非核心词替换。这些技术可以保证无标签数据在语义不变的情况下，极大地丰富数据的表现形式。这使得 Consistency Regulation 可以从无标签数据中更有效地捕捉到数据的内在表示，这一点是早前如 Π Model 所无法实现的。</li>
+<li>采用了最新的迁移学习模型。在文本分类任务上，研究人员采用 BERT-large 作为基础模型进行微调，由于 BERT 已经在海量数据上进行了预训练，本身在下游任务上就只需要少量数据，再与 UDA 合力，因而可以在 20条有标签数据上实现 SOTA 的表现。</li>
+<li>采用了一系列精心设计的训练技巧。这包括平衡控制有监督信号和无监督信号的 TSA 技术，基于 Entropy Regularization 的锐化技术，无标签数据的二次筛选 等等。这些技巧或许是打败同年出生的 MixMatch 的主要原因。</li>
+</ul>
+</blockquote>
+<p>看完之后我的总结<br>一致性原则+熵最小化原则</p>
+<h1 id="工作准备"><a href="#工作准备" class="headerlink" title="工作准备"></a>工作准备</h1><h2 id="数据集-1"><a href="#数据集-1" class="headerlink" title="数据集"></a>数据集</h2><ul>
+<li>[x] ASC development dataset</li>
+<li>[ ] TAU UAS 2020 Mobile development dataset</li>
+<li>[ ] CochlScene dataset</li>
+</ul>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="BEATS"><a href="#BEATS" class="headerlink" title="BEATS"></a>BEATS</h3><p>这是去年看到的一个SED任务的SoTA方法，有无标签数据预训练的部分和有标签数据微调部分<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240228161332873.png" alt=""></p>
+<h4 id="Iterative-Audio-Pre-training"><a href="#Iterative-Audio-Pre-training" class="headerlink" title="Iterative Audio Pre-training"></a>Iterative Audio Pre-training</h4><h1 id="Dcase以前的方法"><a href="#Dcase以前的方法" class="headerlink" title="Dcase以前的方法"></a>Dcase以前的方法</h1><h2 id="Task4"><a href="#Task4" class="headerlink" title="Task4"></a>Task4</h2><p>SubtaskA: The goal of the task is to evaluate systems for the detection of sound events using real data either weakly labeled or unlabeled and simulated data that is strongly labeled (with time stamps).<br>SubtaskB: The goal of this task is to evaluate systems for the detection of sound events that use softly labeled data for training in addition to other types of data such as weakly labeled, unlabeled or strongly labeled. The main focus of this subtask is to investigate whether using soft labels brings any improvement in performance.</p>
+<h3 id="Minjun-Chen等人"><a href="#Minjun-Chen等人" class="headerlink" title="Minjun Chen等人"></a>Minjun Chen等人</h3><p>对于子任务A，主要关注使用预训练模型，通过self-training的方式，训练多个不同架构的模型，然后做一个ensemble。（但是规则里说不能用model ensemble）<br>子任务A的三个模型</p>
+<ul>
+<li>SK-FD-CRNN</li>
+<li>FT-BEATs</li>
+<li>FT-BEATs-AST</li>
+</ul>
+<p>对子任务B</p>
+<ul>
+<li>为了平衡不同类别数据量之间的差异，对数据量小的类别做数据增强<h4 id="Proposed-Method"><a href="#Proposed-Method" class="headerlink" title="Proposed Method"></a>Proposed Method</h4><h5 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h5>对于SubtaskA，128mel-bins, 256 hop-length, 2048 windows-length<br>对于SubtaskB，巴拉巴拉</li>
+</ul>
+<h5 id="迭代自训练策略"><a href="#迭代自训练策略" class="headerlink" title="迭代自训练策略"></a>迭代自训练策略</h5><ul>
+<li>使用所有SESED数据集的数据和AS的强标签数据训练三个架构的模型</li>
+<li>ensemble这些模型，为弱标签和没标签的数据生成伪标签</li>
+<li>在生成伪标签的过程中，使用<code>class-wise fine-tuned thresholds and median filter length</code></li>
+<li>伪标签子集被用来迭代地训练或者微调模型</li>
+</ul>
+<h5 id="模型-1"><a href="#模型-1" class="headerlink" title="模型"></a>模型</h5><p>taskA的三个模型<br><strong>SK-FD-CRNN</strong>: 使用frequency dynamic convolution（FDY-CRNN）和selective kernel attention（SKA）来替换正常的7层CNN网络中的卷积，并且融合BEATs提取的特征。融合方法为(pool1d and interpolate）<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240229113929993.png" alt=""></p>
+<p><strong>FT-BEATs</strong>: 在BEATs的后面接了一个四层的Bi-GRU和一个线性层作为输出，使用较小的学习率训练所有参数</p>
+<p><strong>FT-BEATs-AST</strong>: 看描述是AST预训练模型和BEATs是平行的，然后二者的输出由一个平均池化层融合，学习率为0.0001</p>
+<p>训练上面三个模型的时候都使用了mean-teacher半监督学习框架</p>
+<p>taskB的模型如下<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240229150039938.png" alt=""><br>没懂，图里和描述不一样<br>描述说用一个decoder将AST提取的embeddings转换为逐帧的输出，就是图里上面那个框<br>两部分，一个是双向门限循环单元（biGRU），和一个线性层</p>
+<h5 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h5><p>就是为了解决<code>class-wise</code>这个问题，然后发现mix-up方法效果最好，具体怎么mix的也没说<br>还有一种方法是oversampling</p>
+<h5 id="后处理"><a href="#后处理" class="headerlink" title="后处理"></a>后处理</h5><p>对不同的声音事件使用不同的中值滤波器窗长<br>使用一个tagging mask strategy来过来taskA中的<code>strong predictions</code>（❓）指logits高的吗<br>使用两组超参数，训练两组模型，第一组的训练目标是PSDS2分数，第二组是PSDS1分数（这都是什么指标<br>两组的时间分辨率也不一样，第一组39帧，第二组156帧（这个是指一个样本分的帧数吗？</p>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><p>我看提交的全是ensemble的</p>
+<h3 id="Han-Yin等人"><a href="#Han-Yin等人" class="headerlink" title="Han Yin等人"></a>Han Yin等人</h3><p>只做taskB</p>
+<ul>
+<li>首先，使用temporal Mixup做数据增强</li>
+<li>提出了一个one-branch SED system和四个two-branch SED system能够使用软标签训练。</li>
+<li>用一个注意力块加到two-branch中做信息融合</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><h5 id="Temporal-Mixup"><a href="#Temporal-Mixup" class="headerlink" title="Temporal Mixup"></a>Temporal Mixup</h5><p>对于两个相同声学场景的不同样本，算加权和</p>
+<script type="math/tex; mode=display">
+X_{new}=\epsilon X_1 +(1-\epsilon) X_2</script><p>对应软标签也一样算加权和</p>
+<h5 id="One-branch-SED-system"><a href="#One-branch-SED-system" class="headerlink" title="One-branch SED system"></a>One-branch SED system</h5><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240229155348133.png" alt=""><br>原来单支指的是一条路下来<br>这个Conformer block指路另一篇论文</p>
+<h5 id="Two-branch-SED-Systems"><a href="#Two-branch-SED-Systems" class="headerlink" title="Two-branch SED Systems"></a>Two-branch SED Systems</h5><p><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240229170158483.png" alt=""><br>四种模式，最后对两个输出做不同维度（软硬度，事件维度，帧级维度）的注意力加权，加权系数是可学习的</p>
+<h4 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h4><p>时域混合了这么多<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240229172710543.png" alt=""><br>训练参数：<br>梅尔：11025步长，22050窗长（500ms）<br>5折交叉验证</p>
+<h5 id="后处理-1"><a href="#后处理-1" class="headerlink" title="后处理"></a>后处理</h5><p>按照不同场景不太可能会出现的声音事件设计mask，引入先验知识</p>
+<h3 id="Xuenan-Xu等人"><a href="#Xuenan-Xu等人" class="headerlink" title="Xuenan Xu等人"></a>Xuenan Xu等人</h3><p>指出了某些声音事件只会发生在某些场景中，所以在不同场景下训练不同的模型<br>主要探索将大规模数据集上通过自监督学习学到的知识转移到这个任务中</p>
+<h4 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h4><h5 id="预训练音频表示"><a href="#预训练音频表示" class="headerlink" title="预训练音频表示"></a>预训练音频表示</h5><p>对BEATs进行改良，首先在AS上训练，然后使用BEATs生成音频特征<br>考虑了两种预训练特征<br><strong>Clip-level Pre-trained Features</strong>: 在整个序列上使用平均池化来获得<code>Clip-level pre-traind feature</code>。❓将全局特征与每个帧级的FBank特征连接起来，然后送入后续的网络<br><strong>Frame-Level Pre-trained Features</strong>: BEATs模型生成的stride为20ms的特征被直接用于LSTM架构</p>
+<h5 id="SED-Model"><a href="#SED-Model" class="headerlink" title="SED Model"></a>SED Model</h5><p>两种结构（怎么不给个图<br><strong>CRNN</strong>: 将每层的<code>Clip-level BEATs embeddings</code>聚合得到一个单独的clip-levelembedding<br>然后将这个embedding和baseline的卷积块输出串联，使用GRU算概率</p>
+<p><strong>LSTM</strong>: 使用上面第二个帧级特征，每层的连接，然后送入LSTM</p>
+<h2 id="Task1"><a href="#Task1" class="headerlink" title="Task1"></a>Task1</h2><p>低复杂度ASC，但是ICME好像没有复杂度要求</p>
+<h4 id="Jiaxin-Tan等人"><a href="#Jiaxin-Tan等人" class="headerlink" title="Jiaxin Tan等人"></a>Jiaxin Tan等人</h4><p>利用Deep separable convolution将卷积分成几块，比传统卷积的参数和计算开销更小<br>最主要的就是把传统卷积换成了blueprint separable convolution<br>然后用知识蒸馏压缩模型<br>教师模型如下<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240304152830021.png" alt=""><br>学生模型如下<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240304152903466.png" alt=""><br>蒸馏方式是标准方式<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240304152938987.png" alt=""></p>
+<h3 id="Yiqiang-Cai等人"><a href="#Yiqiang-Cai等人" class="headerlink" title="Yiqiang Cai等人"></a>Yiqiang Cai等人</h3><p>还是用的separable convolutional layers加知识蒸馏<br>在Residual Normalization layer中加入了一些可学习的参数，进一步提高了性能<br>通过引入用于数据增强的设备仿真提高设备域泛化能力（这个可以学习，对非分类要素进行特定方向的数据增强抹平分布差异）<br>采用不同的数据增强策略，解决过拟合问题</p>
+<p>ICME的数据集都是用同一种设备采集的，故设备模拟好像没必要</p>
+<p>使用两种数据增强方法：<br>Mixup：线性差值两个随机样本<br>Freq-MixStyle：对频带进行归一化</p>
+<p>模型主要以时频分离卷积模块为基础<br><img src="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/image-20240304163042915.png" alt=""></p>
+<h4 id="自适应残差归一化（Adaptive-Residual-Normalization）"><a href="#自适应残差归一化（Adaptive-Residual-Normalization）" class="headerlink" title="自适应残差归一化（Adaptive Residual Normalization）"></a>自适应残差归一化（Adaptive Residual Normalization）</h4><p>用于保证训练过程中残差的数值稳定性？<br>频域实例标准化（frequency-instance normalization）</p>
+<script type="math/tex; mode=display">
+FreqIN(x)=\frac{x-\mu_{nf}}{\sqrt{\sigma^2_{nf}+\epsilon}}</script><script type="math/tex; mode=display">
+AdaResNorm(x)=(\rho \cdot x +(1-\rho)\cdot FreqIN(x))\cdot \gamma +\beta</script><p>其中 $\rho,\gamma,\beta$ 都是可学习的参数，该处理被放在第一层卷积和每个TF-SepConv 块后</p>
+<p>Loss包含两部分，学生模型的输出和标签ground truth之间的交叉熵，学生模型的输出和教师模型的输出之间软标签的KL散度</p>
+<script type="math/tex; mode=display">
+L=L_{label}+\lambda L_{dist}</script><h3 id="Schmid等人"><a href="#Schmid等人" class="headerlink" title="Schmid等人"></a>Schmid等人</h3><p>才发现task1的模型大小限制为128kb<br>数据预处理，看不懂这写的啥</p>
+<blockquote>
+<p>For all models, we randomly roll the waveform over time with a maximun shift of 125ms.<br>   对于CP-Mobile和PaSST，还使用了最大大小为48Mel bin大小的频域掩蔽，并通过随机改变Mel滤波器组的最大频率来应用patch shifting。</p>
+</blockquote>
+<p>shifted crops<br>TAS UAS2022和TAU20的数据集内容是一样的，但是前者把后者10s一段的样本分成了1s一段的样本，所以可以把他们重新拼成10s的片段<br>然后使用0.5s的步长循环移位切割10s音频段，作为数据增强<br>还说什么相比于随机1s片段，可以先计算教师模型的预测，然后离线做知识蒸馏，感觉没什么说法</p>
+<p>Freq-MixStyle<br>对频谱图中的频段进行归一化处理，然后利用两个频谱图的混合频率统计量对其进行反归一化处理❓<br>然后是设备方面的增强（Device Impulse Response Augmentation）感觉没什么用就不看了</p>
+<p>教师模型选的是PaSST和CP-ResNet的ensemble</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/">http://yypyyds.github.io/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B/">声音事件检测</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/05/ICME%E8%8D%89%E7%A8%BF/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2024/02/02/%E9%9F%B3%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E4%BD%9C%E6%B1%87%E6%80%BB/" title="未命名音频生成工作汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">未命名音频生成工作汇总</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-14</div><div class="title">动手学深度学习笔记</div></div></a></div><div><a href="/2023/12/15/Domain%20adaptation/" title="Domain adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-15</div><div class="title">Domain adaptation</div></div></a></div><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div><a href="/2023/11/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" title="读论文过程中碰到的深度学习网络"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">读论文过程中碰到的深度学习网络</div></div></a></div><div><a href="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/" title="生成相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-08</div><div class="title">生成相关</div></div></a></div><div><a href="/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/" title="声音事件检测综述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-28</div><div class="title">声音事件检测综述</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ICME2024%E4%BB%8B%E7%BB%8D"><span class="toc-text">ICME2024介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Baseline"><span class="toc-text">Baseline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%BA%BF%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-text">基线模型架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">实验设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-text">半监督学习方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E6%A0%87%E7%AD%BE%EF%BC%88Pseudo-Label%EF%BC%89"><span class="toc-text">伪标签（Pseudo-Label）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%CE%93-Model%EF%BC%9ASemi-supervised-learning-with-ladder-networks"><span class="toc-text">Γ Model：Semi-supervised learning with ladder networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%CE%A0-Model-amp-Temporal-ensembling-Model%EF%BC%9ATemporal-ensembling-for-semi-supervised-learning"><span class="toc-text">Π Model &amp; Temporal ensembling Model：Temporal ensembling for semi-supervised learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VAT%EF%BC%9AVirtual-Adversarial-Training-a-Regularization-Method-for-Supervised-and-Semi-supervised-Learning"><span class="toc-text">VAT：Virtual Adversarial Training: a Regularization Method for Supervised and Semi-supervised Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mean-Teacher%EF%BC%9AMean-teachers-are-better-role-models-Weight-averaged-consistency-targets-improve-semi-supervised-deep-learning-results"><span class="toc-text">Mean Teacher：Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MixMatch-A-Holistic-Approach-to-Semi-Supervised-Learning"><span class="toc-text">MixMatch: A Holistic Approach to Semi-Supervised Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unsupervised-Data-Augmentation-for-Consistency-Training"><span class="toc-text">Unsupervised Data Augmentation for Consistency Training</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%87%86%E5%A4%87"><span class="toc-text">工作准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86-1"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-text">模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BEATS"><span class="toc-text">BEATS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterative-Audio-Pre-training"><span class="toc-text">Iterative Audio Pre-training</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dcase%E4%BB%A5%E5%89%8D%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">Dcase以前的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Task4"><span class="toc-text">Task4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minjun-Chen%E7%AD%89%E4%BA%BA"><span class="toc-text">Minjun Chen等人</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proposed-Method"><span class="toc-text">Proposed Method</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-text">特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E8%87%AA%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="toc-text">迭代自训练策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B-1"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="toc-text">数据增强</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8E%E5%A4%84%E7%90%86"><span class="toc-text">后处理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">实验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Han-Yin%E7%AD%89%E4%BA%BA"><span class="toc-text">Han Yin等人</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Temporal-Mixup"><span class="toc-text">Temporal Mixup</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#One-branch-SED-system"><span class="toc-text">One-branch SED system</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Two-branch-SED-Systems"><span class="toc-text">Two-branch SED Systems</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C-1"><span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8E%E5%A4%84%E7%90%86-1"><span class="toc-text">后处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xuenan-Xu%E7%AD%89%E4%BA%BA"><span class="toc-text">Xuenan Xu等人</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F"><span class="toc-text">系统</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E9%9F%B3%E9%A2%91%E8%A1%A8%E7%A4%BA"><span class="toc-text">预训练音频表示</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SED-Model"><span class="toc-text">SED Model</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Task1"><span class="toc-text">Task1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jiaxin-Tan%E7%AD%89%E4%BA%BA"><span class="toc-text">Jiaxin Tan等人</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Yiqiang-Cai%E7%AD%89%E4%BA%BA"><span class="toc-text">Yiqiang Cai等人</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%AE%8B%E5%B7%AE%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88Adaptive-Residual-Normalization%EF%BC%89"><span class="toc-text">自适应残差归一化（Adaptive Residual Normalization）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schmid%E7%AD%89%E4%BA%BA"><span class="toc-text">Schmid等人</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/Linux%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" title="Linux相关命令">Linux相关命令</a><time datetime="2024-04-19T02:09:16.000Z" title="发表于 2024-04-19 10:09:16">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/12/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/" title="无题">无题</a><time datetime="2024-04-12T09:21:14.866Z" title="发表于 2024-04-12 17:21:14">2024-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/" title="生成相关">生成相关</a><time datetime="2024-04-08T09:00:48.000Z" title="发表于 2024-04-08 17:00:48">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E8%8D%89%E7%A8%BF%E7%BA%B8/" title="无题">无题</a><time datetime="2024-04-08T08:49:10.010Z" title="发表于 2024-04-08 16:49:10">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/03/VITS/" title="VITS">VITS</a><time datetime="2024-04-03T02:36:25.000Z" title="发表于 2024-04-03 10:36:25">2024-04-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

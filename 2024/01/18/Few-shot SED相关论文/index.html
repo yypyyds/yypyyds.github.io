@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Few-shot SED相关论文 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Few-shot SED相关论文技术报告注重少样本，低延迟在实验里体现 少样本找few shot SED的论文改一改 国内外研究现状 Method 实验 少样本低延时声音事件检测系统Few shot sound event detection（ICASSP 2020）现代的基于深度学习的声音事件识别和检测方法，主要需要大量的训练数据或者在特定的下游任务上微调模型。 因此，对于检测未收录的或者比较稀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Few-shot SED相关论文">
+<meta property="og:url" content="http://yypyyds.github.io/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="Few-shot SED相关论文技术报告注重少样本，低延迟在实验里体现 少样本找few shot SED的论文改一改 国内外研究现状 Method 实验 少样本低延时声音事件检测系统Few shot sound event detection（ICASSP 2020）现代的基于深度学习的声音事件识别和检测方法，主要需要大量的训练数据或者在特定的下游任务上微调模型。 因此，对于检测未收录的或者比较稀">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-01-18T03:29:32.000Z">
+<meta property="article:modified_time" content="2024-01-18T03:34:19.125Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="声音事件检测">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Few-shot SED相关论文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-18 11:34:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Few-shot SED相关论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-18T03:29:32.000Z" title="发表于 2024-01-18 11:29:32">2024-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-18T03:34:19.125Z" title="更新于 2024-01-18 11:34:19">2024-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Few-shot SED相关论文"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Few-shot-SED相关论文"><a href="#Few-shot-SED相关论文" class="headerlink" title="Few-shot SED相关论文"></a>Few-shot SED相关论文</h1><h1 id="技术报告"><a href="#技术报告" class="headerlink" title="技术报告"></a>技术报告</h1><p>注重少样本，低延迟在实验里体现</p>
+<p>少样本找few shot SED的论文改一改</p>
+<p>国内外研究现状</p>
+<p>Method</p>
+<p>实验</p>
+<h2 id="少样本低延时声音事件检测系统"><a href="#少样本低延时声音事件检测系统" class="headerlink" title="少样本低延时声音事件检测系统"></a>少样本低延时声音事件检测系统</h2><h3 id="Few-shot-sound-event-detection（ICASSP-2020）"><a href="#Few-shot-sound-event-detection（ICASSP-2020）" class="headerlink" title="Few shot sound event detection（ICASSP 2020）"></a>Few shot sound event detection（ICASSP 2020）</h3><p>现代的基于深度学习的声音事件识别和检测方法，主要需要大量的训练数据或者在特定的下游任务上微调模型。</p>
+<p>因此，对于检测未收录的或者比较稀有的声音类别限制很大（因为样本很少）。在（11）中，提出了使用少量数据用于训练声音分类器的不同策略，然而，这项工作主要侧重于处理训练过程中有限的数据，然而我们的目标是训练在推理遇到的很少样本的时可以泛化到<code>unsean classes</code>的模型。</p>
+<p>传统的few-shot learning 方法考虑了一个 C-way k-shot 分类任务作为一个闭合集分类问题，这种方法使用C个唯一类标签分别作为音频查询（query）的标签，对于每个类别，给定 K 个标记的样本，其中C是固定的（有点像什么K means聚类）然而，few-shot learning尚未应用于开放集问题，例如声音事件检测，需要从一系列位置的声音中检测先前从未见过的目标声音，这些声音来自无限数量的声音类。</p>
+<p>本文贡献：</p>
+<ul>
+<li><p>将基于先验度量的少样本学习方法应用于开放集声音事件检测任务</p>
+</li>
+<li><p>提出了一种在推理时需要的自动构建标记负样本的方法</p>
+</li>
+<li><p>提出了一种推理时数据增强方法来提高检测准确性</p>
+</li>
+</ul>
+<h4 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h4><p><img src="/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/image-20240113162118429.png" alt="image-20240113162118429"></p>
+<p>就是计算特征然后算不同特征的相似度</p>
+<p>这是基本的C-way k-shot分类</p>
+<p>本文的方法是在这个基础上套一层，把每轮训练作为一个单独的C-way k-shot过程，每次从大数据集里随机抽C个类别，使用这C个类别的C×k个样本和从query集 Q 中抽取的 q 个样本算预测误差</p>
+<h3 id="FEW-Shot-Continual-Learning-with-Weight-Alignment-and-Positive-Enhancement-for-Bioacoustic-Event-Detection"><a href="#FEW-Shot-Continual-Learning-with-Weight-Alignment-and-Positive-Enhancement-for-Bioacoustic-Event-Detection" class="headerlink" title="FEW-Shot Continual Learning with Weight Alignment and Positive Enhancement for Bioacoustic Event Detection"></a>FEW-Shot Continual Learning with Weight Alignment and Positive Enhancement for Bioacoustic Event Detection</h3><p>重点在SSL on abundant labeled data，few shot 的能力是靠大规模音频模型实现的</p>
+<p>在追求生物声学的FSL进步的过程中，Ghani等人[5]表明，来自大规模音频模型的嵌入，特别是BirdNet和Google Perch，使用监督学习对鸟类声音进行训练，在生物声学少量分类任务中表现出很强的性能。考虑到FSL用于音频分类的范围更广，MetaAudio[6]提出了一个基于少镜头分类数据集的基准，涵盖了包括鸟鸣在内的多种声音域。作者将BirdCLEF 2020[2]的训练集分成三组不同的类，分别代表新的训练集、验证集和测试集。目标是从一组类中转移知识，解决n-way k-shot声音分类的挑战。</p>
+<h3 id="Few-shot-continual-learning-for-audio-classification（ICASSP-2021）"><a href="#Few-shot-continual-learning-for-audio-classification（ICASSP-2021）" class="headerlink" title="Few shot continual learning for audio classification（ICASSP 2021）"></a>Few shot continual learning for audio classification（ICASSP 2021）</h3><p>监督学习对于真实场景需要人工手动添加新出现的声音事件类</p>
+<p>作为替代，few-shot learning 被用于音频分类和声音事件检测。在不同的few-shot learning方法中，metric-based prototypical networks被证明在音频上有很好的性能。然而，few-shot方法不维护训练数据类别表，需要手动标记所有新的类以进行部署，这对于大量分类类别问题来说压力很大。</p>
+<p>相比之下，持续学习是一种在线学习策略，其中算法寻求不断适应一系列任务，并在所有任务中表现良好而不会忘记。已经提出音频分类和声音事件检测学习新的声音事件而不忘记以前学习的声音事件。然而，当引入新类、复杂的训练过程或大量新类的标记数据时，持续学习方法通常需要重新训练，这对于资源受限的计算环境或音频域的实际应用并不理想。</p>
+<p>近年来，新出现的研究领域是few-shot continuous learning，它结合了上述方法的优点，目的是在推理时基于少量数据不断扩展分类器的能力。这使得最终用户能够快速和交互式地更新模型。在这项工作中，我们利用之前提出的动态few-shot学习技术(DFSL)引入了一个少镜头连续学习音频分类框架</p>
+<p><img src="/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/image-20240117163224699.png" alt="image-20240117163224699"></p>
+<p>首先，我们用大量的例子在基类上训练分类器，并在推理时对其进行扩展，使其在不忘记基类的情况下，基于少量标记数据识别以前未见过的新类。我们通过更新DFSL中的问题定义和Loss，以及将最新的最先进的音频特征提取模型[29]作为主干来解决音频特定的挑战，包括多标签和弱标签。我们在两个流行的音频数据集上对我们的方法进行了比较分析，提供了对基本类和新类性能的深入评估，以阐明问题的难点。据我们所知，这是第一次将少量连续学习引入音频领域。</p>
+<h3 id="A-Task-Specific-Meta-Learning-Framework-for-Few-Shot-Sound-Event-Detection（MMSP-2022）"><a href="#A-Task-Specific-Meta-Learning-Framework-for-Few-Shot-Sound-Event-Detection（MMSP-2022）" class="headerlink" title="A Task-Specific Meta-Learning Framework for Few-Shot Sound Event Detection（MMSP 2022）"></a>A Task-Specific Meta-Learning Framework for Few-Shot Sound Event Detection（MMSP 2022）</h3><p>Meta-learning是解决few-shot learning的关键，然而由于该方法直到最近几年才受到SED的关注，因此在现有的文献中很少有针对few-shot SED的研究。Shi[10]比较了传统的监督方法和各种元学习方法在few-shot SED中的应用。实验结果表明，元学习模型具有较好的性能。Yang[11]提出了一种将元学习与换能性推理相结合的方法来解决少镜头SED问题。他们方法的核心思想是利用未标记数据的统计数据。Wang[12]成功地将基于度量的元学习方法应用于一个开放集few-shot SED问题</p>
+<p>在基础类别上训练的embedded network面对未见过的类别，性能下降会很严重。本文提出了一个特定任务的原学习框架（task-specific meta-learning framework）用于few-shot Learning。</p>
+<ul>
+<li><p>TSMLF继承了ProtoNet的meta-train过程，然后在meta-test阶段，最大化类间距离，最小化类内距离利用支持集来微调embedded network。通过微调，嵌入空间中meta-test 类别的可分离性显著增强，有助于分类器识别未见类别。</p>
+</li>
+<li><p>过度微调会过拟合，所以设置了一个类内距离的距离约束。</p>
+</li>
+</ul>
+<h3 id="A-mutual-learning-framework-for-few-shot-sound-event-detection-ICASSP-2022"><a href="#A-mutual-learning-framework-for-few-shot-sound-event-detection-ICASSP-2022" class="headerlink" title="A mutual learning framework for few-shot sound event detection(ICASSP 2022)"></a>A mutual learning framework for few-shot sound event detection(ICASSP 2022)</h3><p>原型网络(ProtoNet)[6]已被证明是一种有效的few-shot事件检测方法[7,8]。在DCASE 2021挑战任务5中，提交给该挑战的官方基线和几个解决方案[9,10]也使用了ProtoNet。然而，仍然有两个因素限制了ProtoNet的性能。首先，由于音频数据中存在背景噪声和干扰，支持集的类特征可能不够充分，因此从支持集中学习到的类原型可能不能准确地代表类中心。图1显示了从ProtoNet中提取的学习表征(嵌入)，我们可以看到，每个类的嵌入是分散的，特别是“buk4.wav”的支持集，它比“a1.wav”包含更多的背景噪声。因此，“buk4.wav”的f值远低于“a1.wav”。其次，ProtoNet使用基类数据训练特征提取器，并将特征提取器应用于未见类的样本。</p>
+<p>这种类型的迁移学习是任务不可知的:特征提取器没有学习到对未见过的类进行最佳判别。它的性能通常不如特定于任务的特征提取器</p>
+<p>本文提出了一个交互学习框架来持续更新特征提取器和类原型</p>
+<ul>
+<li><p>首先使用base-class 数据训练了一个特征提取器，然后使用类原型初始化分类器</p>
+</li>
+<li><p>然后使用未标记音频的统计数据通过transductive inference来更新分类器</p>
+</li>
+<li><p>为了得到特定于任务的特征提取器，进一步使用更新的类原型作为监督信息对特征提取器进行微调。这些过程可以被重复多次，以便特征提取器和分类器可以不断更新。</p>
+</li>
+</ul>
+<h3 id="Adaptive-Few-Shot-Learning-Algorithm-for-Rare-Sound-Event-Detection-IJCNN-2022"><a href="#Adaptive-Few-Shot-Learning-Algorithm-for-Rare-Sound-Event-Detection-IJCNN-2022" class="headerlink" title="Adaptive Few-Shot Learning Algorithm for Rare Sound Event Detection(IJCNN 2022)"></a>Adaptive Few-Shot Learning Algorithm for Rare Sound Event Detection(IJCNN 2022)</h3><p>这些都激发了对Few-shot学习的研究。</p>
+<p>同时，该方法也在[17]-[21]中被引入，用于罕见声事件的检测，并取得了良好的效果。Few-shot模型有望缓解数据不足和冷启动问题。它通常遵循episodic training策略，在每个集中考虑一个N way K-shot(例如5 way，1 shot意味着有5个类，每个类包含1个支持示例)分类任务。</p>
+<p>在few-shot learning的设置中，一个模型首先在有标记数据的base classes训练。然后，假设每个新类只给出一个或几个标记样本（support set），要在训练期间未见的新类的未标记样本（query set）组成的few-shot任务上评估模型泛化。</p>
+<p>所有metric-based few-shot learning 框架，都是独立计算每个support样例和query样例之间的相似度，导致support样例之间的相关性缺失。这种现象尤其在k较小时发生，这促使我们在每个任务中结合所有类别的上下文来寻找相关的特征。我们的task adaptive module旨在整合所有支持样例的信息，以评估每个类内部的共性和所有类之间的独特性，从而找到关键特征。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/">http://yypyyds.github.io/2024/01/18/Few-shot%20SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a><a class="post-meta__tags" href="/tags/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B/">声音事件检测</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/02/%E9%9F%B3%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E4%BD%9C%E6%B1%87%E6%80%BB/" title="未命名音频生成工作汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">未命名音频生成工作汇总</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/13/AudioLDM/" title="AudioLDM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-13</div><div class="title">AudioLDM</div></div></a></div><div><a href="/2023/11/20/CLAP/" title="CLAP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="title">CLAP</div></div></a></div><div><a href="/2023/11/28/AudioLDM2/" title="AudioLDM2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">AudioLDM2</div></div></a></div><div><a href="/2023/12/06/Diffusion-TTA/" title="Diffusion-TTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-06</div><div class="title">Diffusion-TTA</div></div></a></div><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div><a href="/2023/10/11/BEATS-Audio-Pre-Training-with-Acoustic-Tokenizers/" title="BEATS-Audio Pre-Training with Acoustic Tokenizers"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">BEATS-Audio Pre-Training with Acoustic Tokenizers</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Few-shot-SED%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87"><span class="toc-text">Few-shot SED相关论文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A"><span class="toc-text">技术报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%91%E6%A0%B7%E6%9C%AC%E4%BD%8E%E5%BB%B6%E6%97%B6%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-text">少样本低延时声音事件检测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Few-shot-sound-event-detection%EF%BC%88ICASSP-2020%EF%BC%89"><span class="toc-text">Few shot sound event detection（ICASSP 2020）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Method"><span class="toc-text">Method</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FEW-Shot-Continual-Learning-with-Weight-Alignment-and-Positive-Enhancement-for-Bioacoustic-Event-Detection"><span class="toc-text">FEW-Shot Continual Learning with Weight Alignment and Positive Enhancement for Bioacoustic Event Detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Few-shot-continual-learning-for-audio-classification%EF%BC%88ICASSP-2021%EF%BC%89"><span class="toc-text">Few shot continual learning for audio classification（ICASSP 2021）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Task-Specific-Meta-Learning-Framework-for-Few-Shot-Sound-Event-Detection%EF%BC%88MMSP-2022%EF%BC%89"><span class="toc-text">A Task-Specific Meta-Learning Framework for Few-Shot Sound Event Detection（MMSP 2022）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-mutual-learning-framework-for-few-shot-sound-event-detection-ICASSP-2022"><span class="toc-text">A mutual learning framework for few-shot sound event detection(ICASSP 2022)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptive-Few-Shot-Learning-Algorithm-for-Rare-Sound-Event-Detection-IJCNN-2022"><span class="toc-text">Adaptive Few-Shot Learning Algorithm for Rare Sound Event Detection(IJCNN 2022)</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/Linux%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" title="Linux相关命令">Linux相关命令</a><time datetime="2024-04-19T02:09:16.000Z" title="发表于 2024-04-19 10:09:16">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/12/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/" title="无题">无题</a><time datetime="2024-04-12T09:21:14.866Z" title="发表于 2024-04-12 17:21:14">2024-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/" title="生成相关">生成相关</a><time datetime="2024-04-08T09:00:48.000Z" title="发表于 2024-04-08 17:00:48">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/08/%E8%8D%89%E7%A8%BF%E7%BA%B8/" title="无题">无题</a><time datetime="2024-04-08T08:49:10.010Z" title="发表于 2024-04-08 16:49:10">2024-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/03/VITS/" title="VITS">VITS</a><time datetime="2024-04-03T02:36:25.000Z" title="发表于 2024-04-03 10:36:25">2024-04-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
