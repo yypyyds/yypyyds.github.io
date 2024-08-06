@@ -56,6 +56,15 @@
   </url>
   
   <url>
+    <loc>http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/</loc>
+    
+    <lastmod>2024-07-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yypyyds.github.io/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/</loc>
     
     <lastmod>2024-07-08</lastmod>
@@ -524,15 +533,6 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/2023/08/02/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/</loc>
-    
-    <lastmod>2023-11-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://yypyyds.github.io/2023/09/28/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/</loc>
     
     <lastmod>2023-11-16</lastmod>
@@ -659,7 +659,21 @@
 
   
   <url>
-    <loc>http://yypyyds.github.io/tags/Lombard/</loc>
+    <loc>http://yypyyds.github.io/tags/%E8%AE%BA%E6%96%87/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/CLAP/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/conda/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -673,7 +687,70 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E8%AE%BA%E6%96%87/</loc>
+    <loc>http://yypyyds.github.io/tags/Diffusion/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/FF14/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/ubuntu/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/Linux/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E5%9F%9F%E8%87%AA%E9%80%82%E5%BA%94/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/Lombard/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -687,7 +764,35 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/markdown/</loc>
+    <loc>http://yypyyds.github.io/tags/pytorch-lighting/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E9%9A%90%E5%86%99/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/speaker-seperation/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/Deepfake/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -729,7 +834,28 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/clousx6/</loc>
+    <loc>http://yypyyds.github.io/tags/markdown/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/VAE/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/go-zero/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/emoji/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -750,14 +876,21 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/</loc>
+    <loc>http://yypyyds.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/go-zero/</loc>
+    <loc>http://yypyyds.github.io/tags/TTS/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/tags/clousx6/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -778,7 +911,7 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/emoji/</loc>
+    <loc>http://yypyyds.github.io/tags/latex/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -786,13 +919,6 @@
   
   <url>
     <loc>http://yypyyds.github.io/tags/hexo/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/latex/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -807,13 +933,6 @@
   
   <url>
     <loc>http://yypyyds.github.io/tags/ssh/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/ubuntu/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -862,13 +981,6 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://yypyyds.github.io/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -883,20 +995,6 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://yypyyds.github.io/tags/%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -904,14 +1002,7 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/lombard/</loc>
+    <loc>http://yypyyds.github.io/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -967,91 +1058,7 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/FF14/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/VAE/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/speaker-seperation/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/CLAP/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/Diffusion/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/%E5%9F%9F%E8%87%AA%E9%80%82%E5%BA%94/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/%E9%9A%90%E5%86%99/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/conda/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/Linux/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/pytorch-lighting/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/TTS/</loc>
+    <loc>http://yypyyds.github.io/tags/lombard/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1065,14 +1072,7 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/tags/%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/tags/Deepfake/</loc>
+    <loc>http://yypyyds.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1088,42 +1088,7 @@
 
   
   <url>
-    <loc>http://yypyyds.github.io/categories/%E6%9C%AC%E7%A7%91%E6%AF%95%E8%AE%BE/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/categories/%E8%80%83%E7%A0%94%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/categories/%E7%8E%A9/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/categories/%E5%A3%B0%E5%AD%A6%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2024-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yypyyds.github.io/categories/%E6%9F%A5%E9%98%85%E7%94%A8/</loc>
+    <loc>http://yypyyds.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1137,14 +1102,49 @@
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/categories/%E5%85%B6%E4%BB%96/</loc>
+    <loc>http://yypyyds.github.io/categories/%E5%A3%B0%E5%AD%A6%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://yypyyds.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://yypyyds.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/categories/%E7%8E%A9/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/categories/%E6%9F%A5%E9%98%85%E7%94%A8/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/categories/%E6%9C%AC%E7%A7%91%E6%AF%95%E8%AE%BE/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/categories/%E8%80%83%E7%A0%94%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2024-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yypyyds.github.io/categories/%E5%85%B6%E4%BB%96/</loc>
     <lastmod>2024-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
