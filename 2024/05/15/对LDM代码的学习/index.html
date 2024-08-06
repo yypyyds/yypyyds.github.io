@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>对LDM代码的学习 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对LDM代码的学习看了下ControlNet，感觉要完全掌握这个技术，需要对扩散模型的代码十分熟悉，所以打算再集中研究一下Make-an-Audio的训练过程，然后看看如何在这个的基础上去进行下一步工作。 Make an audio代码开源代码中把VAE也训练了，就调试一下Diffusion的训练过程模型的生成训练目标是ldm.models.diffusion.ddpm_audio.LatentD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对LDM代码的学习">
+<meta property="og:url" content="http://yypyyds.github.io/2024/05/15/%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="对LDM代码的学习看了下ControlNet，感觉要完全掌握这个技术，需要对扩散模型的代码十分熟悉，所以打算再集中研究一下Make-an-Audio的训练过程，然后看看如何在这个的基础上去进行下一步工作。 Make an audio代码开源代码中把VAE也训练了，就调试一下Diffusion的训练过程模型的生成训练目标是ldm.models.diffusion.ddpm_audio.LatentD">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-05-15T07:34:44.000Z">
+<meta property="article:modified_time" content="2024-07-04T07:15:20.645Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="Diffusion">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2024/05/15/%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '对LDM代码的学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-04 15:15:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">对LDM代码的学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-15T07:34:44.000Z" title="发表于 2024-05-15 15:34:44">2024-05-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-04T07:15:20.645Z" title="更新于 2024-07-04 15:15:20">2024-07-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="对LDM代码的学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="对LDM代码的学习"><a href="#对LDM代码的学习" class="headerlink" title="对LDM代码的学习"></a>对LDM代码的学习</h1><p>看了下ControlNet，感觉要完全掌握这个技术，需要对扩散模型的代码十分熟悉，所以打算再集中研究一下Make-an-Audio的训练过程，然后看看如何在这个的基础上去进行下一步工作。</p>
+<h2 id="Make-an-audio代码"><a href="#Make-an-audio代码" class="headerlink" title="Make an audio代码"></a>Make an audio代码</h2><p>开源代码中把VAE也训练了，就调试一下Diffusion的训练过程<br>模型的生成训练目标是<code>ldm.models.diffusion.ddpm_audio.LatentDiffusion_audio</code><br>该文件下还有其他两个类 <code>LatentFinetuneDiffusion, LatentInpaintDiffusion</code><br>注释里写道，前者是<code>Basis for different finetunes, such as inpainting or depth2image</code><br>先不管，反正是重建的做Inpainting的工作，先把正经生成搞懂</p>
+<p>这篇文章真的是神中神 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yusijinfs/article/details/134684608">链接</a></p>
+<h3 id="LatentDiffusion-audio类"><a href="#LatentDiffusion-audio类" class="headerlink" title="LatentDiffusion_audio类"></a>LatentDiffusion_audio类</h3><p>这里的<code>on_train_batch_start</code><br>用到了一个<code>std-rescaling</code><br>看的卵痛<br>于是回来复习Diffusion的数学知识了</p>
+<p>准确来说，加噪声并不是给上一时刻的图像加上噪声值，而是从一个均值与上一时刻图像相关的正态分布里采样出一幅新图像。<br>然后对于分布采样的问题，考虑简单正态分布，有下面的推导</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x &\sim \mathcal{N}(\mu,\sigma^2) \newline
+x_T &\sim \mathcal{N}(0,1) \newline
+x &= \mu \cdot x_T + \sigma
+\end{aligned}</script><p>推广到扩散模型的加噪过程，首先有一个噪声程度的schedule，$\beta_t$ ，对于$x_t$，可以从以下分布中采样</p>
+<script type="math/tex; mode=display">
+x_t\sim \mathcal{N} (\sqrt{1-\beta_t}x_{t-1},\beta_t I)</script><p>按照上面的推导，可以将$x_t$写成下面的形式</p>
+<script type="math/tex; mode=display">
+x_t=\sqrt{1-\beta_t}x_{t-1}+\sqrt{\beta_t}\epsilon_{t-1};\epsilon_{t-1}\sim \mathcal{N}(0,I)</script><p><img src="/2024/05/15/%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20240517160949141.png" alt=""></p>
+<h2 id="ControlNet代码"><a href="#ControlNet代码" class="headerlink" title="ControlNet代码"></a>ControlNet代码</h2><p>按照文档，跑通了fill50k的训练<br>先看配置文件<code>cldm_v15.yaml</code><br>和普通的VAE+LDM配置文件不同<br>模型有下面这种包含关系<br></p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">			|--&gt; ControlNet</span><br><span class="line">ControlLDM--+</span><br><span class="line">			|--&gt; ControlledUnetModel</span><br></pre></td></tr></tbody></table></figure><br>然后还有VAE和CLIP就不放进来了<br>就是多了一个<code>control_stage_config</code>键<p></p>
+<p>其中<code>ControlLDM</code>是继承<code>LatentDiffusion</code>的，和Make-an-Audio中的<code>LatentDiffusion_audio</code>类似</p>
+<h3 id="ControlLDM"><a href="#ControlLDM" class="headerlink" title="ControlLDM"></a>ControlLDM</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, control_stage_config, control_key, only_mid_control, *args, **kwargs</span>):</span><br><span class="line">	<span class="built_in">super</span>().__init__(*args, **kwargs)</span><br><span class="line">	self.control_model = instantiate_from_config(control_stage_config)</span><br><span class="line">	self.control_key = control_key</span><br><span class="line">	self.only_mid_control = only_mid_control</span><br><span class="line">	self.control_scales = [<span class="number">1.0</span>] * <span class="number">13</span></span><br></pre></td></tr></tbody></table></figure>
+<p>沟槽的图像，LDM可以直接用，感觉初始化好简洁<br>这几行就是处理添加的ControlNet</p>
+<p>对于可学习mask的思考<br>在controlnet的条件信息部分，加上一个什么AudioMAE特征，看看是否是帧级别的，然后和帧级01mask乘一下</p>
+<h1 id="AudioControlNet"><a href="#AudioControlNet" class="headerlink" title="AudioControlNet"></a>AudioControlNet</h1><p>先列个文件结构<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-data</span><br><span class="line">-cldm</span><br><span class="line">	cldm.py</span><br><span class="line">	ddim_hacked.py</span><br><span class="line">-ldm</span><br><span class="line">-models</span><br><span class="line">	config.yaml</span><br><span class="line">	pretrained.ckpt</span><br><span class="line">	control.ckpt</span><br><span class="line">train.py</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure><br>预训练模型有了<br>写完还得加上controlnet的参数<p></p>
+<h1 id="Have-Done"><a href="#Have-Done" class="headerlink" title="Have Done"></a>Have Done</h1><p>给预训练模型添加了ControlNet部分的参数<br>数据预处理</p>
+<h1 id="TODO-list"><a href="#TODO-list" class="headerlink" title="TODO list"></a>TODO list</h1><ul>
+<li>[ ] 训练时注意scheduler，MAA里自己写了一个，评估一下要不要用</li>
+<li>[x] 简单main函数先测试是否能运行</li>
+<li>[x] scale_factor是什么看看</li>
+<li>[x] 先简易实现cal_control</li>
+<li>[x] 把logger的每个环节的采样数量保持一致</li>
+<li>[x] 在control信息保存的图片中加入control的起始和终止时间窗口</li>
+<li>[ ] 把control的图片和sample出来的mel拼在一起</li>
+</ul>
+<h1 id="Important-Information"><a href="#Important-Information" class="headerlink" title="Important Information"></a>Important Information</h1><p>对于优化参数的处理，在 <code>ControlLDM.configure_optimizers</code> 里<br>该函数只将要优化的参数加入优化器</p>
+<p>LDM同时接收两个控制信息，分别是text和control<br>text在Unet中通过cross_attn的方式传入<br>control通过concat的方式传入</p>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>scale_factor变了<br>register_buffer会携带在模型参数文件中，导入之后就变了<br>已解决</p>
+<p>关于cal_control的实现<br>首先是起止时间，由于输入音频都是 10s ，可以直接代换到梅尔谱大小的mask，这是01mask的思路，缺点是没有标签语义</p>
+<p>ControlNet中的<code>input_hint_block</code>用不了，得自己重新写，因为要和UNet Encoder第一层的输出相加，所以得对上形状<br>h.shape=10,78<br>已解决</p>
+<p>如何将标签语义导入？<br>需要找一个办法，使文本特征转换到和梅尔谱特征具有空间相关性的形状</p>
+<p>没有工作是做声音事件时长预测的<br>那就先不考虑时长预测，毕竟感觉确实做不了，比如说话声，搞不了我具体说多长<br>那问题就变为，预测给定事件和时间，声音事件在这段事件内的发展规律<br>首先要得到文本的特征表示，CLAP的特征好长<br>对于不同事件的表示，如何有效组合（写个简易的self-attention<br>懂了<br>搞个帧级的音频特征提取器，作为这个特征的训练目标</p>
+<p>想到了AudioMAE，但是和文本没有关联。<br>在AudioLDM2中，是训练GPT2生成的特征和AudioMAE特征相关联。</p>
+<p>采样也有问题，每次训练需要写一个log，记录当前的信息<br>callback里， hook <code>on_train_batch_end</code> ，<br>看看MAA里的几个logger咋搞的</p>
+<p>首先要实现ControlLDM中的log_image函数，加入control信息去采样<br>这个好了</p>
+<p>把logger的每个环节的采样数量保持一致：<br>涉及到的函数<br><code>ImageLogger.on_train_batch_end</code><br>-&gt;<br><code>ImageLogger.log_img</code> 有一个 <code>self.max_images</code> 在控制<br>-&gt;<br><code>AudioLogger.log_local</code><br>-&gt;<br><code>AudioLogger._log_rec_audio</code><br>我想方便调试，就想每轮开始就采样一下，于是把模型换成上次训练的模型，并修改log_first_step为True<br>另外修改了log_step，见配置文件和logger.py文件中注释了debug的部分</p>
+<p>发现实验结果可能是一个巨大的巧合<br>看看lr_schedule</p>
+<p>无语，发现没把压缩部分的插件加入训练过程</p>
+<p>对于ControlNet，Control信息对于原来的模型来说是和原图片相似的<br>12000step就有很好的效果</p>
+<p>不是我判断的问题，mask是那个mask，音频也是那个音频<br>就是训练不一样了，而且生成的音频质量也变的好差</p>
+<p>Music ControlNet从原音乐中提取特征，而且是音乐独有的特征，韵律等<br>这个melody可以在频谱图中反应出来，符合图像中的controlnet的合理性<br>但是rhythm和dynamic呢</p>
+<blockquote>
+<p>rhythm is the word we use to describe when a sound should be played and how long it should last. It’s the basic building block of all music.<br>Dynamics refer to how loudly or softly a piece of music is played. Words such as “piano” (soft) and “forte” (loud) are an indication of dynamics.</p>
+</blockquote>
+<p>韵律可以在梅尔谱图的出现时间模式上，比如每个beat的出现时间，小拍大拍，力度等<br>动态体现在声音的强弱变化上，比如波西米亚狂想曲妈妈咪呀那里，就是渐弱</p>
+<p>对当前结果的猜测</p>
+<ul>
+<li>数据集的问题，好多强标签的持续时间只有零点几秒，要么就是覆盖整个音频段</li>
+<li><del>对于零卷积层，参数可能并没有正确初始化</del></li>
+<li>和图像控制相比，所谓的CLAP特征复制并没有体现出在梅尔谱图上的空间特征</li>
+</ul>
+<p>一个一个排查，首先是零卷积层问题<br>把原来制作的模型的参数打印出来看看<br>这个没问题</p>
+<p>再来排除数据集的问题</p>
+<p>先什么再什么，CLAP，</p>
+<p>SEQ2seq-&gt; 文本到任意特征序列</p>
+<p>找找别的强标签数据集<br>DESED: Real validation, Synthetic training, Real public evaluation,<br></p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># public evaluation</span></span><br><span class="line">https://zenodo.org/api/records/<span class="number">3588172</span>/files-archive</span><br><span class="line"><span class="comment"># Synthetic</span></span><br><span class="line">https://zenodo.org/api/records/<span class="number">4307908</span>/files-archive</span><br></pre></td></tr></tbody></table></figure><br>real validation是Audioset的子集<p></p>
+<p>MAESTRO<br>还有这个task的数据集<br><a target="_blank" rel="noopener" href="https://dcase.community/challenge2024/task-audio-and-audiovisual-sound-event-localization-and-detection-with-source-distance-estimation">https://dcase.community/challenge2024/task-audio-and-audiovisual-sound-event-localization-and-detection-with-source-distance-estimation</a></p>
+<p>使用清洗过的精简的数据集也没办法实现控制，沟槽的<br>感觉是不是因为损失的问题，这也没有损失来约束controlnet部分的参数<br>沟槽的主包漏掉了一个很重要的东西<br>随机丢弃文本prompt<br>现在加上这个去训练，如果没用的话尝试不用单条标注的control，而是直接加入一整个样本，并且完全标注<br>没用喵😭</p>
+<p>换desed的数据集，并且组装一下一个样本的所有tag</p>
+<p>感觉也需要预训练微调，在带caption的数据上训练几轮，然后放到无caption的纯强标签数据集上训练</p>
+<p>牛魔，组装tag的写完发现dataloader不认，要全部数据涉及到的list都等长<br>然后最长的的tag数为 22， 我还想说加点空的把所有都对齐来着<br>现在的想法是只传路径和yid之类的，然后根据yid搞一个字典，字典哈希表查着快，把tag放在这个表里</p>
+<p>log_txt_as_img也要改<br>把每个小标签都列出来，就是tag是帧级的，乘窗长采样率转换为时间再标出来</p>
+<p>等这个写完了，加上对未标记部分的原数据的mask，感觉这样会有点说法</p>
+<p>切时间的算法没写好，对于覆盖整段音频的标记，没有加入重叠部分<br>用以下方法重写：</p>
+<ul>
+<li>所有事件处理为(起始帧，终止帧，事件标签)的形式</li>
+<li>遍历625帧，判断事件窗口是否包含，这里单独写一个list保存未标记帧，方便之后写原样本mask</li>
+<li>对每一帧单独计算一个latent？（ 时间复杂度太高了，感觉不太行，要处理一下</li>
+</ul>
+<p>思路：<br>对于每个文件，会有一个事件组，每个事件有一个序号<br>维护一个当前事件序号，在事件序号发生变化时，记录一组数据 <code>(起始帧，终止帧，包含事件的标签组合)</code><br>上面这个写好了</p>
+<p>搞另外两个数据集<br>/data1/yyp/tmpfile/DESED_synthetic/metadata/train/synthetic20</p>
+<p>train_folder 是很多jams的<code>/data1/yyp/tmpfile/DESED_synthetic/audio/train/synthetic20/soundscapes</code></p>
+<p>在看FoleyCrafter的时候想到一个东西<br>把所有强标签样本聚合起来，对于有caption的部分，对于原音频就不做mask，对于没有caption，只有强标签的部分，就把强标签没有覆盖到的时间段的原音频mask掉</p>
+<p>又想到一个东西，既然我已经text only了，有没有一种可能，输入一段有声书，输出带环境音的版本<br>细想一下，好像没什么可做的</p>
+<p>还是看看立体声吧，做出来了一定要蹭一下空间音频的热度</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2024/05/15/%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0/">http://yypyyds.github.io/2024/05/15/%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/Diffusion/">Diffusion</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/22/%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/" title="音频数据集"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">音频数据集</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/08/%E8%AF%AD%E9%9F%B3%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E7%9B%B8%E5%85%B3/" title="语音伪造检测相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">语音伪造检测相关</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/14/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="动手学深度学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-14</div><div class="title">动手学深度学习笔记</div></div></a></div><div><a href="/2023/12/15/Domain%20adaptation/" title="Domain adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-15</div><div class="title">Domain adaptation</div></div></a></div><div><a href="/2023/12/19/PoDA/" title="PoDA: Prompt-driven Zero-shot Domain Adaptation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">PoDA: Prompt-driven Zero-shot Domain Adaptation</div></div></a></div><div><a href="/2023/11/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" title="读论文过程中碰到的深度学习网络"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">读论文过程中碰到的深度学习网络</div></div></a></div><div><a href="/2024/02/26/ICME2024%E4%BB%8B%E7%BB%8D/" title="ICME2024介绍"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">ICME2024介绍</div></div></a></div><div><a href="/2024/04/08/%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3/" title="生成相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-08</div><div class="title">生成相关</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9LDM%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AD%A6%E4%B9%A0"><span class="toc-text">对LDM代码的学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Make-an-audio%E4%BB%A3%E7%A0%81"><span class="toc-text">Make an audio代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LatentDiffusion-audio%E7%B1%BB"><span class="toc-text">LatentDiffusion_audio类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ControlNet%E4%BB%A3%E7%A0%81"><span class="toc-text">ControlNet代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ControlLDM"><span class="toc-text">ControlLDM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AudioControlNet"><span class="toc-text">AudioControlNet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Have-Done"><span class="toc-text">Have Done</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-list"><span class="toc-text">TODO list</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Important-Information"><span class="toc-text">Important Information</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Problem"><span class="toc-text">Problem</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/19/%E6%89%BE%E7%8F%AD%E4%B8%8A/" title="无题">无题</a><time datetime="2024-07-19T07:37:01.740Z" title="发表于 2024-07-19 15:37:01">2024-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/18/%E8%AF%AD%E9%9F%B3%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/" title="语音信号处理笔记">语音信号处理笔记</a><time datetime="2024-07-18T11:14:40.000Z" title="发表于 2024-07-18 19:14:40">2024-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/08/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E9%9A%90%E5%86%99/" title="音乐生成隐写">音乐生成隐写</a><time datetime="2024-07-08T08:20:58.000Z" title="发表于 2024-07-08 16:20:58">2024-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/" title="Talking face detection相关">Talking face detection相关</a><time datetime="2024-06-11T03:08:05.000Z" title="发表于 2024-06-11 11:08:05">2024-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/22/%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/" title="音频数据集">音频数据集</a><time datetime="2024-05-22T03:51:40.000Z" title="发表于 2024-05-22 11:51:40">2024-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Talking face detection相关 | 脚踏车的日志站</title><meta name="author" content="脚踏车没有脚"><meta name="copyright" content="脚踏车没有脚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Talking face detection相关这应该是我毕设相关的题目了，先从中文综述开始看起 深度伪造与检测技术综述李旭嵘（zju）提到脸书和微软有一起搞deepfakes检测竞赛，那应该有相关的数据集才对 深度伪造生成技术脸部篡改伪造主要分为两大类：换脸伪造和脸部表情属性伪造 换脸伪造技术包括图形学和深度学习两种方法图形学就是3D建模，然后渲染替换，耗时长，开销大deepfakes框架采用一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Talking face detection相关">
+<meta property="og:url" content="http://yypyyds.github.io/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="脚踏车的日志站">
+<meta property="og:description" content="Talking face detection相关这应该是我毕设相关的题目了，先从中文综述开始看起 深度伪造与检测技术综述李旭嵘（zju）提到脸书和微软有一起搞deepfakes检测竞赛，那应该有相关的数据集才对 深度伪造生成技术脸部篡改伪造主要分为两大类：换脸伪造和脸部表情属性伪造 换脸伪造技术包括图形学和深度学习两种方法图形学就是3D建模，然后渲染替换，耗时长，开销大deepfakes框架采用一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yypyyds.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-06-11T03:08:05.000Z">
+<meta property="article:modified_time" content="2024-07-08T07:07:51.233Z">
+<meta property="article:author" content="脚踏车没有脚">
+<meta property="article:tag" content="活体检测">
+<meta property="article:tag" content="伪造检测">
+<meta property="article:tag" content="Deepfake">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yypyyds.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yypyyds.github.io/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Talking face detection相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-08 15:07:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="脚踏车的日志站"><span class="site-name">脚踏车的日志站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Talking face detection相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-11T03:08:05.000Z" title="发表于 2024-06-11 11:08:05">2024-06-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-08T07:07:51.233Z" title="更新于 2024-07-08 15:07:51">2024-07-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Talking face detection相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Talking-face-detection相关"><a href="#Talking-face-detection相关" class="headerlink" title="Talking face detection相关"></a>Talking face detection相关</h1><p>这应该是我毕设相关的题目了，先从中文综述开始看起</p>
+<h2 id="深度伪造与检测技术综述"><a href="#深度伪造与检测技术综述" class="headerlink" title="深度伪造与检测技术综述"></a>深度伪造与检测技术综述</h2><p>李旭嵘（zju）<br>提到脸书和微软有一起搞deepfakes检测竞赛，那应该有相关的数据集才对</p>
+<h3 id="深度伪造生成技术"><a href="#深度伪造生成技术" class="headerlink" title="深度伪造生成技术"></a>深度伪造生成技术</h3><p>脸部篡改伪造主要分为两大类：换脸伪造和脸部表情属性伪造</p>
+<h4 id="换脸伪造技术"><a href="#换脸伪造技术" class="headerlink" title="换脸伪造技术"></a>换脸伪造技术</h4><p>包括图形学和深度学习两种方法<br>图形学就是3D建模，然后渲染替换，耗时长，开销大<br>deepfakes框架采用一个编码器和多个解码器优化重建损失的方法，通过更换解码器达到换脸的目的<br>还有各种基于GAN的伪造人脸生成技术如starGAN，Stackgan，PGAN等<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240616192641002.png" alt=""></p>
+<p>开源数据集<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240616192918046.png" alt=""><br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240616192940237.png" alt=""><br>19年的ASVspoof</p>
+<p>视频数据集中，新的就这几个：<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240616194106204.png" alt=""></p>
+<p>在综述里看到这个论文<br></p><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Yang X, Li Y, Lyu S. Exposing deep fakes using inconsistent head poses. In: Proc. of the IEEE Int’l Conf. on Acoustics, Speech</span><br><span class="line">and Signal Processing (ICASSP). IEEE, 2019. 8261−8265.</span><br></pre></td></tr></tbody></table></figure><br>是用面部关键点中，外围关键点不变，而中心关键点与外围关键点的坐标不匹配<p></p>
+<p>图像篡改痕迹：<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240616200136430.png" alt=""><br>生成对抗网络在伪造检测中很实用，毕竟训练的过程的就是判别真实虚假</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Daisy-Zhang/Awesome-Deepfakes-Detection">https://github.com/Daisy-Zhang/Awesome-Deepfakes-Detection</a><br>找到个整合仓库</p>
+<h1 id="pl的笔记"><a href="#pl的笔记" class="headerlink" title="pl的笔记"></a>pl的笔记</h1><p>有几条技术路线，首先是只改嘴部的，这种方法会被头部的运动限制<br>然后是预测整个头部的，这种包括单面部特征点，3D头部<br>早期的一些工作有点唐氏，而且网络结构也怪怪的</p>
+<h2 id="IJCV-2020-Realistic-Speech-Driven-Facial-Animation-with-GANs"><a href="#IJCV-2020-Realistic-Speech-Driven-Facial-Animation-with-GANs" class="headerlink" title="IJCV 2020 Realistic Speech-Driven Facial Animation with GANs"></a>IJCV 2020 Realistic Speech-Driven Facial Animation with GANs</h2><p>是做talking head generation的，给定一张静止的照片和一段音频，生成包含嘴唇运动和眨眼眉毛动作在内的talking head视频</p>
+<p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240619154911512.png" alt=""><br>GAN思想，引入了三个判别器，从三个角度出发算对抗损失，分别为：frame， sequence，synchronization，分别用来保证生成质量，序列连贯性，音视频同步<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240619155652894.png" alt=""><br>generator的部分</p>
+<p>frame level的GAN好理解，但是同步和序列的判别器是怎样计算损失的<br>同步判别器，采用两个流分别提取特征，每次长度0.2s，分别计算两个模态的嵌入然后算欧氏距离，并且只取面部下半部分来训练同步鉴别器</p>
+<p>对于序列判别器，在每个时间步，鉴别器将使用具有时空卷积的CNN来提取瞬态特征，然后将其馈送到1层GRU中。在序列末尾使用的单层分类器确定序列是否是真实的</p>
+<h2 id="MM-2020-wav2lip"><a href="#MM-2020-wav2lip" class="headerlink" title="MM 2020 wav2lip"></a>MM 2020 wav2lip</h2><p>现有方法的不足：<br>传统的基于像素的人脸重建损失无法准确约束音频-唇形同步<br>传统的GAN判别器缺乏时间上下文信息<br>这里说到，对于整张人脸的重建损失，难以反映唇部区域的细节，因为唇部只占脸部的一小部分<br>传统的GAN判别器只使用单帧信息来评估口型同步<br>而且GAN判别器更容易关注到生成过程中存在的视觉伪影<br>本方法引入了一个在<strong>真实视频中预训练的专家口型同步判别器</strong>(Pre-trained Lip-Sync Expert)，在训练生成器的时候冻结该部分参数，计算同步损失<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240623185215099.png" alt=""><br>这里生成器中图像特征的提取部分，使用了三个部分，分别是groud truth， mask了下半部分的GT，还有从原视频切取的Random Reference Segment<br>重点是这个Lip-Sync Expert<br>他只在ground Truth上训练，作者发现，在生成过程中加入的序列判别器会更重视生成产生的伪影而不是帧之间的连贯性<br>这个嘴唇同步专家模型是之前工作提出的一个同步模型<br>SyncNet[9]输入Tv连续人脸帧的窗口V(仅下半部分)和大小为Ta × D的语音段S，其中Tv和Ta分别为视频和音频时间步长。它通过随机采样音频窗口Ta x D来区分音频和视频之间的同步，该音频窗口Ta x D要么与<strong>视频对齐(同步)</strong>，要么来自<strong>不同的时间步长(不同步)</strong>。它包含一个人脸编码器和一个音频编码器，两者都由2d卷积堆栈组成。从这些编码器生成的嵌入之间计算L2距离，并使用最大边际损失来训练模型，以最小化(或最大化)同步(或不同步)对之间的距离</p>
+<p>我们对SyncNet[9]进行了以下更改，以训练适合我们唇形生成任务的专家唇形同步鉴别器。首先，我们不像原始模型那样按通道顺序输入灰度图像，而是输入彩色图像。其次，我们的模型深度明显加深，存在残留的跳跃连接[15]。第三，受此公开实现的启发2，我们使用了一种不同的损失函数:具有二元交叉熵损失的余弦相似度。也就是说，我们计算relu激活的视频和语音嵌入v,s之间的点积，为每个样本产生一个在[0,1]之间的单个值，表示输入音频-视频对同步的概率</p>
+<h2 id="ECCV-2020-Talking-Head-Generation-with-Rhythmic-Head-Motion"><a href="#ECCV-2020-Talking-Head-Generation-with-Rhythmic-Head-Motion" class="headerlink" title="ECCV 2020 Talking-Head Generation with Rhythmic Head Motion"></a>ECCV 2020 Talking-Head Generation with Rhythmic Head Motion</h2><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240624104007732.png" alt=""><br>本文的任务设定：<br>给定一个目标对象的短视频和一段任意的参考音频，生成一个<code>photo-realistic</code>和嘴唇同步的talking-head视频，并且包含自然的头部运动<br>这个过程很复杂，不仅需要模拟脸部区域，还有头部的运动和背景<br>提了一些方法综合高效的利用图像和音频的深度信息</p>
+<p>提到了一个嵌入网络技术(Embedding Network)<br>该网络对生成任务的身份保持性能至关重要<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240624153059928.png" alt=""></p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p>问题规约：<br>给定输入的样本视频帧$y_{1:\tau} \equiv y_1, \dots, y_{\tau}$和 目标驱动音频 $x_{\tau +1:T} \equiv x_{\tau+1},\dots,x_T$<br>生成目标视频帧 $\hat y_{\tau + 1 : T} \equiv \hat y_{\tau + 1}, \dots, \hat y_{T}$<br>讲一堆，反正就是把整个任务拆成了三部分，<code>facial expression learner</code>, <code>head motion learner</code>, <code>3D-aware generative network</code>，最后这个生成网络从前两个模块的输出和样本视频帧中学习生成目标视频帧</p>
+<h4 id="Facial-Expression-Learner"><a href="#Facial-Expression-Learner" class="headerlink" title="Facial Expression Learner"></a>Facial Expression Learner</h4><p>训练时，在每个step t，取一段音频片段 $x_{t-3:t+4}$ (0.04 X 7 Sec)，编码得到音频特征向量，然后和参考关键点特征连接，解码融合特征得到PCA components，不知道这个是什么东西，应该就是个中间向量，用来充当prior</p>
+<h4 id="The-Head-Motion-Learner"><a href="#The-Head-Motion-Learner" class="headerlink" title="The Head Motion Learner"></a>The Head Motion Learner</h4><p>这个模块做了两件事，一是从输入视频片段中提取参考头部运动，然后根据参考头部运动和驱动音频，生成预测的头部运动。<br>这里用了空间6维信息投影，算计算机图形学的知识吧，对平面的图片建模成3D，然后转换成正面得到表情特征<br>这些计算之后，头部的运动信息被移除，剩下的信息仅携带面部表情信息<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240624160204750.png" alt=""><br>对于头部的运动信息，作者发现不同人的头部运动模式都不同，结合了视频和音频计算相关的头部运动信息，然后根据驱动音频计算目标头部运动信息。<br>看不懂啊</p>
+<h2 id="CVPR2023-Seeing-What-You-Said-Talking-Face-Generation-Guided-by-a-Lip-Reading-Expert"><a href="#CVPR2023-Seeing-What-You-Said-Talking-Face-Generation-Guided-by-a-Lip-Reading-Expert" class="headerlink" title="CVPR2023 Seeing What You Said: Talking Face Generation Guided by a Lip Reading Expert"></a>CVPR2023 Seeing What You Said: Talking Face Generation Guided by a Lip Reading Expert</h2><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240627104636293.png" alt=""><br>提到嘴唇运动的视觉可理解性也是生成质量的重要层面。<br>训练了一个专家模型，应该是GAN对嘴唇区域错误的结果增加损失<br>提出了一种新的对比学习方法，用于增强嘴唇语言同步<br>注意指标问题：<br>生成质量是怎么评估的，同步性怎么评估，词错误率是什么<br>本文的重点是，对生成唇形运动的视觉可理解性，就是生成的视频可以被人读唇语读出来<br>贡献点：</p>
+<ul>
+<li>利用<code>lip-reading expert</code>来解决唇语可理解性问题</li>
+<li>使用<code>lip-reading expert</code>，进行跨模态对比学习，增强<code>lip-speech</code>同步</li>
+<li>我们使用与<code>lip-reading expert</code>同步训练的transformer encoder来考虑整个音频话语的全局时间依赖性</li>
+<li>提了一个新指标，用于评估talking face generation的唇语可理解性<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method"></a>Method</h3>将图片作为身份和姿势参考，将连续的语音作为嘴唇运动参考。<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240627152246602.png" alt=""><h4 id="lip-reading-expert"><a href="#lip-reading-expert" class="headerlink" title="lip-reading expert"></a>lip-reading expert</h4>思考一下，这东西是判断图片能不能读出文字的，所以他的设计和训练目标，应该是输入一个视频，得到一串文字或者文字的表示序列。<br>visual front-end 编码图像信息，modality selector决定训练的信息是<code>audio-only, video-only, audio-visual</code>中的哪种。Transformer encoder所有模态共享参数，并使用相同的帧级伪标签进行回归。该伪标签是音频的MFCC或者transformer encoder的中间特征的聚类<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240627153940672.png" alt=""><br>预训练完成后，接一个decoder，在文本转录任务上微调，然后用于计算lip reading loss<h4 id="Audio-encoder"><a href="#Audio-encoder" class="headerlink" title="Audio encoder"></a>Audio encoder</h4>用了两种不同的audio encoder，一个local一个global<br>local的是一个CNN-based的网络，从0.2秒的片段中提取特征，0.2秒片段的中心与姿态参考同步。<br>使用Lip-expert的transformer encoder得到全局的特征，选取和姿态参考对齐的一帧特征作为上下文特征。<h4 id="Video-encoder"><a href="#Video-encoder" class="headerlink" title="Video encoder"></a>Video encoder</h4>视频编码器从图像中提取身份和姿态信息进行统一的视觉嵌入，并将嵌入提供给生成器合成与所提供的身份和姿态一致的图像。<br>和之前看到的人脸编码差不多，对于identity reference，都是随机选取一个帧<br>两个reference在通道维度中连接作为视觉输入，并馈送到基于cnn的视频编码器。<h4 id="Video-generation"><a href="#Video-generation" class="headerlink" title="Video generation"></a>Video generation</h4>用的是Unet桥接一堆反卷积块<br>这里没具体讲结构，主要讲的损失<br>GAN网络，那就是人脸重建L1损失，生成器损失和判别器损失<h4 id="Lip-reading-loss"><a href="#Lip-reading-loss" class="headerlink" title="Lip reading loss"></a>Lip reading loss</h4>这里是用前面的那个专家算的，令真实帧为 $v$，伪造帧为 $v’$ 随机抽取所有帧的一个比例p作为一组起始帧，每一个起始帧的后续M帧将被替换为生成的帧<br>这样做同时考虑了 $v$ 和 $v’$ 之间的嘴唇运动和 $v’$ 内部的嘴唇运动<br>损失为生成的content sequence和原来的content sequence的交叉熵<br>content sequence就是有decoder的专家模型的输出<h4 id="Contrastive-loss"><a href="#Contrastive-loss" class="headerlink" title="Contrastive loss"></a>Contrastive loss</h4>使用对比学习增强唇语同步，使音频嵌入和对齐的视觉content特征接近，和不同帧的音频嵌入远离，这里用了infoNCE（Noise constractive estimation）损失，常用于自监督学习中<br>要理解这个损失，要抓住上面那个框架图<br>首先，这个NCE损失的思想，就是一个查询向量q，和一堆码本向量k，k中只有一个类别和q是同类的，要尽可能接近，其他类别都不同，要远离<br>放到这个场景中，就是对于一帧的音频特征 $E^a$ ，只有在时间上和他同帧的视觉上下文特征 $R$ 和他同类，这一段音频中其他位置的音频嵌入和他都不同<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240628124446314.png" alt=""><h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h3>数据集<br>训练集：<br>train set of LRS2<br>测试集：<br>test sets of LRW and LRS2<br>LRW：Lip Reading in the Wild<br>Lip Reading in the Wild (LRW) 数据集是一个大型视听数据库，包含来自 1,000 多名发言人的 500 个不同单词。每个语句有 29 个帧，其边界以目标词为中心。该数据库分为训练集、验证集和测试集。训练集包含每类至少 800 个语句，验证集和测试集包含 50 个语句。<br>LRS2：The Oxford-BBC Lip Reading Sentences 2<br>牛津-英国广播公司唇读句子 2 (LRS2) 数据集是最大的公开可用的野生唇读句子数据集之一。该数据库主要由 BBC 节目中的新闻和脱口秀组成。每个句子长度不超过 100 个字符。训练集、验证集和测试集根据播出日期划分。这是一个具有挑战性的数据集，因为它包含数千名没有说话者标签的说话者，而且头部姿势变化很大。预训练集包含 96,318 个语句，训练集包含 45,839 个语句，验证集包含 1,082 个语句，测试集包含 1,242 个语句。</li>
+</ul>
+<p>指标：<br>PSNR，SSIM，LSE-C<br><strong>PSNR：</strong> Peak Signal-to-Noise Ratio（峰值信噪比）<br>对原始图像 $I$ 和添加噪声后的噪声图像 $K$ （重建图像）<br>是从均方误差定义的，首先MSE为</p>
+<script type="math/tex; mode=display">
+MSE=\frac{1}{mn}\sum^{m-1}_{i=0}\sum^{n-1}_{j=0}\left[I(i,j)-K(i,j)\right]^2</script><p>PSNR为：</p>
+<script type="math/tex; mode=display">
+PSNR=10\cdot \log_{10}\left( \frac{MAX^2_I}{MSE}\right)</script><p>其中$MAX_I$ 为像素的最大像素值，若为8位二进制表示，则为255<br>若为彩色图像，有三种方法<br><strong>方法一</strong>：计算RGB图像三个通道每个通道的MSE值再求平均值，进而求PSNR<br><strong>方法二</strong>：直接使用matlab的内置函数psnr()(<strong>注意该函数将所有图像当成灰度图像处理</strong>)。<br><strong>方法三</strong>：将图像转为YCbCr格式，只计算Y分量即亮度分量的PSNR。</p>
+<p>评价标准<br>（1）高于40dB：说明图像质量极好(即非常接近原始图像)<br>（2）30—40dB：通常表示图像质量是好的(即失真可以察觉但可以接受)<br>（3）20—30dB：说明图像质量差<br>（4）低于20dB：图像质量不可接受</p>
+<p>SSIM（Structural Similarity Index）：<br>是一种更偏向于人类视觉系统的客观指标，从三个方面进行评估，亮度(luminance)，对比度(contrast)，结构(structure)<br>算法的基本流程如下<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240628153606880.png" alt=""><br>流程上看，对于两个图像信号，都是比较一个就去掉关于该方面的信息，比如上面先计算了亮度比较，然后将其从原信号中减去了<br>从实现角度来讲，亮度用均值表征，对比度用经过均值归一化之后的方差表征，结构用相关系数（就是统计意义上的 r ，协方差与方差乘积的比值）。<br>公式如下<br>Luminance，以平均灰度衡量，通过平均所有像素的值得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mu_x  &= \frac{1}{N}\sum^N_{i=1}x_i \newline
+l(x,y) &=\frac{2\mu_x\mu_y+C_1}{\mu^2_x + \mu^2_y + C_1}
+\end{aligned}</script><p>常量 $C_1$ 用于避免值接近0时不稳定，也没说这为啥是这样算的，看着像相关系数</p>
+<p>Contrast，通过灰度标准差来衡量，合理，对比度高，标准差也会高</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma_x &= \left(\frac{1}{N-1}\sum^N_{i=1}(x_i-\mu_x)^2\right)^{\frac12}
+\newline
+c(x,y) &=\frac{2\sigma_x \sigma_y +C_2}{\sigma_x^2 + \sigma^2_y + C_2}
+\end{aligned}</script><p>Structure，使用的是归一化之后的图像的比较，使用相关系数衡量，涉及到xy的协方差</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma_{xy} &= \frac{1}{N-1}\sum^N_{i=1}(x_i-\mu_x)(y_i-\mu_y)
+\newline
+s(x,y) &= \frac{\sigma_{xy} + C_3}{\sigma_x \sigma_y +C_3}
+\end{aligned}</script><p>最后的结果有</p>
+<script type="math/tex; mode=display">
+S(x,y) = l(x,y)^\alpha \cdot c(x,y)^\beta \cdot s(x,y)^\gamma</script><p>LSE-C是由SyncNet网络得到的音频表征和视频表征之间的置信度，SyncNet是很有名的一个判断生成帧与语音之间唇形同步的模型，平均精确度超过99%</p>
+<p>对于本文特别重视的唇语可理解性，提出了一个新的评价策略<br>包括LRS2上合成视频的词错误率(word Error Rate, WER)，和未见数据集上的单词准确率(ACC)<br>使用读唇语任务中的SoTA模型，AV-Hubert，其在LRS2测试集上的性能为 23.82% WER</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240628164215486.png" alt=""><br>TalkLip后面的 $l,c,g$ 分别指 audio embedding 的局部特征，全局特征，对比学习</p>
+<h1 id="学姐的论文"><a href="#学姐的论文" class="headerlink" title="学姐的论文"></a>学姐的论文</h1><p>现有研究存在的问题</p>
+<ul>
+<li>pixel level 的检测抗压缩能力差</li>
+<li>多模态检测效果差<br>本文贡献</li>
+<li>对于压缩场景，提出了一个（Facial-Landmark based Graph Attention Network,FLANet）</li>
+<li>对于融合场景，提出了一种基于语音特征解耦的音视频多模态伪造检测方案（Audio-Visual Deepfake Detection with Speech Disentanglement and Attentive Fusion），将语音信号解耦为内容特征和身份特征</li>
+</ul>
+<p>看到的一些新东西<br>情感一致性的相关工作认为，真实视频中人的表情和声音情感特征存在一致性，深度伪造则可能会违背这种一致性</p>
+<p>一直提到，在音视频结合的伪造检测中，音频特征主要是手工提取，缺少细粒度分析</p>
+<h1 id="Improving-the-Efficiency-and-Robustness-of-Deepfakes-Detection-through-Precise-Geometric-Features-LRNet"><a href="#Improving-the-Efficiency-and-Robustness-of-Deepfakes-Detection-through-Precise-Geometric-Features-LRNet" class="headerlink" title="Improving the Efficiency and Robustness of Deepfakes Detection through Precise Geometric Features(LRNet)"></a>Improving the Efficiency and Robustness of Deepfakes Detection through Precise Geometric Features(LRNet)</h1><p>通过对精确的几何特征进行时间建模来检测深度伪造视频<br>重点，模型小，精度高<br>包括四个部分<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707155504427.png" alt=""><br>face preprocessing module, calibration module, feature embedding procedure, RNN classifier<br>其中，只有RNN需要训练</p>
+<h2 id="Face-preprocessing"><a href="#Face-preprocessing" class="headerlink" title="Face preprocessing"></a>Face preprocessing</h2><p>包括face detection，facial landmarks detection，landmarks alignment<br>首先将人脸从每帧图像上切出来，然后检测68个面部关键点，最后通过仿射变换将关键点对齐到预设位置（仿射变换就是对二维图像的空间变换）<br>这里提到该方法对landmark detector要求不高，后面实验有证明</p>
+<h2 id="Landmark-Calibration"><a href="#Landmark-Calibration" class="headerlink" title="Landmark Calibration"></a>Landmark Calibration</h2><p>提取的landmarks在帧之间会有抖动<br>为了保持landmark的稳定性，以提高精度，使用连续的帧来预测后一个位置的landmark<br>基于 Lucas-Kanade optical flow calculation algorithm<br>最后将探测的和预测的用一个Kalman filter合并在一起，得到校准后的精度更高的landmark</p>
+<p>上面提到的这个算法，是用来计算帧间若干关键点的视觉移动的，和该场景很契合<br>看不懂，放弃了<br>不要放弃啊<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/leviopku/article/details/121773298">光流算法</a><br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707175538236.png" alt=""><br>要最小化这个目标，这个就是对一个patch两帧，最符合每个点的移动<br>然后用另一篇论文的结果来计算这个 $\Delta d$ ，也没讲是怎么计算的</p>
+<p>得到移动方向之后可以计算出预测的landmarks，然后会有抖动，而且光流算法会引入噪声<br>所以需要降噪处理，方法是用一个系数矫正预测关键点和detect的关键点之间的误差<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707180711616.png" alt=""><br>这个K就是上文提到的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37214693/article/details/130927283">Kalman</a>，这是一个预测-估计循环的马尔可夫过程<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707182157753.png" alt=""><br>其中 $P_{i+1}$ 是计算 $x^{pred}_{i+1}$ 过程的方差，没懂，是哪里的方差，D用如下公式近似<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707182358027.png" alt=""></p>
+<p>提问，怎么来的<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707182539701.png" alt=""><br>上面是原始的Kalman filter的更新系数<br>分子是当前状态的误差协方差矩阵，分母是这个加观测误差</p>
+<h2 id="Fake-video-classification"><a href="#Fake-video-classification" class="headerlink" title="Fake video classification"></a>Fake video classification</h2><p>有俩序列特征作为RNN输入，分别为<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707183814300.png" alt=""><br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707183820464.png" alt=""><br>一个就是landmark展平，一个是前后两帧的差，可以表示速度<br>分类上没什么特色，就是两个RNN，分别建模两个序列，然后输出是两个线性层，预测值取平均作为最终输出</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707190732202.png" alt=""></p>
+<h3 id="Robustness-to-video-compression"><a href="#Robustness-to-video-compression" class="headerlink" title="Robustness to video compression"></a>Robustness to video compression</h3><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707190806821.png" alt=""><br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707191016248.png" alt=""><br>超小的模型参数</p>
+<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707191134909.png" alt=""><br>去掉滤波器和调整<br>去掉某个序列特征<br><img src="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/image-20240707191202030.png" alt=""></p>
+<h1 id="Talking-human-face-generation-A-survey"><a href="#Talking-human-face-generation-A-survey" class="headerlink" title="Talking human face generation: A survey"></a>Talking human face generation: A survey</h1><p>看到一个新名词 <code>NeRF, Neural Rendering Fields</code> 用于数据生成</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io">脚踏车没有脚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yypyyds.github.io/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/">http://yypyyds.github.io/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yypyyds.github.io" target="_blank">脚踏车的日志站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B4%BB%E4%BD%93%E6%A3%80%E6%B5%8B/">活体检测</a><a class="post-meta__tags" href="/tags/%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B/">伪造检测</a><a class="post-meta__tags" href="/tags/Deepfake/">Deepfake</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/07/08/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E9%9A%90%E5%86%99/" title="音乐生成隐写"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">音乐生成隐写</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/22/%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/" title="音频数据集"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">音频数据集</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/05/Securing%20liveness%20Detection%20for%20Voice%20%20Authentication%20via%20Pop%20Noises/" title="Securing liveness Detection for Voice Authentication via Pop Noises"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-05</div><div class="title">Securing liveness Detection for Voice Authentication via Pop Noises</div></div></a></div><div><a href="/2024/05/08/%E8%AF%AD%E9%9F%B3%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E7%9B%B8%E5%85%B3/" title="语音伪造检测相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-08</div><div class="title">语音伪造检测相关</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脚踏车没有脚</div><div class="author-info__description">不积跬步，无以至千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yypyyds"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是一个努力学习的笨蛋的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Talking-face-detection%E7%9B%B8%E5%85%B3"><span class="toc-text">Talking face detection相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%AA%E9%80%A0%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0"><span class="toc-text">深度伪造与检测技术综述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%AA%E9%80%A0%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF"><span class="toc-text">深度伪造生成技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E8%84%B8%E4%BC%AA%E9%80%A0%E6%8A%80%E6%9C%AF"><span class="toc-text">换脸伪造技术</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pl%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="toc-text">pl的笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IJCV-2020-Realistic-Speech-Driven-Facial-Animation-with-GANs"><span class="toc-text">IJCV 2020 Realistic Speech-Driven Facial Animation with GANs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MM-2020-wav2lip"><span class="toc-text">MM 2020 wav2lip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECCV-2020-Talking-Head-Generation-with-Rhythmic-Head-Motion"><span class="toc-text">ECCV 2020 Talking-Head Generation with Rhythmic Head Motion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Facial-Expression-Learner"><span class="toc-text">Facial Expression Learner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Head-Motion-Learner"><span class="toc-text">The Head Motion Learner</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CVPR2023-Seeing-What-You-Said-Talking-Face-Generation-Guided-by-a-Lip-Reading-Expert"><span class="toc-text">CVPR2023 Seeing What You Said: Talking Face Generation Guided by a Lip Reading Expert</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-1"><span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lip-reading-expert"><span class="toc-text">lip-reading expert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Audio-encoder"><span class="toc-text">Audio encoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-encoder"><span class="toc-text">Video encoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-generation"><span class="toc-text">Video generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lip-reading-loss"><span class="toc-text">Lip reading loss</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Contrastive-loss"><span class="toc-text">Contrastive loss</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Experiments"><span class="toc-text">Experiments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E5%A7%90%E7%9A%84%E8%AE%BA%E6%96%87"><span class="toc-text">学姐的论文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Improving-the-Efficiency-and-Robustness-of-Deepfakes-Detection-through-Precise-Geometric-Features-LRNet"><span class="toc-text">Improving the Efficiency and Robustness of Deepfakes Detection through Precise Geometric Features(LRNet)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Face-preprocessing"><span class="toc-text">Face preprocessing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Landmark-Calibration"><span class="toc-text">Landmark Calibration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fake-video-classification"><span class="toc-text">Fake video classification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Experiment"><span class="toc-text">Experiment</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Robustness-to-video-compression"><span class="toc-text">Robustness to video compression</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">消融实验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Talking-human-face-generation-A-survey"><span class="toc-text">Talking human face generation: A survey</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/19/%E6%89%BE%E7%8F%AD%E4%B8%8A/" title="无题">无题</a><time datetime="2024-07-19T07:37:01.740Z" title="发表于 2024-07-19 15:37:01">2024-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/18/%E8%AF%AD%E9%9F%B3%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/" title="语音信号处理笔记">语音信号处理笔记</a><time datetime="2024-07-18T11:14:40.000Z" title="发表于 2024-07-18 19:14:40">2024-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/08/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E9%9A%90%E5%86%99/" title="音乐生成隐写">音乐生成隐写</a><time datetime="2024-07-08T08:20:58.000Z" title="发表于 2024-07-08 16:20:58">2024-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/11/Talking%20face%20detection%E7%9B%B8%E5%85%B3/" title="Talking face detection相关">Talking face detection相关</a><time datetime="2024-06-11T03:08:05.000Z" title="发表于 2024-06-11 11:08:05">2024-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/22/%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/" title="音频数据集">音频数据集</a><time datetime="2024-05-22T03:51:40.000Z" title="发表于 2024-05-22 11:51:40">2024-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 脚踏车没有脚</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
